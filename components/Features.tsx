@@ -1,87 +1,100 @@
 "use client";
-
-import { motion } from "motion/react";
+import Image from "next/image";
 
 const features = [
   {
-    title: "For Renters",
-    description: "Discover and inspect properties with confidence",
-    icon: "🔍",
-    items: [
-      "Browse verified property listings",
-      "Book affordable inspections",
-      "Avoid fake agents and scams",
-      "Get detailed property reports",
-    ],
+    IconPath: "/user-group.svg",
+    name: "Staff Management",
+    description: "Manage drivers, dispatchers, and warehouse staff",
+    bg: "#D9EBE1",
+    className: "lg:row-start-1 lg:row-end-2 lg:col-start-1 lg:col-end-3",
   },
   {
-    title: "For Agents",
-    description: "Grow your business with trusted inspections",
-    icon: "👨‍💼",
-    items: [
-      "Accept inspection jobs",
-      "Build your reputation",
-      "Earn from verified listings",
-      "Manage your schedule",
-    ],
+    IconPath: "/fleet.svg",
+    name: "Fleet Tracking",
+    description: "Real-time vehicle monitoring and route optimization",
+    bg: "#F0E2FB",
+    className: "lg:row-start-2 lg:row-end-3 lg:col-start-1 lg:col-end-2",
   },
   {
-    title: "For Admins",
-    description: "Manage and monitor platform activity",
-    icon: "⚙️",
-    items: [
-      "Approve property listings",
-      "Monitor agent performance",
-      "Manage user accounts",
-      "Track platform metrics",
-    ],
+    IconPath: "/clock.svg",
+    name: "Delivery Schedule",
+    description: "Manage delivery timelines and dispatch",
+    bg: "#F5D7D9",
+    className: "lg:row-start-2 lg:row-end-3 lg:col-start-2 lg:col-end-3",
+  },
+  {
+    IconPath: "/performance.svg",
+    name: "Performance Metrics",
+    description: "Track efficiency and operational insights.",
+    bg: "#E4DDFB",
+    className: "lg:row-start-1 lg:row-end-3 lg:col-start-3 lg:col-end-4",
+  },
+  {
+    IconPath: "/route.svg",
+    name: "Route Planning",
+    description: "Optimize delivery routes and fuel efficiency.",
+    bg: "#F9E6D8",
+    className: "lg:row-start-3 lg:row-end-5 lg:col-start-1 lg:col-end-2",
+  },
+  {
+    IconPath: "/user.svg",
+    name: "User Access Control",
+    description: "Manage permissions and user roles.",
+    bg: "#DBE0FB",
+    className: "lg:row-start-3 lg:row-end-5 lg:col-start-2 lg:col-end-4",
   },
 ];
 
+
 export default function Features() {
   return (
-    <section className="py-20 bg-muted/30">
+    <section className="py-20">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-            Built for Everyone
+            <span className="text-transparent bg-clip-text bg-gradient-to-t from-[#18191A] to-[#FFFFFF ]">
+              {" "}
+              Features
+            </span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            ENIQO connects renters, agents, and admins in a trusted ecosystem
-            for property discovery and inspection.
+          <p className="text-xl text-rideflow-text max-w-3xl mx-auto">
+            Take control of your entire transportation business from a single
+            dashboard. Easily manage your fleet, staff, and deliveries to
+            streamline your operations.
           </p>
         </div>
-
-        <div className="grid md:grid-cols-3 gap-8">
-          {features.map((feature, index) => (
-            <motion.div
-              key={feature.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 }}
-              className="bg-background border border-border rounded-2xl p-8 hover:shadow-lg transition-all duration-300"
+        <div className="mt-12 grid grid-cols-1 lg:grid-cols-3 lg:grid-rows-3 gap-6">
+          {features.map((feature, idx) => (
+            <div
+              key={idx}
+              className={`relative rounded-2xl p-6 shadow-sm bg-gradient-to-tr from-[${feature.bg}] to-[#F8F9FB] ${feature.className}`}
+              style={{ backgroundColor: `${feature.bg}` }}
             >
-              <div className="flex items-center gap-4 mb-6">
-                <div className="w-16 h-16 bg-[#e5ff00] rounded-xl flex items-center justify-center text-3xl">
-                  {feature.icon}
-                </div>
-                <div>
-                  <h3 className="text-2xl font-bold text-foreground">
-                    {feature.title}
-                  </h3>
-                  <p className="text-muted-foreground">{feature.description}</p>
-                </div>
+              <div
+                className={`w-10 h-10 flex items-center justify-center rounded-lg`}
+              >
+                <Image
+                  src={feature.IconPath}
+                  alt={feature.name}
+                  width={30}
+                  height={30}
+                />
               </div>
 
-              <ul className="space-y-3">
-                {feature.items.map((item, itemIndex) => (
-                  <li key={itemIndex} className="flex items-center gap-3">
-                    <div className="w-2 h-2 bg-[#e5ff00] rounded-full"></div>
-                    <span className="text-foreground">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
+              <h3 className="mt-4 text-lg font-semibold">{feature.name}</h3>
+              <p className="mt-2 text-sm font-semibold text-rideflow-text">
+                {feature.description}
+              </p>
+
+              <Image
+                src={"/logo-transparent.svg"}
+                alt=""
+                width={80}
+                height={80}
+                className="absolute bottom-0 opacity-50 right-0"
+              />
+            </div>
           ))}
         </div>
       </div>
