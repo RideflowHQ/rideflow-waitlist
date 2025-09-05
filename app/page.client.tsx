@@ -10,16 +10,13 @@ import Footer from "@/components/Footer";
 
 export function LandingPage() {
   return (
-    <main className="pt-4 md:pt-8 w-full h-full flex-1 flex flex-col relative">
-      <section className="mx-auto max-w-screen-2xl ">
-        <Header />
-        <Hero />
-        <Features />
-        <Faqs />
-      </section>
+    <main className=" w-full h-full flex-1 flex flex-col relative">
+      <Header />
+      <Hero />
+      <Features />
+      <Faqs />
       <Footer />
     </main>
   );
 }
-
-
+// mx-auto max-w-screen-2xl

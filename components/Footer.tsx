@@ -52,7 +52,7 @@ const footerQuickLink = [
 
 export default function Footer() {
   return (
-    <footer className="flex flex-col justify-between w-full items-center gap-12 py-12 relative">
+    <footer className="flex flex-col justify-between w-full items-center gap-12 py-12 relative bg-white">
       <div className="absolute top-0 left-0 w-full">
         <Image
           className="object-cover w-full"

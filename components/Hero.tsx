@@ -1,6 +1,7 @@
 import WaitlistForm from "./Form";
 import Image from "next/image";
 import { useState } from "react";
+import DashboardLive from "./DashboardLive";
 const Hero = () => {
   const [isSuccess, setIsSuccess] = useState(false);
 
@@ -9,7 +10,7 @@ const Hero = () => {
       <div className="flex flex-col items-center justify-center gap-2 max-w-4xl">
         <div className="flex">
           <h2 className="text-7xl font-bold text-foreground max-w-xl text-center">
-            <span className="text-transparent bg-clip-text bg-gradient-to-t from-[#18191A] to-[#FFFFFF ]">
+            <span className="text-transparent bg-clip-text bg-gradient-to-t from-[#18191A] to-[#717273]">
               Streamline
             </span>
           </h2>
@@ -36,6 +37,7 @@ const Hero = () => {
       <div className="flex flex-col items-center justify-center gap-2 w-full max-w-2xl mt-8">
         <WaitlistForm onSuccessChange={setIsSuccess} />
       </div>
+      <DashboardLive />
     </section>
   );
 };

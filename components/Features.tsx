@@ -49,7 +49,7 @@ const features = [
 
 export default function Features() {
   return (
-    <section className="py-20">
+    <section className="py-20 bg-white">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
@@ -92,7 +92,7 @@ export default function Features() {
                 alt=""
                 width={80}
                 height={80}
-                className="absolute bottom-0 opacity-50 right-0"
+                className="absolute bottom-0 opacity-70 right-0"
               />
             </div>
           ))}

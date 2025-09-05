@@ -7,7 +7,7 @@ import {
 
 export default function Faqs() {
   return (
-    <div className="flex flex-col md:flex-row justify-between items-start px-6 md:px-4 gap-6 py-20">
+    <div className="flex flex-col md:flex-row justify-between items-start  md:px-10 gap-6 py-20  w-full max-w-screen-xl  mx-auto px-4">
       <div className="flex flex-col items-start justify-center gap-2 max-w-2xl">
         <h2 className="text-7xl font-bold text-foreground">
           <span className="text-transparent bg-clip-text bg-gradient-to-t from-[#18191A] to-[#FFFFFF ]">

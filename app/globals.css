@@ -49,8 +49,8 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
-  --animate-pulse: pulse var(--duration) ease-out infinite;
-  @keyframes pulse {
+  --animate-pulse-pop: pulse-pop var(--duration) ease-out infinite;
+  @keyframes pulse-pop {
     0%,
     100% {
       box-shadow: 0 0 0 0 var(--pulse-color);

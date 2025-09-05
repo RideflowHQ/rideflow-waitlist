@@ -4,6 +4,7 @@ import { useState, type FormEvent, type ChangeEvent } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { toast } from "sonner";
 import { Mail, User2 } from "lucide-react";
+import confetti from "canvas-confetti";
 
 interface FormProps {
   onSuccessChange?: (success: boolean) => void;
