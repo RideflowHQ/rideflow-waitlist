@@ -24,7 +24,7 @@ const SpringArrow = ({
 }) => {
   return (
     <motion.div
-      className="absolute z-20 pointer-events-none"
+      className="absolute z-10 pointer-events-none"
       style={position}
       initial={{ scale: 0, opacity: 0 }}
       animate={{

@@ -10,7 +10,7 @@ import Footer from "@/components/Footer";
 
 export function LandingPage() {
   return (
-    <main className=" w-full h-full flex-1 flex flex-col relative">
+    <main className=" w-full  flex flex-col relative">
       <Header />
       <Hero />
       <Features />

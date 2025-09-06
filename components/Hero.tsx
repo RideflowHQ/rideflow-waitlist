@@ -80,7 +80,7 @@ const Hero = () => {
       <div className="flex flex-col items-center justify-center gap-2 w-full px-3 max-w-sm md:max-w-2xl mt-8">
         <WaitlistForm onSuccessChange={setIsSuccess} />
       </div>
-      <div className="h-[35rem] w-[90%] overflow-hidden md:w-[70rem]">
+      <div className="h-[35rem] w-[90%] overflow-hidden md:w-[50rem] lg:w-[75rem]">
         <DashboardLive />
       </div>
     </section>

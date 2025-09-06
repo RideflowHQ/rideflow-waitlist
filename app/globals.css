@@ -94,6 +94,9 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+  --sb-track: #f1f1f1;
+  --sb-thumb: #2C4BFD;
+  --sb-thumb-hover: #1a2fb3;
 }
 
 .dark {
@@ -137,4 +140,24 @@
   body {
     @apply bg-body-gray text-foreground;
   }
+}
+
+* {
+  scrollbar-width: thin;
+  scroll-behavior: smooth;
+  scrollbar-color: var(--sb-thumb) var(--sb-track);
+}
+*::-webkit-scrollbar {
+  width: 5px;
+}
+*::-webkit-scrollbar-track {
+  background: var(--sb-track);
+  border-radius: 10px;
+}
+*::-webkit-scrollbar-thumb {
+  background: var(--sb-thumb);
+  border-radius: 10px;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background: var(--sb-thumb-hover);
 }
