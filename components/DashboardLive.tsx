@@ -5,10 +5,10 @@ import Image from "next/image";
 import { Skeleton } from "./ui/skeleton";
 
 const images = [
-  { src: "/staff-arrow.svg", position: { top: "20%", left: "-3%" } },
+  { src: "/staff-arrow.svg", position: { top: "10%", left: "-1%" } },
   { src: "/fleet-arrow.svg", position: { top: "35%", left: "-1%" } },
   { src: "/performance-arrow.svg", position: { bottom: "30%", left: "45%" } },
-  { src: "/control-arrow.svg", position: { bottom: "20%", right: "10%" } },
+  { src: "/control-arrow.svg", position: { bottom: "40%", right: "10%" } },
   { src: "/delivery-arrow.svg", position: { top: "20%", right: "30%" } },
   { src: "/route-arrow.svg", position: { top: "10%", right: "1%" } },
 ];
@@ -55,9 +55,9 @@ const SpringArrow = ({
 
 const DashboardLive = () => {
   return (
-    <div className="relative w-full mx-auto max-w-screen-sm md:max-w-screen-lg ">
+    <div className="relative w-full">
       <motion.section
-        className="relative w-full flex items-start p-2 rounded-2xl bg-white shadow-lg"
+        className="relative w-full flex  items-start p-2 rounded-2xl bg-white shadow-lg"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
@@ -76,7 +76,7 @@ const DashboardLive = () => {
 
         {/* Left Sidebar */}
         <motion.div
-          className="flex-2 p-2 flex-col flex w-full h-full gap-10 border-r border-ridebg-rideflow-text-extralight/10 relative z-10"
+          className="flex-2 p-2 flex-col  w-full h-full gap-10 border-r border-ridebg-rideflow-text-extralight/10 relative z-10 hidden md:flex"
           initial={{ x: -50, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.2 }}
@@ -117,13 +117,13 @@ const DashboardLive = () => {
             transition={{ duration: 0.5, delay: 0.6 }}
           >
             <div className="flex items-center justify-between">
-              <Skeleton className="bg-rideflow-text-extralight/10 h-7 w-[30rem]" />
-              <Skeleton className="bg-rideflow-text-extralight/10 h-7 w-[10rem]" />
+              <Skeleton className="bg-rideflow-text-extralight/10 h-7 w-[5rem] md:w-[30rem]" />
+              <Skeleton className="bg-rideflow-text-extralight/10 h-7 w-[2rem] md:w-[10rem]" />
             </div>
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col gap-3 md:gap-0 md:flex-row items-center justify-between">
               <div className="flex flex-col gap-3">
-                <Skeleton className="bg-rideflow-text-extralight/10 h-7 w-[10rem]" />
-                <Skeleton className="bg-rideflow-text-extralight/10 h-4 w-[20rem]" />
+                <Skeleton className="bg-rideflow-text-extralight/10 h-7 w-[4rem] md:w-[10rem]" />
+                <Skeleton className="bg-rideflow-text-extralight/10 h-4 w-[10rem] md:w-[20rem]" />
               </div>
               <div className="flex gap-3 items-center">
                 <Skeleton className="bg-rideflow-text-extralight/10 h-7 w-[10rem]" />
@@ -134,7 +134,7 @@ const DashboardLive = () => {
 
           {/* Bottom Grid Section */}
           <motion.div
-            className="flex justify-between items-center gap-7"
+            className="flex justify-between items-start md:gap-7 gap-2"
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.8 }}
@@ -145,7 +145,7 @@ const DashboardLive = () => {
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.2 }}
             >
-              <ul className="grid grid-cols-3 gap-4 justify-items-center">
+              <ul className="grid grid-cols-2 md:grid-cols-3 gap-4 justify-items-center">
                 {Array.from({ length: 12 }).map((_, index) => (
                   <motion.li
                     key={index}
@@ -162,7 +162,7 @@ const DashboardLive = () => {
                       transition: { duration: 0.2 },
                     }}
                   >
-                    <Skeleton className="h-30 w-[3rem] md:w-[7rem] gap-4 bg-white" />
+                    <Skeleton className="h-20 md:h-30 w-[4rem] md:w-[7rem] gap-1 md:gap-4 bg-white" />
                   </motion.li>
                 ))}
               </ul>
@@ -189,7 +189,7 @@ const DashboardLive = () => {
                       transition: { duration: 0.2 },
                     }}
                   >
-                    <Skeleton className="h-[10rem] w-full bg-white" />
+                    <Skeleton className="h-[6rem] md:h-[10rem] w-full bg-white" />
                   </motion.li>
                 ))}
               </ul>

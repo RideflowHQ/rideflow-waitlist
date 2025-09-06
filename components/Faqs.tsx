@@ -4,6 +4,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "./ui/accordion";
+import { TextAnimate } from "./ui/text-animate";
 
 export default function Faqs() {
   return (
@@ -14,9 +15,16 @@ export default function Faqs() {
             FAQ
           </span>
         </h2>
-        <p className="text-xl md:text-2xl text-rideflow-text-light max-w-sm">
+
+        <TextAnimate
+          animation="blurIn"
+          by="word"
+          startOnView
+          once
+          className="text-lg md:text-2xl text-rideflow-text-light max-w-sm"
+        >
           Here are answers to the likeliest questions you may have
-        </p>
+        </TextAnimate>
       </div>
       <div className="w-full max-w-2xl">
         <Accordion
@@ -25,7 +33,7 @@ export default function Faqs() {
           className="w-full flex flex-col gap-4"
         >
           <AccordionItem value="item-1">
-            <AccordionTrigger className="hover:no-underline text-left p-6">
+            <AccordionTrigger className="hover:no-underline text-left p-6 ">
               What is RideFlow?
             </AccordionTrigger>
             <AccordionContent className="text-muted-foreground p-6">

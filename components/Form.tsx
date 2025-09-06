@@ -108,10 +108,10 @@ export default function WaitlistForm({ onSuccessChange }: FormProps) {
         >
           <button
             onClick={resetForm}
-            className="bg-[#e5ff00] text-black px-6 py-2 rounded-[12] font-semibold hover:bg-opacity-90 transition-all"
+            className="font-semibold  bg-rideflow-blue flex justify-center items-center cursor-pointer text-white px-5 py-2 m-2 rounded-2xl hover:bg-opacity-90 transition-all disabled:opacity-50"
             type="button"
           >
-            Join with another email
+            Do you want to Join with another email?
           </button>
         </motion.div>
       ) : (
@@ -122,6 +122,10 @@ export default function WaitlistForm({ onSuccessChange }: FormProps) {
                 key="email-step"
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
+                transition={{
+                  duration: 0.5,
+                  ease: "easeOut",
+                }}
                 exit={{ opacity: 0, x: -20 }}
                 className="flex relative rounded-2xl w-full"
               >
@@ -149,6 +153,10 @@ export default function WaitlistForm({ onSuccessChange }: FormProps) {
                 key="name-step"
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
+                transition={{
+                  duration: 0.5,
+                  ease: "easeOut",
+                }}
                 exit={{ opacity: 0, x: 20 }}
                 className="flex flex-col space-y-3"
               >

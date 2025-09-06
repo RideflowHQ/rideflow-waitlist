@@ -1,5 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
+import { TextAnimate } from "./ui/text-animate";
+import { motion } from "motion/react";
 
 const socials = [
   {
@@ -53,7 +55,12 @@ const footerQuickLink = [
 export default function Footer() {
   return (
     <footer className="flex flex-col justify-between w-full items-center gap-12 py-12 relative bg-white">
-      <div className="absolute top-0 left-0 w-full">
+      <motion.div
+        transition={{ duration: 2.5, ease: "easeInOut" }}
+        whileInView={{ opacity: [0, 1] }}
+        viewport={{once:true}}
+        className="absolute top-0 left-0 w-full"
+      >
         <Image
           className="object-cover w-full"
           width={100}
@@ -61,16 +68,22 @@ export default function Footer() {
           src={"/rideflow-footer.svg"}
           alt="footer"
         />
-      </div>
+      </motion.div>
       <div className="flex flex-col md:flex-row gap-10 justify-between px-[2rem]  md:px-[15rem] w-full mt-6 md:mt-[6rem] ">
         <div className="flex flex-col  gap-6 w-full ">
           <div className="flex flex-col items-start gap-3">
             <Link href="/" className="flex items-baseline gap-2">
               <Image src="/logo.svg" alt="logo" width={120} height={120} />
             </Link>
-            <span className="max-w-[14rem]  text-rideflow-text-light">
+            <TextAnimate
+              animation="blurIn"
+              by="word"
+              startOnView
+              once
+              className="max-w-[14rem]  text-rideflow-text-light"
+            >
               Improve your business, Amplify Your Success.
-            </span>
+            </TextAnimate>
           </div>
 
           <div className="flex gap-6 text-sm">
@@ -91,9 +104,15 @@ export default function Footer() {
         <div className="flex flex-wrap justify-between items-start gap-4 w-full max-w-4xl">
           {footerQuickLink.map((quickLink, idx) => (
             <div className="flex flex-col gap-2" key={quickLink.id}>
-              <p className="text-lg text-rideflow-text-light font-bold">
+              <TextAnimate
+                animation="blurInUp"
+                by="word"
+                startOnView
+                once
+                className="text-lg text-rideflow-text-light font-bold"
+              >
                 {quickLink.title}
-              </p>
+              </TextAnimate>
               <div className="flex flex-col gap-2">
                 {quickLink.links.map((link, idx) => (
                   <Link
@@ -101,7 +120,14 @@ export default function Footer() {
                     key={idx}
                     href={`#${link.link}`}
                   >
-                    {link.linkTitle}
+                    <TextAnimate
+                      animation="blurInUp"
+                      by="word"
+                      startOnView
+                      once
+                    >
+                      {link.linkTitle}
+                    </TextAnimate>
                   </Link>
                 ))}
               </div>

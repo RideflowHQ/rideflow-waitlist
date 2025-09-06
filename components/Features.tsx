@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import { TextAnimate } from "./ui/text-animate";
 
 const features = [
   {
@@ -46,7 +47,6 @@ const features = [
   },
 ];
 
-
 export default function Features() {
   return (
     <section className="py-20 bg-white">
@@ -58,11 +58,17 @@ export default function Features() {
               Features
             </span>
           </h2>
-          <p className="text-xl text-rideflow-text max-w-3xl mx-auto">
+          <TextAnimate
+            animation="blurInUp"
+            by="word"
+            className="text-lg md:text-xl text-rideflow-text max-w-3xl mx-auto"
+            startOnView
+            once
+          >
             Take control of your entire transportation business from a single
             dashboard. Easily manage your fleet, staff, and deliveries to
             streamline your operations.
-          </p>
+          </TextAnimate>
         </div>
         <div className="mt-12 grid grid-cols-1 lg:grid-cols-3 lg:grid-rows-3 gap-6">
           {features.map((feature, idx) => (
@@ -83,9 +89,15 @@ export default function Features() {
               </div>
 
               <h3 className="mt-4 text-lg font-semibold">{feature.name}</h3>
-              <p className="mt-2 text-sm font-semibold text-rideflow-text">
+              <TextAnimate
+                animation="scaleUp"
+                by="word"
+                startOnView
+                once
+                className="mt-2 text-sm font-semibold text-rideflow-text"
+              >
                 {feature.description}
-              </p>
+              </TextAnimate>
 
               <Image
                 src={"/logo-transparent.svg"}
