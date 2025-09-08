@@ -4,6 +4,7 @@ import { motion } from "motion/react";
 import { useState } from "react";
 import DashboardLive from "./DashboardLive";
 import { TextAnimate } from "./ui/text-animate";
+import People from "./People";
 const Hero = () => {
   const [isSuccess, setIsSuccess] = useState(false);
 
@@ -80,6 +81,9 @@ const Hero = () => {
       <div className="flex flex-col items-center justify-center gap-2 w-full px-3 max-w-sm md:max-w-2xl mt-8">
         <WaitlistForm onSuccessChange={setIsSuccess} />
       </div>
+      {/* <div className="flex items-center justify-center gap-2">
+        <People count={waitlistPeople} />
+      </div> */}
       <div className="h-[35rem] w-[90%] overflow-hidden md:w-[50rem] lg:w-[75rem]">
         <DashboardLive />
       </div>

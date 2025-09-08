@@ -1,7 +1,5 @@
 "use client";
 
-import { useRef } from "react";
-
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Features from "@/components/Features";
@@ -12,7 +10,7 @@ export function LandingPage() {
   return (
     <main className=" w-full  flex flex-col relative">
       <Header />
-      <Hero />
+      <Hero  />
       <Features />
       <Faqs />
       <Footer />

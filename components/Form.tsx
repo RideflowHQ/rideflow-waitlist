@@ -44,50 +44,90 @@ export default function WaitlistForm({ onSuccessChange }: FormProps) {
       return;
     }
 
-    if (step === 2) {
-      if (!formData.name.trim()) {
-        toast.error("Please enter your name");
-        return;
-      }
-
-      setStep(3);
-      return;
-    }
-
     try {
       setLoading(true);
 
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      const promise = new Promise(async (resolve, reject) => {
+        try {
+          const { name, email } = formData;
+          const mailResponse = await fetch("/api/mail", {
+            cache: "no-store",
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ name, email }),
+          });
+          if (!mailResponse.ok) {
+            if (mailResponse.status === 429) throw new Error("Rate limited");
+            throw new Error("Email sending failed");
+          }
 
-      toast.success(
-        "Thank you for joining Rideflow! We'll notify you when we launch."
-      );
+          const notionResponse = await fetch("/api/notion", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ name, email }),
+          });
 
-      setFormData({ email: "", name: "" });
-      setSuccess(true);
-      onSuccessChange?.(true);
+          if (!notionResponse.ok) {
+            if (notionResponse.status === 429) {
+              reject("Rate limited");
+            } else {
+              reject("Notion insertion failed");
+            }
+            return;
+          }
 
-      setTimeout(() => {
-        confetti({
-          particleCount: 100,
-          spread: 70,
-          origin: { y: 0.6 },
-          colors: [
-            "#e5ff00",
-            "#000000",
-            "#ffffff",
-            "#ff6b6b",
-            "#4ecdc4",
-            "#45b7d1",
-          ],
-        });
-      }, 100);
+          resolve({ name });
+        } catch (error) {
+          reject(error);
+        }
+      });
+
+      toast.promise(promise, {
+        loading: "Getting you on the waitlist... 🚀",
+        success: () => {
+          setFormData({ email: "", name: "" });
+          setSuccess(true);
+          onSuccessChange?.(true);
+          setTimeout(() => {
+            confetti({
+              particleCount: 200,
+              spread: 100,
+              origin: { y: 0.6 },
+              colors: [
+                "#ff0000",
+                "#00ff00",
+                "#0000ff",
+                "#ffff00",
+                "#ff00ff",
+                "#00ffff",
+              ],
+            });
+          }, 100);
+          return "Thank you for joining the waitlist 🎉";
+        },
+        error: (error) => {
+          if (error === "Rate limited") {
+            return "You're doing that too much. Please try again later";
+          }
+          if (error === "Email sending failed") {
+            return "Failed to send email. Please try again 😢.";
+          }
+          if (error === "Notion insertion failed") {
+            return "Failed to save your details. Please try again 😢.";
+          }
+          return "An error occurred. Please try again 😢.";
+        },
+      });
+
+      promise.finally(() => {
+        setLoading(false);
+      });
     } catch (error) {
       console.error("Error submitting form:", error);
-      toast.error("Something went wrong. Please try again.");
-    } finally {
       setLoading(false);
+      alert("Something went wrong. Please try again.");
     }
   };
 
