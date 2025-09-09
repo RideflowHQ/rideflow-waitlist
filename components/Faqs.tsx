@@ -8,7 +8,10 @@ import { TextAnimate } from "./ui/text-animate";
 
 export default function Faqs() {
   return (
-    <div className="flex flex-col md:flex-row justify-between items-start  md:px-10 gap-6 py-20  w-full max-w-screen-xl  mx-auto px-4">
+    <div
+      id="faq"
+      className="flex flex-col md:flex-row justify-between items-start  md:px-10 gap-6 py-20  w-full max-w-screen-xl  mx-auto px-4"
+    >
       <div className="flex flex-col items-start justify-center gap-2 max-w-2xl">
         <h2 className="text-7xl font-bold text-foreground">
           <span className="text-transparent bg-clip-text bg-gradient-to-t from-[#18191A] to-[#FFFFFF ]">
@@ -37,59 +40,89 @@ export default function Faqs() {
               What is RideFlow?
             </AccordionTrigger>
             <AccordionContent className="text-muted-foreground p-6">
-              ENIQO offers affordable property inspections starting from ₦5,000.
-              The exact cost depends on the property size and location. We
-              ensure transparent pricing with no hidden fees.
+              Rideflow is a logistics and transport management platform that
+              helps businesses and individuals manage their transportation
+              needs. We offer live vehicle tracking, rider management, HR tools
+              for logistics companies, and a seamless dashboard for daily
+              operations.
             </AccordionContent>
           </AccordionItem>
           <AccordionItem value="item-2">
             <AccordionTrigger className="hover:no-underline text-left p-6">
-              How can Rideflow help my company?
+              How do I sign up on Rideflow?
             </AccordionTrigger>
             <AccordionContent className="text-muted-foreground p-6">
-              A typical property inspection takes 30-45 minutes. Our agents
-              conduct thorough inspections covering structural integrity,
-              plumbing, electrical systems, and more.
+              Individuals can download the Rideflow app or visit our website to
+              create an account. Businesses can register directly on the
+              platform and onboard staff, riders, and vehicles.
             </AccordionContent>
           </AccordionItem>
           <AccordionItem value="item-3">
             <AccordionTrigger className="hover:no-underline text-left p-6">
-              How can I use Rideflow?
+              What services does Rideflow provide?
             </AccordionTrigger>
             <AccordionContent className="text-muted-foreground p-6">
-              All agents on ENIQO are verified and vetted by our team. They
-              undergo background checks and maintain high ratings from previous
-              inspections. We also provide detailed profiles and reviews.
+              We provide rider and vehicle registration, live GPS tracking, HR
+              tools, metrics and performance reports, delivery and transport
+              operations management, and more.
             </AccordionContent>
           </AccordionItem>
           <AccordionItem value="item-4">
             <AccordionTrigger className="hover:no-underline text-left p-6">
-              Do I need a large fleet to use Rideflow?
+              How do I track my delivery or vehicle?
             </AccordionTrigger>
             <AccordionContent className="text-muted-foreground p-6">
-              ENIQO covers all major areas in Abuja including Wuse, Gwarinpa,
-              Asokoro, Maitama, Jabi, and surrounding areas. We're expanding our
-              coverage to serve more neighborhoods.
+              Once you log into your dashboard or mobile app, you can see
+              real-time updates and live tracking of your delivery or fleet.
             </AccordionContent>
           </AccordionItem>
           <AccordionItem value="item-5">
             <AccordionTrigger className="hover:no-underline text-left p-6">
-              Can my team be trained to use Rideflow?
+              Is Rideflow available nationwide?
             </AccordionTrigger>
             <AccordionContent className="text-muted-foreground p-6">
-              Our comprehensive reports include detailed photos, videos,
-              structural assessments, utility checks, and recommendations.
-              You'll receive the report within 24 hours of the inspection.
+              We are starting operations in Lagos and will gradually expand to
+              other states and regions across Nigeria.
             </AccordionContent>
           </AccordionItem>
           <AccordionItem value="item-6">
             <AccordionTrigger className="hover:no-underline text-left p-6">
-              How do I get started with Rideflow?
+              What are the benefits for logistics companies using Rideflow?
             </AccordionTrigger>
             <AccordionContent className="text-muted-foreground p-6">
-              ENIQO is launching in Abuja in Q2 2025. Join our waitlist to be
-              among the first to experience the future of property discovery and
-              inspection in Nigeria.
+              Streamlined HR and payroll management, fleet and rider tracking in
+              real time, data-driven insights and performance reports, reduced
+              inefficiencies, and improved customer satisfaction.
+            </AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="item-7">
+            <AccordionTrigger className="hover:no-underline text-left p-6">
+              What are the benefits for logistics companies using Rideflow?
+            </AccordionTrigger>
+            <AccordionContent className="text-muted-foreground p-6">
+              Streamlined HR and payroll management, fleet and rider tracking in
+              real time, data-driven insights and performance reports, reduced
+              inefficiencies, and improved customer satisfaction.
+            </AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="item-8">
+            <AccordionTrigger className="hover:no-underline text-left p-6">
+              How much does it cost to use Rideflow?
+            </AccordionTrigger>
+            <AccordionContent className="text-muted-foreground p-6">
+              Pricing depends on whether you are an individual customer or a
+              registered business. Businesses are billed based on fleet size and
+              features required. Individuals pay per ride or delivery request.
+            </AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="item-9">
+            <AccordionTrigger className="hover:no-underline text-left p-6">
+              Can I nominate riders or staff to join Rideflow?
+            </AccordionTrigger>
+            <AccordionContent className="text-muted-foreground p-6">
+              Yes, logistics companies can onboard their existing riders and
+              staff. Independent riders can also register and work with
+              businesses on the platform.
             </AccordionContent>
           </AccordionItem>
         </Accordion>

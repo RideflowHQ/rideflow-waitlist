@@ -11,7 +11,7 @@ export default function Header() {
     },
     {
       label: "  Contact Us  ",
-      href: "#contact",
+      href: "#footer",
     },
   ];
   return (

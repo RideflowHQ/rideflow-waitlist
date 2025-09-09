@@ -95,7 +95,7 @@
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
   --sb-track: #f1f1f1;
-  --sb-thumb: #2C4BFD;
+  --sb-thumb: #2c4bfd;
   --sb-thumb-hover: #1a2fb3;
 }
 
@@ -134,6 +134,11 @@
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 100px;
+  }
+
   * {
     @apply border-border outline-ring/50;
   }

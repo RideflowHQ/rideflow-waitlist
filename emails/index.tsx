@@ -37,7 +37,7 @@ const WaitlistEmail = ({ userFirstname }: { userFirstname: string }) => {
           <Container className="bg-[#18181B] rounded-[8px] mx-auto p-[32px] max-w-[600px]">
             <Section className="mt-[16px] text-center">
               <Text className="text-[28px] font-bold text-white m-0">
-                Welcome to <span className="text-[#DFFF1A]">Rideflow</span>
+                Welcome to <span className="text-[#2844e8]">Rideflow</span>
               </Text>
 
               <Text className="text-[18px] text-[#A1A1AA] mt-[16px] mb-[16px]">
@@ -53,12 +53,11 @@ const WaitlistEmail = ({ userFirstname }: { userFirstname: string }) => {
               </Text>
 
               <Text className="text-[16px] leading-[24px] text-[#E4E4E7]">
-                Thanks for joining the waitlist for{" "}
-                <strong>Rideflow</strong> — your all-in-one logistics
-                and transportation management platform. Whether you're managing
-                a fleet, staff, or deliveries, we're building the tools to help
-                you take full control of your operations from a single
-                dashboard.
+                Thanks for joining the waitlist for <strong>Rideflow</strong> —
+                your all-in-one logistics and transportation management
+                platform. Whether you're managing a fleet, staff, or deliveries,
+                we're building the tools to help you take full control of your
+                operations from a single dashboard.
               </Text>
 
               <Text className="text-[16px] leading-[24px] text-[#E4E4E7]">
@@ -162,10 +161,7 @@ const WaitlistEmail = ({ userFirstname }: { userFirstname: string }) => {
 
               <Text className="text-[16px] leading-[24px] text-[#E4E4E7]">
                 Want to see what we're up to? Follow us at{" "}
-                <Link
-                  href="#"
-                  className="text-[#DFFF1A] underline"
-                >
+                <Link href="#" className="text-[#2844e8] underline">
                   @Rideflow
                 </Link>{" "}
                 for behind-the-scenes updates and early previews.
@@ -190,11 +186,11 @@ const WaitlistEmail = ({ userFirstname }: { userFirstname: string }) => {
                 Victorial Island, Lagos
               </Text>
               <Text className="text-[12px] text-[#71717A] text-center mt-[16px]">
-                <Link href="#" className="text-[#DFFF1A]">
+                <Link href="#" className="text-[#2844e8]">
                   Unsubscribe
                 </Link>{" "}
                 •{" "}
-                <Link href="#" className="text-[#DFFF1A]">
+                <Link href="#" className="text-[#2844e8]">
                   Privacy Policy
                 </Link>
               </Text>

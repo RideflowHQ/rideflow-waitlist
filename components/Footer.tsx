@@ -7,7 +7,7 @@ const socials = [
   {
     id: 1,
     icon: "/twitter.svg",
-    link: "www.facebook.com",
+    link: "https://x.com/RideflowHQ",
   },
   {
     id: 2,
@@ -54,7 +54,7 @@ const footerQuickLink = [
 
 export default function Footer() {
   return (
-    <footer className="flex flex-col justify-between w-full items-center gap-12 py-12 relative bg-white">
+    <footer id="footer" className="flex flex-col justify-between w-full items-center gap-12 py-12 relative bg-white">
       <motion.div
         transition={{ duration: 2.5, ease: "easeInOut" }}
         whileInView={{ opacity: [0, 1] }}
