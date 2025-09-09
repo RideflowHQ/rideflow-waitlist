@@ -39,7 +39,7 @@ export async function POST(request: NextRequest) {
 
   const { data, error } = await resend.emails.send({
     // from: process.env.RESEND_FROM_EMAIL || "",
-    from: "Acme <onboarding@resend.dev>",
+    from: "Rideflow Team <info@rideflow.org>",
     to: [email],
     subject: "Welcome to Rideflow Waitlist",
     react: WaitlistEmail({ userFirstname: name }),
