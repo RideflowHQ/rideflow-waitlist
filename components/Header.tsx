@@ -18,7 +18,13 @@ export default function Header() {
     <header className="flex items-center justify-center pt-4 backdrop-blur-2xl w-full   sticky top-0 z-20">
       <div className="flex justify-between items-center py-2 px-4 border-3 border-white bg-rideflow-gray-light rounded-2xl max-w-screen-xl mx-auto w-full">
         <Link href="/" className="flex items-baseline gap-2">
-          <Image className="object-contain" src="/logo.svg" alt="logo" width={100} height={100} />
+          <Image
+            className="object-contain"
+            src="/logo.svg"
+            alt="logo"
+            width={100}
+            height={100}
+          />
         </Link>
         <div className="flex items-center gap-4">
           {headerLinks.map((link) => (
@@ -33,8 +39,11 @@ export default function Header() {
           <PulsatingButton
             pulseColor={"#2c4bfd"}
             className="bg-rideflow-blue rounded-2xl px-3 py-2 text-white font-semibold"
+            onClick={() => {
+              window.open("https://calendly.com/rideflow", "_blank");
+            }}
           >
-            Coming Soon
+            Book a Demo
           </PulsatingButton>
         </div>
       </div>
