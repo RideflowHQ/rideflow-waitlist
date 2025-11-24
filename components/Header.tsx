@@ -11,7 +11,7 @@ export default function Header() {
     },
     {
       label: "  Contact Us  ",
-      href: "#footer",
+      href: "mailto:info@rideflow.org",
     },
   ];
   return (
