@@ -27,15 +27,20 @@ export default function Header() {
           />
         </Link>
         <div className="flex items-center gap-4">
-          {headerLinks.map((link) => (
-            <Link
-              className="text-lg font-semibold text-rideflow-text2 hidden md:block"
-              key={link.href}
-              href={link.href}
-            >
-              {link.label}
-            </Link>
-          ))}
+          {headerLinks.map((link) => {
+            const isFAQ = link.href === "#faq";
+            return (
+              <Link
+                className={`text-sm md:text-lg font-semibold text-rideflow-text2 ${
+                  isFAQ ? "hidden md:block" : "block"
+                }`}
+                key={link.href}
+                href={link.href}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
           <PulsatingButton
             pulseColor={"#2c4bfd"}
             className="bg-rideflow-blue rounded-2xl px-3 py-2 text-white font-semibold"
