@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist_Mono, Inter_Tight } from "next/font/google";
 import { Toaster } from "sonner";
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/next";
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
@@ -34,6 +35,7 @@ export default function RootLayout({
       >
         <Toaster />
         {children}
+        <Analytics />
       </body>
     </html>
   );
