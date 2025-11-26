@@ -30,13 +30,10 @@ const WaitlistEmail = ({ userFirstname }: { userFirstname: string }) => {
             `}
           </style>
         </Head>
-        <Body
-          className="bg-[#09090B] py-[40px]"
-          style={{ fontFamily: "'Inter Tight', sans-serif" }}
-        >
-          <Container className="bg-[#18181B] rounded-[8px] mx-auto p-[32px] max-w-[600px]">
+        <Body className="" style={{ fontFamily: "'Inter Tight', sans-serif" }}>
+          <Container className=" rounded-[8px] p-[32px] mx-auto max-w-[600px]">
             <Section className="mt-[16px] text-center">
-              <Text className="text-[28px] font-bold text-white m-0">
+              <Text className="text-[28px] font-bold text-black m-0">
                 Welcome to <span className="text-[#2844e8]">Rideflow</span>
               </Text>
 
@@ -48,11 +45,11 @@ const WaitlistEmail = ({ userFirstname }: { userFirstname: string }) => {
             </Section>
 
             <Section>
-              <Text className="text-[16px] leading-[24px] text-white mt-[32px]">
+              <Text className="text-[16px] leading-[24px] text-black mt-[32px]">
                 Hi {userFirstname},
               </Text>
 
-              <Text className="text-[16px] leading-[24px] text-[#E4E4E7]">
+              <Text className="text-[16px] leading-[24px] text-black">
                 Thanks for joining the waitlist for <strong>Rideflow</strong> —
                 your all-in-one logistics and transportation management
                 platform. Whether you're managing a fleet, staff, or deliveries,
@@ -60,118 +57,37 @@ const WaitlistEmail = ({ userFirstname }: { userFirstname: string }) => {
                 operations from a single dashboard.
               </Text>
 
-              <Text className="text-[16px] leading-[24px] text-[#E4E4E7]">
+              <Text className="text-[16px] leading-[24px] text-black">
                 We’ll keep you updated as we roll out new features designed for
                 both companies and riders. In the meantime, if you have ideas or
                 questions about how Rideflow can best support your logistics
-                needs, just reply — we’d love to hear from you.
+                needs, just shoot us a mail we’d love to hear from you.
+                <Link
+                  href="mailto:info@rideflow.org"
+                  target="_blank"
+                  className="text-[#2844e8] underline"
+                >
+                  info@rideflow.org
+                </Link>
               </Text>
 
-              {/* <Section className="my-[32px] text-center">
-                <Button
-                  className="bg-[#DFFF1A] text-[#09090B] font-bold py-[12px] px-[24px] rounded-[12px] no-underline text-center box-border"
-                  href="https://cal.com/idee8/quick-chat"
-                >
-                  <span
-                    style={{ display: "inline-flex", alignItems: "center" }}
-                  >
-                    <svg
-                      width="16"
-                      height="16"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      style={{ marginRight: "8px" }}
-                    >
-                      <title>Calendar</title>
-                      <path
-                        d="M19 4H5C3.89543 4 3 4.89543 3 6V20C3 21.1046 3.89543 22 5 22H19C20.1046 22 21 21.1046 21 20V6C21 4.89543 20.1046 4 19 4Z"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M16 2V6"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M8 2V6"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M3 10H21"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M8 14H8.01"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M12 14H12.01"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M16 14H16.01"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M8 18H8.01"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M12 18H12.01"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M16 18H16.01"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                    Book a call
-                  </span>
-                </Button>
-              </Section> */}
-
-              <Text className="text-[16px] leading-[24px] text-[#E4E4E7]">
+              <Text className="text-[16px] leading-[24px] text-black">
                 Want to see what we're up to? Follow us at{" "}
-                <Link href="#" className="text-[#2844e8] underline">
-                  @Rideflow
+                <Link
+                  href="https://www.instagram.com/rideflowmanagement/"
+                  target="_blank"
+                  className="text-[#2844e8] underline"
+                >
+                  @RideflowManagement
                 </Link>{" "}
                 for behind-the-scenes updates and early previews.
               </Text>
 
-              <Text className="text-[16px] leading-[24px] text-[#E4E4E7] mt-[24px]">
+              <Text className="text-[16px] leading-[24px] text-black mt-[24px]">
                 Cheers,
               </Text>
 
-              <Text className="text-[16px] font-bold text-white mb-[32px]">
+              <Text className="text-[16px] font-bold text-black mb-[32px]">
                 The Rideflow Team
               </Text>
             </Section>
@@ -179,13 +95,13 @@ const WaitlistEmail = ({ userFirstname }: { userFirstname: string }) => {
             <Hr className="border-solid border-[#27272A] my-[24px]" />
 
             <Section>
-              <Text className="text-[12px] text-[#71717A] text-center m-0">
+              <Text className="text-[12px] text-black text-center m-0">
                 © {currentYear} Rideflow. All rights reserved.
               </Text>
-              <Text className="text-[12px] text-[#71717A] text-center m-0">
+              <Text className="text-[12px] text-black text-center m-0">
                 Victorial Island, Lagos
               </Text>
-              <Text className="text-[12px] text-[#71717A] text-center mt-[16px]">
+              <Text className="text-[12px] text-black text-center mt-[16px]">
                 <Link href="#" className="text-[#2844e8]">
                   Unsubscribe
                 </Link>{" "}
