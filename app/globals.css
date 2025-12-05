@@ -137,6 +137,8 @@
   html {
     scroll-behavior: smooth;
     scroll-padding-top: 100px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--sb-thumb) var(--sb-track);
   }
 
   * {
@@ -147,22 +149,22 @@
   }
 }
 
-* {
-  scrollbar-width: thin;
-  scroll-behavior: smooth;
-  scrollbar-color: var(--sb-thumb) var(--sb-track);
-}
-*::-webkit-scrollbar {
+/* Optimized scrollbar styles - only apply to scrollable elements */
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
   width: 5px;
 }
-*::-webkit-scrollbar-track {
+html::-webkit-scrollbar-track,
+body::-webkit-scrollbar-track {
   background: var(--sb-track);
   border-radius: 10px;
 }
-*::-webkit-scrollbar-thumb {
+html::-webkit-scrollbar-thumb,
+body::-webkit-scrollbar-thumb {
   background: var(--sb-thumb);
   border-radius: 10px;
 }
-*::-webkit-scrollbar-thumb:hover {
+html::-webkit-scrollbar-thumb:hover,
+body::-webkit-scrollbar-thumb:hover {
   background: var(--sb-thumb-hover);
 }

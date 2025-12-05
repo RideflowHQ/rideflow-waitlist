@@ -24,6 +24,8 @@ export default function Header() {
             alt="logo"
             width={100}
             height={100}
+            priority
+            sizes="(max-width: 768px) 80px, 100px"
           />
         </Link>
         <div className="flex items-center gap-4">

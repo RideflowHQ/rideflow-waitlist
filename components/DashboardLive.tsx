@@ -3,6 +3,7 @@
 import { motion, AnimatePresence } from "motion/react";
 import Image from "next/image";
 import { Skeleton } from "./ui/skeleton";
+import { useEffect, useState } from "react";
 
 const images = [
   { src: "/staff-arrow.svg", position: { top: "10%", left: "-1%" } },
@@ -17,15 +18,20 @@ const SpringArrow = ({
   src,
   position,
   delay,
+  isMobile,
 }: {
   src: string;
   position: any;
   delay: number;
+  isMobile: boolean;
 }) => {
   return (
     <motion.div
       className="absolute z-10 pointer-events-none"
-      style={position}
+      style={{
+        ...position,
+        willChange: "transform, opacity",
+      }}
       initial={{ scale: 0, opacity: 0 }}
       animate={{
         scale: [0, 1.2, 0.95, 1.05, 1],
@@ -34,9 +40,9 @@ const SpringArrow = ({
         y: [0, -15, -8, -12, 0],
       }}
       transition={{
-        duration: 2.5,
+        duration: isMobile ? 2 : 2.5,
         repeat: Infinity,
-        repeatDelay: 3 + Math.random() * 2, // makes each pop feel more organic
+        repeatDelay: isMobile ? 5 + Math.random() * 3 : 3 + Math.random() * 2,
         delay,
         ease: "easeOut",
         times: [0, 0.3, 0.5, 0.7, 1],
@@ -48,12 +54,25 @@ const SpringArrow = ({
         height={200}
         alt="Arrow"
         className="object-contain"
+        loading="lazy"
+        sizes="200px"
       />
     </motion.div>
   );
 };
 
 const DashboardLive = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
   return (
     <div className="relative w-full">
       <motion.section
@@ -70,6 +89,7 @@ const DashboardLive = () => {
               src={image.src}
               position={image.position}
               delay={index * 0.8}
+              isMobile={isMobile}
             />
           ))}
         </AnimatePresence>
@@ -87,6 +107,8 @@ const DashboardLive = () => {
             width={100}
             height={100}
             alt="logo"
+            loading="lazy"
+            sizes="100px"
           />
           <ul className="flex flex-col gap-3">
             {Array.from({ length: 7 }).map((_, index) => (

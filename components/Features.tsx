@@ -85,6 +85,8 @@ export default function Features() {
                   alt={feature.name}
                   width={30}
                   height={30}
+                  loading="lazy"
+                  sizes="30px"
                 />
               </div>
 
@@ -105,6 +107,8 @@ export default function Features() {
                 width={80}
                 height={80}
                 className="absolute bottom-0 opacity-70 right-0"
+                loading="lazy"
+                sizes="80px"
               />
             </div>
           ))}
