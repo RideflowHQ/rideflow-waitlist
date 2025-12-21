@@ -12,12 +12,17 @@ const socials = [
   {
     id: 2,
     icon: "/facebook.svg",
-    link: "www.facebook.com",
+    link: "https://www.facebook.com/share/17JCxxuneN/?mibextid=wwXIfr",
   },
   {
     id: 3,
     icon: "/instagram.svg",
-    link: "www.facebook.com",
+    link: "https://www.instagram.com/rideflowmanagement",
+  },
+  {
+    id: 4,
+    icon: "/download.svg",
+    link: "https://www.linkedin.com/company/rideflowlimited/",
   },
 ];
 
