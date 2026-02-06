@@ -17,7 +17,7 @@ const socials = [
   {
     id: 3,
     icon: "/instagram.svg",
-    link: "https://www.instagram.com/rideflowmanagement",
+    link: "https://www.instagram.com/rideflowhq/",
   },
   {
     id: 4,
