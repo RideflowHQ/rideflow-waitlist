@@ -4,6 +4,8 @@ import { Toaster } from "sonner";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import Header from "@/components/Header";
+import dynamic from "next/dynamic";
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
@@ -31,6 +33,10 @@ export const metadata: Metadata = {
   },
 };
 
+const Footer = dynamic(() => import("@/components/Footer"), {
+  loading: () => <div className="py-12" />,
+});
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -46,7 +52,9 @@ export default function RootLayout({
         className={`${interTight.variable} ${geistMono.variable} antialiased flex flex-col h-full`}
       >
         <Toaster />
+        <Header />
         {children}
+        <Footer />
         <Analytics />
         <SpeedInsights />
       </body>

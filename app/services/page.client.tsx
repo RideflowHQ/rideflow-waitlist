@@ -1,12 +1,7 @@
 "use client";
 
-import { Hero } from "@/components/website/home";
+import { ServiceHero } from "@/components/website/services";
 import dynamic from "next/dynamic";
-
-// Lazy load below-the-fold components
-const Features = dynamic(() => import("@/components/Features"), {
-  loading: () => <div className="py-20 bg-white" />,
-});
 
 const Faqs = dynamic(() => import("@/components/Faqs"), {
   loading: () => <div className="py-20" />,
@@ -23,13 +18,12 @@ const BookingSection = dynamic(
 //   loading: () => <div className="py-12" />,
 // });
 
-export function LandingPage() {
+export function ServicesPage() {
   return (
     <main className=" w-full  flex flex-col relative">
-      <Hero />
-      <Features />
+      <ServiceHero />
       <BookingSection />
-      <Faqs />
+      <Faqs background={true} />
     </main>
   );
 }
