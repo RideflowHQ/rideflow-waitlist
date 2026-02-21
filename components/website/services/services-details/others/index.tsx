@@ -23,7 +23,7 @@ const data = [
 
 export const OtherServices = () => {
   return (
-    <section className="py-18 bg-[#04081A]">
+    <section className="py-34 bg-[#04081A]">
       <div className="container mx-auto px-4 flex gap-6">
         <div className="w-[40%]">
           <h2 className="text-[2.6rem] font-medium text-white mb-5">

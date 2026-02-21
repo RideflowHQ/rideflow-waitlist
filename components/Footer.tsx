@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { TextAnimate } from "./ui/text-animate";
 import { motion } from "motion/react";
+import { Mail } from "lucide-react";
 
 const socials = [
   {
@@ -30,42 +31,115 @@ const socials = [
 const footerQuickLink = [
   {
     id: 1,
-    title: "Navigation",
+    title: "Company",
     links: [
-      { linkTitle: "Home", link: "#" },
-      { linkTitle: "Rentals", link: "#" },
-      { linkTitle: "Contact", link: "#" },
-      { linkTitle: "FAQ", link: "#" },
+      { linkTitle: "About", link: "/about" },
+      { linkTitle: "Services", link: "/services" },
+      { linkTitle: "Testimonials", link: "/" },
+      { linkTitle: "Blog", link: "/blog" },
+      { linkTitle: "Contact", link: "/contact" },
     ],
   },
   {
     id: 2,
-    title: "About",
+    title: "Legal",
     links: [
-      { linkTitle: "Our Company", link: "#" },
-      { linkTitle: "Investors Relation", link: "#" },
-      { linkTitle: "Social Impacts", link: "#" },
-    ],
-  },
-  {
-    id: 3,
-    title: "Resources",
-    links: [
-      { linkTitle: "Privacy Policy", link: "#" },
-      { linkTitle: "Terms of Service", link: "#" },
-      { linkTitle: "Cookie Policy", link: "#" },
+      { linkTitle: "Terms of Service", link: "/" },
+      { linkTitle: "Privacy Policy", link: "/" },
     ],
   },
 ];
 
 export default function Footer() {
   return (
-    <footer id="footer" className="flex flex-col justify-between w-full items-center gap-12 py-12 relative bg-white">
+    <footer
+      id="footer"
+      className="py-12 relative bg-white border-t border-dashed border-[#808080]"
+    >
+      <div className="container mx-auto px-4 ">
+        <div className="flex py-12">
+          <div className="flex flex-col gap-7 flex-1">
+            <div className="flex flex-col items-start gap-3">
+              <Link href="/" className="flex items-baseline gap-2">
+                <Image src="/logo.svg" alt="logo" width={120} height={120} />
+              </Link>
+              <TextAnimate
+                animation="blurIn"
+                by="word"
+                startOnView
+                once
+                className="w-[65%]  text-rideflow-text-light"
+              >
+                Manage orders, drivers, fleets and operational costs with
+                clarity and control — all in one place.
+              </TextAnimate>
+              <div className="flex gap-6 text-sm pt-4">
+                {socials.map((social) => (
+                  <Link target="_blank" key={social.id} href={social.link}>
+                    <Image
+                      src={social.icon}
+                      width={30}
+                      height={30}
+                      className="object-contain size-5"
+                      alt="socials"
+                    />
+                  </Link>
+                ))}
+              </div>
+            </div>
+            <div>
+              <p className="text-rideflow-text-light">RC 1200124</p>
+              <p className="text-rideflow-text-light"> <Mail className="inline-block mr-1" size={16} /> info@rideflow.org</p>
+            </div>
+          </div>
+
+          <div className="flex-1 flex pl-10 gap-[15rem]">
+            {footerQuickLink.map((quickLink, idx) => (
+              <div className="flex flex-col gap-2" key={quickLink.id}>
+                <TextAnimate
+                  animation="blurInUp"
+                  by="word"
+                  startOnView
+                  once
+                  className="text-lg text-rideflow-text-light font-bold"
+                >
+                  {quickLink.title}
+                </TextAnimate>
+                <div className="flex flex-col gap-2">
+                  {quickLink.links.map((link, idx) => (
+                    <Link
+                      className="text-rideflow-text-light"
+                      key={idx}
+                      href={`${link.link}`}
+                    >
+                      <TextAnimate
+                        animation="blurInUp"
+                        by="word"
+                        startOnView
+                        once
+                      >
+                        {link.linkTitle}
+                      </TextAnimate>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="w-full border-rideflow-text2 border-b border-t border-dashed py-7">
+          <p className="text-sm text-muted-foreground">
+            &copy; {new Date().getFullYear()} RIDE FLOW. All rights reserved.
+          </p>
+        </div>
+      </div>
+
       <motion.div
         transition={{ duration: 2.5, ease: "easeInOut" }}
         whileInView={{ opacity: [0, 1] }}
-        viewport={{once:true}}
-        className="absolute top-0 left-0 w-full"
+        viewport={{ once: true }}
+        className="w-full py-15"
       >
         <Image
           className="object-cover w-full"
@@ -75,78 +149,6 @@ export default function Footer() {
           alt="footer"
         />
       </motion.div>
-      <div className="flex flex-col md:flex-row gap-10 justify-between px-[2rem]  md:px-[15rem] w-full mt-6 md:mt-[6rem] ">
-        <div className="flex flex-col  gap-6 w-full ">
-          <div className="flex flex-col items-start gap-3">
-            <Link href="/" className="flex items-baseline gap-2">
-              <Image src="/logo.svg" alt="logo" width={120} height={120} />
-            </Link>
-            <TextAnimate
-              animation="blurIn"
-              by="word"
-              startOnView
-              once
-              className="max-w-[14rem]  text-rideflow-text-light"
-            >
-              Improve your business, Amplify Your Success.
-            </TextAnimate>
-          </div>
-
-          <div className="flex gap-6 text-sm">
-            {socials.map((social) => (
-              <Link target="_blank" key={social.id} href={social.link}>
-                <Image
-                  src={social.icon}
-                  width={30}
-                  height={30}
-                  className="object-contain size-5"
-                  alt="socials"
-                />
-              </Link>
-            ))}
-          </div>
-        </div>
-
-        <div className="flex flex-wrap justify-between items-start gap-4 w-full max-w-4xl">
-          {footerQuickLink.map((quickLink, idx) => (
-            <div className="flex flex-col gap-2" key={quickLink.id}>
-              <TextAnimate
-                animation="blurInUp"
-                by="word"
-                startOnView
-                once
-                className="text-lg text-rideflow-text-light font-bold"
-              >
-                {quickLink.title}
-              </TextAnimate>
-              <div className="flex flex-col gap-2">
-                {quickLink.links.map((link, idx) => (
-                  <Link
-                    className="text-rideflow-text-light"
-                    key={idx}
-                    href={`#${link.link}`}
-                  >
-                    <TextAnimate
-                      animation="blurInUp"
-                      by="word"
-                      startOnView
-                      once
-                    >
-                      {link.linkTitle}
-                    </TextAnimate>
-                  </Link>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <div className="text-center w-full border-rideflow-text2">
-        <p className="text-sm text-muted-foreground">
-          &copy; {new Date().getFullYear()} RIDE FLOW. All rights reserved.
-        </p>
-      </div>
     </footer>
   );
 }
