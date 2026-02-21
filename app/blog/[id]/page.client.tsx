@@ -1,6 +1,6 @@
 "use client";
 
-import { DetailHero, ServiceDetails, OtherServices } from "@/components/website/services";
+import { DetailHero, RelatedBlogs } from "@/components/website/blog";
 import dynamic from "next/dynamic";
 
 const BookingSection = dynamic(
@@ -9,14 +9,13 @@ const BookingSection = dynamic(
     loading: () => <div className="py-20" />,
   },
 );
-export function ServicesDetailPage() {
+
+export function BlogsDetailPage() {
   return (
     <main className=" w-full  flex flex-col relative">
       <DetailHero />
-      <ServiceDetails />
-      <OtherServices />
+      <RelatedBlogs />
       <BookingSection />
     </main>
   );
 }
-// mx-auto max-w-screen-2xl

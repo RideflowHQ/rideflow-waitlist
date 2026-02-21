@@ -1,7 +1,6 @@
-import React from "react";
+import { BlogsPage } from "./page.client";
 
-function BlogPage() {
-  return <div>Blog</div>;
+export default async function BlogPage() {
+  return <BlogsPage />;
 }
 
-export default BlogPage;
