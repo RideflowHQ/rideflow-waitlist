@@ -1,7 +1,5 @@
-import React from "react";
+import { ContactPage } from "./page.client";
 
-function ContactPage() {
-  return <div>Contact</div>;
+export default async function Contact() {
+  return <ContactPage />;
 }
-
-export default ContactPage;

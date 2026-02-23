@@ -1,0 +1,10 @@
+import { z } from "zod";
+
+export const contactFormSchema = z.object({
+  fullName: z.string().min(2, "Full name must be at least 2 characters"),
+  email: z.string().email("Please enter a valid email address"),
+  phoneNumber: z.string().min(10, "Please enter a valid phone number"),
+  message: z.string().optional(),
+});
+
+export type ContactFormValues = z.infer<typeof contactFormSchema>;
