@@ -44,11 +44,9 @@ export default function Header() {
               const isActive = pathname.includes(link.href);
               return (
                 <Link
-                  className={`text-sm md:text-lg font-semibold text-rideflow-text2 ${
-                    isActive
-                      ? "underline decoration-rideflow-blue"
-                      : "underline-transparent"
-                  }`}
+                  className={`text-sm md:text-lg font-semibold text-rideflow-text2 decoration-rideflow-blue ${
+                    isActive ? "underline" : "underline-transparent"
+                  } hover:underline transition-all duration-300`}
                   key={link.href}
                   href={link.href}
                 >

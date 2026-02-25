@@ -1,7 +1,6 @@
-import React from "react";
+import { AboutPage } from "./page.client";
 
-function AboutPage() {
-  return <div>About</div>;
+export default async function About() {
+  return <AboutPage />;
 }
 
-export default AboutPage;

@@ -194,3 +194,7 @@ body::-webkit-scrollbar-thumb:hover {
 .animate-scroll-down {
   animation: scrollDown 35s linear infinite;
 }
+
+.animate-scroll-left {
+  animation: scrollLeft 35s linear infinite;
+}

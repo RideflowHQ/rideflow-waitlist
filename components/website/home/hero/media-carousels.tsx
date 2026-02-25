@@ -21,7 +21,7 @@ const MediaCarousels = () => {
           {[...leftColumnCards, ...leftColumnCards].map((card, index) => (
             <div
               key={`${card.id}-${index}`}
-              className={`w-full rounded-2xl ${card.color} aspect-[4/5] flex-shrink-0`}
+              className={`w-full rounded-2xl ${card.color} aspect-4/5 shrink-0`}
             >
               hiiiiii
             </div>
@@ -35,7 +35,7 @@ const MediaCarousels = () => {
           {[...rightColumnCards, ...rightColumnCards].map((card, index) => (
             <div
               key={`${card.id}-${index}`}
-              className={`w-full rounded-2xl ${card.color} aspect-[4/5] flex-shrink-0`}
+              className={`w-full rounded-2xl ${card.color} aspect-4/5 shrink-0`}
             >
               hellllloppppp
             </div>
