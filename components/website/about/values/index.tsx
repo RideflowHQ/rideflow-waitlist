@@ -2,6 +2,33 @@ import Badge from "@/components/custom/badge";
 import Image from "next/image";
 import React from "react";
 
+const values = [
+  {
+    id: 1,
+    icon: "/about/unified.svg",
+    alt: "Unified Operation",
+    title: "Unified Operation",
+  },
+  {
+    id: 2,
+    icon: "/about/speed.svg",
+    alt: "Built for Speed",
+    title: "Built for Speed",
+  },
+  {
+    id: 3,
+    icon: "/about/data.svg",
+    alt: "Clarity Through Data",
+    title: "Clarity Though Data",
+  },
+  {
+    id: 4,
+    icon: "/about/world.svg",
+    alt: "For Real-World Logistics",
+    title: "For Real-World Logistics",
+  },
+];
+
 export const ValueSection = () => {
   return (
     <section className="py-20 min-h-[70vh] bg-white">
@@ -14,44 +41,15 @@ export const ValueSection = () => {
           </h2>
         </div>
         <div className="w-[60%] grid grid-cols-2 gap-6">
-          <div className="bg-body-gray rounded-3xl p-8 flex flex-col gap-10">
-            <Image
-              src="/about/unified.svg"
-              alt="Value Image"
-              width={44}
-              height={44}
-            />
-            <p className="font-medium text-[1.35rem]">Unified Operation</p>
-          </div>
-          <div className="bg-body-gray rounded-3xl p-8 flex flex-col gap-10">
-            <Image
-              src="/about/speed.svg"
-              alt="Value Image"
-              width={44}
-              height={44}
-            />
-            <p className="font-medium text-[1.35rem]">Built for Speed</p>
-          </div>
-          <div className="bg-body-gray rounded-3xl p-8 flex flex-col gap-10">
-            <Image
-              src="/about/data.svg"
-              alt="Value Image"
-              width={44}
-              height={44}
-            />
-            <p className="font-medium text-[1.35rem]">Clarity Though Data</p>
-          </div>
-          <div className="bg-body-gray rounded-3xl p-8 flex flex-col gap-10">
-            <Image
-              src="/about/world.svg"
-              alt="Value Image"
-              width={44}
-              height={44}
-            />
-            <p className="font-medium text-[1.35rem]">
-              For Real-World Logistics
-            </p>
-          </div>
+          {values.map((value) => (
+            <div
+              key={value.id}
+              className="bg-body-gray rounded-3xl p-8 flex flex-col gap-10"
+            >
+              <Image src={value.icon} alt={value.alt} width={44} height={44} />
+              <p className="font-medium text-[1.35rem]">{value.title}</p>
+            </div>
+          ))}
         </div>
       </div>
     </section>

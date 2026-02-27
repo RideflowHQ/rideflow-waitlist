@@ -93,7 +93,7 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className="flex-1 flex pl-10 gap-[15rem]">
+          <div className="flex-1 flex pl-10 gap-60">
             {footerQuickLink.map((quickLink, idx) => (
               <div className="flex flex-col gap-2" key={quickLink.id}>
                 <TextAnimate
