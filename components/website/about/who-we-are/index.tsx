@@ -8,10 +8,10 @@ export const WhoWeAreSection = () => {
       <div className="container mx-auto px-4 flex text-center flex-col items-center justify-center gap-8 h-full">
         <Badge text="Who we are" color="bg-body-gray" />
         <div className="flex flex-col gap-6 items-center">
-          <h1 className="text-[2.6rem] font-medium w-[78%]">
+          <h2 className="text-[2.6rem] font-medium w-[78%]">
             We’re more than a logistics platform — we’re your partner in
             bringing clarity, control, and efficiency to everyday operations.
-          </h1>
+          </h2>
           <p className="text-lg text-rideflow-text w-[60%]">
             We go beyond basic logistics tools by helping teams manage orders,
             drivers, fleet, and finances in one connected system — making

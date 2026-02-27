@@ -1,12 +1,13 @@
 "use client";
 
-import { Hero } from "@/components/website/home";
+import {
+  Brands,
+  Hero,
+  HowItWorksSection,
+  PurposeSection,
+  TargetAudienceSection,
+} from "@/components/website/home";
 import dynamic from "next/dynamic";
-
-// Lazy load below-the-fold components
-const Features = dynamic(() => import("@/components/Features"), {
-  loading: () => <div className="py-20 bg-white" />,
-});
 
 const Faqs = dynamic(() => import("@/components/Faqs"), {
   loading: () => <div className="py-20" />,
@@ -25,9 +26,12 @@ const BookingSection = dynamic(
 
 export function LandingPage() {
   return (
-    <main className=" w-full  flex flex-col relative">
+    <main className=" w-full flex flex-col relative">
       <Hero />
-      <Features />
+      <Brands />
+      <HowItWorksSection />
+      <PurposeSection />
+      <TargetAudienceSection />
       <BookingSection />
       <Faqs />
     </main>

@@ -8,7 +8,7 @@ interface BadgeProps {
 const Badge = ({ text, color = "bg-white" }: BadgeProps) => {
   return (
     <div
-      className={`text-foreground ${color} rounded-full font-medium px-4 py-1 text-sm`}
+      className={`text-foreground ${color} rounded-full font-medium px-4 py-1 text-sm w-max`}
     >
       {text}
     </div>
