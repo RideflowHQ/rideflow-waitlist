@@ -6,6 +6,7 @@ import {
   HowItWorksSection,
   PurposeSection,
   TargetAudienceSection,
+  TestimoniesSection,
   WhyChooseUsSection,
 } from "@/components/website/home";
 import dynamic from "next/dynamic";
@@ -30,10 +31,11 @@ export function LandingPage() {
     <main className=" w-full flex flex-col relative">
       <Hero />
       <Brands />
-      <WhyChooseUsSection/>
+      <WhyChooseUsSection />
       <HowItWorksSection />
       <PurposeSection />
       <TargetAudienceSection />
+      <TestimoniesSection />
       <BookingSection />
       <Faqs />
     </main>
