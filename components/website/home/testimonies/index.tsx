@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/carousel";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-// Sample testimonial data - replace with your actual data
+
 const testimonials = [
   {
     id: 1,
@@ -114,7 +114,7 @@ export const TestimoniesSection = () => {
 
                     {/* Author info */}
                     <div className="flex items-center gap-3 border-t border-dashed border-[#808080] pt-6">
-                      <div className="w-11 h-11 rounded overflow-hidden relative flex-shrink-0">
+                      <div className="w-11 h-11 rounded overflow-hidden relative shrink-0">
                         <Image
                           src={testimonial.avatar}
                           alt={testimonial.author}

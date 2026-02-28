@@ -1,6 +1,7 @@
 "use client";
 
 import {
+  BenefitsSection,
   Brands,
   Hero,
   HowItWorksSection,
@@ -34,6 +35,7 @@ export function LandingPage() {
       <WhyChooseUsSection />
       <HowItWorksSection />
       <PurposeSection />
+      <BenefitsSection />
       <TargetAudienceSection />
       <TestimoniesSection />
       <BookingSection />

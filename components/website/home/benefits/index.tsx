@@ -1,0 +1,99 @@
+import Badge from "@/components/custom/badge";
+import { Button } from "@/components/ui/button";
+import Image from "next/image";
+import React from "react";
+
+const benefits = [
+  {
+    id: 1,
+    title: "Manage Drivers Effortlessly",
+    description: "Onboard, track, and support drivers from a single pane.",
+    image: "/home/drivers.webp",
+    bgColor: "bg-[#EAEDFF]",
+    borderColor: "border-[#9EACFE]",
+  },
+  {
+    id: 2,
+    title: "See Income vs Expenses Clearly",
+    description: "Know your profit margins and operational spend at a glance.",
+    image: "/home/expenses.webp",
+    bgColor: "bg-[#ECFBF5]",
+    borderColor: "border-[#B2EED6]",
+  },
+  {
+    id: 3,
+    title: "Stay Compliant without the Hassle",
+    description: "Document upload and expiration alerts built-in.",
+    image: "/home/documents.webp",
+    bgColor: "bg-[#FFFBE5]",
+    borderColor: "border-[#FFEF99]",
+  },
+  {
+    id: 4,
+    title: "Optimize Delivery Routes",
+    description: "Reduce mileage and fuel cost with intelligent routing.",
+    image: "/home/transit.webp",
+    bgColor: "bg-[#FFEAED]",
+    borderColor: "border-[#FE9EAC]",
+  },
+];
+
+export const BenefitsSection = () => {
+  return (
+    <section className="py-20 bg-white">
+      <div className="container mx-auto px-4 flex justify-between items-end gap-16 mb-12">
+        <div className="flex flex-col gap-4">
+          <Badge text="Core benefits" color="bg-body-gray" />
+          <h2 className="font-medium text-[2.6rem] leading-tight">
+            Built for Real Logistics Operations
+          </h2>
+          <p className="text-rideflow-text-light w-[80%]">
+            Rideflow goes beyond surface-level features. Every tool is designed
+            to solve the everyday operational challenges logistics teams
+            face—helping you work faster, stay organized, and make better
+            decisions as you scale.
+          </p>
+        </div>
+        <div>
+          <Button className="bg-rideflow-blue px-6 py-2">Get Started</Button>
+        </div>
+      </div>
+
+      <div className="relative min-h-100 overflow-hidden">
+        <div className="carousel-left-aligned">
+          <div
+            className="flex gap-4 overflow-x-auto pb-4 benefits-carousel"
+            style={{ scrollbarGutter: "stable" }}
+          >
+            {benefits.map((benefit) => (
+              <div
+                key={benefit.id}
+                className={`rounded-2xl ${benefit.bgColor} h-[26.9rem] min-w-[37.5rem] flex-shrink-0 overflow-hidden relative flex flex-col`}
+              >
+                <div className="p-8">
+                  <h2 className="font-medium text-[22px] mb-2">
+                    {benefit.title}
+                  </h2>
+                  <p className="text-rideflow-text-light">
+                    {benefit.description}
+                  </p>
+                </div>
+                <div className="relative left-10 flex-1">
+                  <div
+                    className={`border-l-2 border-t-2 rounded-tl-[12px] ${benefit.borderColor} pl-10 h-full relative overflow-hidden`}
+                  >
+                    <Image
+                      src={benefit.image}
+                      alt={benefit.title}
+                      fill
+                    />
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};

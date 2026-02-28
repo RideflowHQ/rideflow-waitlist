@@ -240,3 +240,44 @@ body::-webkit-scrollbar-thumb:hover {
 .carousel-left-aligned {
   padding-left: var(--container-left-padding);
 }
+
+
+/* Custom scrollbar for benefits carousel */
+.benefits-carousel::-webkit-scrollbar {
+  height: 10px;
+}
+
+.benefits-carousel::-webkit-scrollbar-track {
+  background: #e5e7eb;
+  border-radius: 10px;
+}
+
+.benefits-carousel::-webkit-scrollbar-thumb {
+  background: #2844e8;
+  border-radius: 10px;
+}
+
+.benefits-carousel::-webkit-scrollbar-thumb:hover {
+  background: #1a2fb3;
+}
+
+.benefits-carousel::-webkit-scrollbar-button {
+  width: 0;
+  height: 0;
+  display: none;
+}
+
+.benefits-carousel::-webkit-scrollbar-button:start:decrement,
+.benefits-carousel::-webkit-scrollbar-button:end:increment {
+  display: none;
+}
+
+.benefits-carousel::-webkit-scrollbar-button {
+  display: none;
+}
+
+/* Firefox scrollbar */
+.benefits-carousel {
+  scrollbar-width: thin;
+  scrollbar-color: #2844e8 #e5e7eb;
+}

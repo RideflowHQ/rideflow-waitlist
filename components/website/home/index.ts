@@ -5,3 +5,4 @@ export * from "./brands";
 export * from "./purpose";
 export * from "./why-choose-us";
 export * from "./testimonies";
+export * from "./benefits";
