@@ -44,7 +44,7 @@ const reasons = [
 export const WhyChooseUsSection = () => {
   return (
     <section className="py-20 min-h-[90vh] bg-white border-t border-dashed border-[#808080]">
-      <div className="container mx-auto px-4 flex gap-16">
+      <div className="container mx-auto px-6 flex gap-16">
         <div className="w-[40%] flex flex-col gap-4 items-start">
           <Badge text="Why choose us" color="bg-body-gray" />
           <h2 className="font-medium text-[2.6rem] leading-tight">

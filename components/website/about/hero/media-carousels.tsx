@@ -26,6 +26,7 @@ const columnCards = [
   },
   { id: 7, type: "image", src: "/home/office-man.webp", alt: "Office man" },
   { id: 8, type: "image", src: "/home/woman-call.webp", alt: "Woman on call" },
+  { id: 9, type: "video", src: "/about/hero-vid.mp4" },
 ];
 
 const MediaCarousels = () => {
@@ -35,7 +36,9 @@ const MediaCarousels = () => {
         {columnCards.map((card) => (
           <div
             key={card.id}
-            className="w-75 h-100 rounded-2xl overflow-hidden mr-3 relative"
+            className={`${
+              card.type === "video" ? "w-112.5" : "w-75"
+            } h-100 rounded-2xl overflow-hidden mr-3 relative`}
           >
             {card.type === "image" ? (
               <Image

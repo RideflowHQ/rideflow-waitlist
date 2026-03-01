@@ -4,9 +4,9 @@ import Badge from "@/components/custom/badge";
 
 export const FoundersNoteSection = () => {
   return (
-    <section className="bg-[#04081A] py-20 min-h-[80vh]">
-      <div className="container mx-auto px-4 flex gap-16 items-center">
-        <div className="w-1/2 aspect-square relative">
+    <section className="bg-[#04081A] py-12 md:py-20 min-h-[80vh]">
+      <div className="container mx-auto px-6 flex flex-col lg:flex-row gap-8 md:gap-16 items-center">
+        <div className="w-full lg:w-1/2 aspect-square relative">
           <Image
             src="/about/founder.jpg"
             alt="Founder"
@@ -14,10 +14,12 @@ export const FoundersNoteSection = () => {
             className="object-cover rounded-[20px]"
           />
         </div>
-        <div className="w-1/2 flex flex-col items-start gap-6 text-white">
+        <div className="w-full lg:w-1/2 flex flex-col items-start gap-4 md:gap-6 text-white">
           <Badge text="Founder's Note" color="bg-white" />
-          <div className="space-y-4">
-            <h2 className="text-4xl font-medium">A Note from the Founder</h2>
+          <div className="space-y-3 md:space-y-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-medium">
+              A Note from the Founder
+            </h2>
             <p className="text-lg font-light">
               Logistics is one of those industries that quietly keeps everything
               moving, yet the people running it are often forced to work with

@@ -19,10 +19,13 @@ const brands = [
 
 export const Brands = () => {
   return (
-    <section className="py-10 bg-white">
+    <section className="py-8 md:py-10 bg-white">
       <Marquee speed={50} gradient={false} pauseOnHover>
         {brands.map((brand) => (
-          <div key={brand.id} className="mx-8 flex items-center justify-center">
+          <div
+            key={brand.id}
+            className="mx-4 sm:mx-8 flex items-center justify-center"
+          >
             <Image
               src={brand.src}
               alt={brand.alt}

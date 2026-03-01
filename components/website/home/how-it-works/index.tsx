@@ -48,7 +48,17 @@ export const HowItWorksSection = () => {
                 </p>
               </div>
             </div>
-            <Button className="bg-rideflow-blue w-max">Get Started</Button>
+            <Button
+              className="bg-rideflow-blue w-max hover:bg-blue-700 px-8 py-2"
+              onClick={() => {
+                window.open(
+                  "https://dashboard.rideflow.org/auth/login",
+                  "_blank",
+                );
+              }}
+            >
+              Sign In
+            </Button>
           </div>
         </div>
       </div>

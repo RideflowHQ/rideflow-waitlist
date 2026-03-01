@@ -56,8 +56,8 @@ export default function Footer() {
       id="footer"
       className="py-12 relative bg-white border-t border-dashed border-[#808080]"
     >
-      <div className="container mx-auto px-4 ">
-        <div className="flex py-12">
+      <div className="container mx-auto px-6">
+        <div className="flex flex-col lg:flex-row py-12 gap-8 lg:gap-0">
           <div className="flex flex-col gap-7 flex-1">
             <div className="flex flex-col items-start gap-3">
               <Link href="/" className="flex items-baseline gap-2">
@@ -68,7 +68,7 @@ export default function Footer() {
                 by="word"
                 startOnView
                 once
-                className="w-[65%]  text-rideflow-text-light"
+                className="w-full lg:w-[65%] text-rideflow-text-light"
               >
                 Manage orders, drivers, fleets and operational costs with
                 clarity and control — all in one place.
@@ -89,11 +89,15 @@ export default function Footer() {
             </div>
             <div>
               <p className="text-rideflow-text-light">RC 1200124</p>
-              <p className="text-rideflow-text-light"> <Mail className="inline-block mr-1" size={16} /> info@rideflow.org</p>
+              <p className="text-rideflow-text-light">
+                {" "}
+                <Mail className="inline-block mr-1" size={16} />{" "}
+                info@rideflow.org
+              </p>
             </div>
           </div>
 
-          <div className="flex-1 flex pl-10 gap-60">
+          <div className="flex-1 flex flex-row pl-0 lg:pl-10 gap-30 sm:gap-24 lg:gap-60 pr-4 sm:pr-0">
             {footerQuickLink.map((quickLink, idx) => (
               <div className="flex flex-col gap-2" key={quickLink.id}>
                 <TextAnimate

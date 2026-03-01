@@ -55,7 +55,17 @@ export const BenefitsSection = () => {
           </p>
         </div>
         <div>
-          <Button className="bg-rideflow-blue px-6 py-2">Get Started</Button>
+          <Button
+            className="bg-rideflow-blue w-max hover:bg-blue-700 px-8 py-2"
+            onClick={() => {
+              window.open(
+                "https://dashboard.rideflow.org/auth/login",
+                "_blank",
+              );
+            }}
+          >
+            Sign In
+          </Button>
         </div>
       </div>
 
@@ -82,11 +92,7 @@ export const BenefitsSection = () => {
                   <div
                     className={`border-l-2 border-t-2 rounded-tl-[12px] ${benefit.borderColor} pl-10 h-full relative overflow-hidden`}
                   >
-                    <Image
-                      src={benefit.image}
-                      alt={benefit.title}
-                      fill
-                    />
+                    <Image src={benefit.image} alt={benefit.title} fill />
                   </div>
                 </div>
               </div>
