@@ -23,19 +23,19 @@ const data = [
 
 export const RelatedBlogs = () => {
   return (
-    <section className="pb-28">
-      <div className="container mx-auto px-4">
-        <h1 className="text-[2.6rem] font-semibold mb-8 text-center">
+    <section className="pb-16 md:pb-28">
+      <div className="container mx-auto px-6">
+        <h1 className="text-2xl sm:text-3xl md:text-[2.6rem] font-semibold mb-6 md:mb-8 text-center">
           Related Blogs
         </h1>
-        <div className="grid grid-cols-2 gap-6 text-left">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6 text-left">
           {data.map((item) => (
             <Link
               key={item.id}
               href={`/blog/${item.id}`}
-              className={`p-3 rounded-[20px] bg-[#F1F1F2] flex gap-4`}
+              className={`p-3 rounded-[20px] bg-[#F1F1F2] flex flex-col sm:flex-row gap-4`}
             >
-              <div className="rounded-[16px] aspect-[16/9] relative overflow-hidden flex-1">
+              <div className="rounded-2xl aspect-square sm:aspect-video relative overflow-hidden flex-1">
                 <Image
                   src={item.imageUrl}
                   alt={item.title}
@@ -48,12 +48,12 @@ export const RelatedBlogs = () => {
                   </span>
                 )}
               </div>
-              <div className="flex-1 flex flex-col justify-between">
+              <div className="flex-none sm:flex-1 flex flex-col justify-between py-2">
                 <div>
                   <p className="text-sm text-gray-600">{item.date}</p>
                   <h3 className="text-lg font-semibold">{item.title}</h3>
                 </div>
-                <p className="flex gap-1 items-center text-sm">
+                <p className="flex gap-1 items-center text-sm mt-3 sm:mt-0">
                   <span className="underline">Read Full Blog</span>{" "}
                   <ArrowRight size={16} />
                 </p>

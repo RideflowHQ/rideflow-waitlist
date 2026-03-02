@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Marquee from "react-fast-marquee";
 
 const leftColumnCards = [
   { id: 1, type: "image", src: "/home/man-bike.webp", alt: "Man on bike" },
@@ -9,7 +10,12 @@ const leftColumnCards = [
     src: "/home/woman-book.webp",
     alt: "Woman with book",
   },
-  { id: 4, type: "image", src: "/home/overall-woman.webp", alt: "Overall woman" },
+  {
+    id: 4,
+    type: "image",
+    src: "/home/overall-woman.webp",
+    alt: "Overall woman",
+  },
 ];
 
 const rightColumnCards = [
@@ -26,64 +32,135 @@ const rightColumnCards = [
 
 const MediaCarousels = () => {
   return (
-    <div className="relative h-screen w-full overflow-hidden flex gap-3">
-      {/* Left Column - Scrolling Up */}
-      <div className="flex-1 overflow-hidden">
-        <div className="flex flex-col gap-3 animate-scroll-up">
-          {[...leftColumnCards, ...leftColumnCards].map((card, index) => (
-            <div
-              key={`${card.id}-${index}`}
-              className="w-full rounded-2xl overflow-hidden aspect-4/5 shrink-0 relative"
-            >
-              {card.type === "image" ? (
-                <Image
-                  src={card.src}
-                  alt={card.alt || ""}
-                  fill
-                  className="object-cover"
-                />
-              ) : (
-                <video
-                  src={card.src}
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  className="w-full h-full object-cover"
-                />
-              )}
-            </div>
-          ))}
+    <div className="relative h-full w-full overflow-hidden">
+      {/* Desktop: Vertical Layout */}
+      <div className="hidden lg:flex gap-3 h-screen">
+        {/* Left Column - Scrolling Up */}
+        <div className="flex-1 overflow-hidden">
+          <div className="flex flex-col gap-3 animate-scroll-up">
+            {[...leftColumnCards, ...leftColumnCards].map((card, index) => (
+              <div
+                key={`${card.id}-${index}`}
+                className="w-full rounded-2xl overflow-hidden aspect-4/5 shrink-0 relative"
+              >
+                {card.type === "image" ? (
+                  <Image
+                    src={card.src}
+                    alt={card.alt || ""}
+                    fill
+                    className="object-cover"
+                  />
+                ) : (
+                  <video
+                    src={card.src}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="w-full h-full object-cover"
+                  />
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Right Column - Scrolling Down */}
+        <div className="flex-1 overflow-hidden">
+          <div className="flex flex-col gap-3 animate-scroll-down">
+            {[...rightColumnCards, ...rightColumnCards].map((card, index) => (
+              <div
+                key={`${card.id}-${index}`}
+                className="w-full rounded-2xl overflow-hidden aspect-4/5 shrink-0 relative"
+              >
+                {card.type === "image" ? (
+                  <Image
+                    src={card.src}
+                    alt={card.alt || ""}
+                    fill
+                    className="object-cover"
+                  />
+                ) : (
+                  <video
+                    src={card.src}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="w-full h-full object-cover"
+                  />
+                )}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
-      {/* Right Column - Scrolling Down */}
-      <div className="flex-1 overflow-hidden">
-        <div className="flex flex-col gap-3 animate-scroll-down">
-          {[...rightColumnCards, ...rightColumnCards].map((card, index) => (
-            <div
-              key={`${card.id}-${index}`}
-              className="w-full rounded-2xl overflow-hidden aspect-4/5 shrink-0 relative"
-            >
-              {card.type === "image" ? (
-                <Image
-                  src={card.src}
-                  alt={card.alt || ""}
-                  fill
-                  className="object-cover"
-                />
-              ) : (
-                <video
-                  src={card.src}
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  className="w-full h-full object-cover"
-                />
-              )}
-            </div>
-          ))}
+      {/* Mobile: Horizontal Marquee Layout */}
+      <div className="flex flex-col gap-3 h-full lg:hidden">
+        {/* First Row - Scrolling Left */}
+        <div className="h-[calc(50%-6px)]">
+          <Marquee speed={40} gradient={false} className="h-full">
+            {leftColumnCards.map((card, index) => (
+              <div
+                key={`left-${card.id}-${index}`}
+                className="h-47.5 sm:h-60 w-37.5 sm:w-45 rounded-2xl overflow-hidden mr-3 relative"
+              >
+                {card.type === "image" ? (
+                  <Image
+                    src={card.src}
+                    alt={card.alt || ""}
+                    fill
+                    className="object-cover"
+                  />
+                ) : (
+                  <video
+                    src={card.src}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="w-full h-full object-cover"
+                  />
+                )}
+              </div>
+            ))}
+          </Marquee>
+        </div>
+
+        {/* Second Row - Scrolling Right */}
+        <div className="h-[calc(50%-6px)]">
+          <Marquee
+            speed={40}
+            gradient={false}
+            direction="right"
+            className="h-full"
+          >
+            {rightColumnCards.map((card, index) => (
+              <div
+                key={`right-${card.id}-${index}`}
+                className="h-47.5 sm:h-60 w-37.5 sm:w-45 rounded-2xl overflow-hidden mr-3 relative"
+              >
+                {card.type === "image" ? (
+                  <Image
+                    src={card.src}
+                    alt={card.alt || ""}
+                    fill
+                    className="object-cover"
+                  />
+                ) : (
+                  <video
+                    src={card.src}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="w-full h-full object-cover"
+                  />
+                )}
+              </div>
+            ))}
+          </Marquee>
         </div>
       </div>
     </div>

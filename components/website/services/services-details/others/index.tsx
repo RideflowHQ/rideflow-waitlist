@@ -23,26 +23,26 @@ const data = [
 
 export const OtherServices = () => {
   return (
-    <section className="py-34 bg-[#04081A]">
-      <div className="container mx-auto px-4 flex gap-6">
-        <div className="w-[40%]">
-          <h2 className="text-[2.6rem] font-medium text-white mb-5">
+    <section className="py-16 md:py-24 lg:py-34 bg-[#04081A]">
+      <div className="container mx-auto px-6 flex flex-col lg:flex-row gap-8 lg:gap-6">
+        <div className="w-full lg:w-[40%]">
+          <h2 className="text-2xl sm:text-3xl md:text-[2.6rem] font-medium text-white mb-4 md:mb-5">
             Other Services
           </h2>
-          <p className="text-white font-normal mb-8 text-lg w-[70%]">
+          <p className="text-white font-normal mb-6 md:mb-8 text-base md:text-lg w-full lg:w-[70%]">
             Explore our full range of services tailored to fit every need, from
             fleet management to operational clarity.
           </p>
-          <Button className="bg-rideflow-blue">View All Services</Button>
+          <Button className="bg-rideflow-blue px-8">View All Services</Button>
         </div>
-        <div className="grid grid-cols-2 gap-6 flex-1">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6 flex-1">
           {data.map((item) => (
             <Link
               key={item.id}
               href={`/services/${item.id}`}
               className="bg-white p-4 rounded-[20px]"
             >
-              <div className="rounded-[16px] aspect-[16/9] relative overflow-hidden">
+              <div className="rounded-2xl aspect-video relative overflow-hidden">
                 <Image
                   src={item.imageUrl}
                   alt={item.title}
@@ -51,8 +51,10 @@ export const OtherServices = () => {
                 />
               </div>
 
-              <h3 className="text-xl font-medium mt-4">{item.title}</h3>
-              <p className="text-rideflow-text mt-2 font-light">
+              <h3 className="text-lg md:text-xl font-medium mt-4">
+                {item.title}
+              </h3>
+              <p className="text-sm md:text-base text-rideflow-text mt-2 font-light">
                 {item.description}
               </p>
             </Link>

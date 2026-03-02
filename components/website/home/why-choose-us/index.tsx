@@ -43,28 +43,31 @@ const reasons = [
 
 export const WhyChooseUsSection = () => {
   return (
-    <section className="py-20 min-h-[90vh] bg-white border-t border-dashed border-[#808080]">
-      <div className="container mx-auto px-6 flex gap-16">
-        <div className="w-[40%] flex flex-col gap-4 items-start">
+    <section className="py-12 md:py-16 lg:py-20 min-h-[90vh] bg-white border-t border-dashed border-[#808080]">
+      <div className="container mx-auto px-6 md:px-6 flex flex-col lg:flex-row gap-8 md:gap-12 lg:gap-16">
+        <div className="w-full lg:w-[40%] flex flex-col gap-3 md:gap-4 items-start">
           <Badge text="Why choose us" color="bg-body-gray" />
-          <h2 className="font-medium text-[2.6rem] leading-tight">
+          <h2 className="font-medium text-4xl sm:text-4xl md:text-4xl lg:text-[2.6rem] leading-tight">
             What you can do
             <br /> with Rideflow
           </h2>
         </div>
-        <div className="w-[60%] grid grid-cols-2 gap-6">
+        <div className="w-full lg:w-[60%] grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
           {reasons.map((reason) => (
             <div
               key={reason.id}
-              className="bg-body-gray rounded-2xl p-8 flex flex-col justify-between h-[15.2rem]"
+              className="bg-body-gray rounded-2xl p-6 md:p-8 flex flex-col justify-between h-48 sm:h-56 md:h-[15.2rem]"
             >
               <Image
                 src={reason.icon}
                 alt={reason.alt}
-                width={44}
-                height={44}
+                width={36}
+                height={36}
+                className="w-9 h-9 md:w-11 md:h-11"
               />
-              <p className="font-medium text-[1.35rem]">{reason.title}</p>
+              <p className="font-medium text-lg sm:text-xl md:text-[1.35rem]">
+                {reason.title}
+              </p>
             </div>
           ))}
         </div>

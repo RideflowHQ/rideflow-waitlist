@@ -51,15 +51,15 @@ const data = [
 
 const ServicesCards = () => {
   return (
-    <div className="mt-15">
-      <div className="grid grid-cols-3 gap-6 text-left">
+    <div className="mt-10 md:mt-15">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 text-left">
         {data.map((item) => (
           <Link
             key={item.id}
             href={`/services/${item.id}`}
             className="bg-white p-4 rounded-[20px]"
           >
-            <div className="rounded-[16px] aspect-[16/9] relative overflow-hidden">
+            <div className="rounded-2xl aspect-video relative overflow-hidden">
               <Image
                 src={item.imageUrl}
                 alt={item.title}
@@ -68,15 +68,24 @@ const ServicesCards = () => {
               />
             </div>
 
-            <h3 className="text-xl font-medium mt-4">{item.title}</h3>
-            <p className="text-rideflow-text mt-2 font-light">
+            <h3 className="text-lg md:text-xl font-medium mt-4">
+              {item.title}
+            </h3>
+            <p className="text-sm md:text-base text-rideflow-text mt-2 font-light">
               {item.description}
             </p>
           </Link>
         ))}
       </div>
-      <div className="flex justify-center mt-18">
-        <Button className="bg-rideflow-blue">Get Started</Button>
+      <div className="flex justify-center mt-12 md:mt-18">
+        <Button
+          className="bg-rideflow-blue w-max hover:bg-blue-700 px-8 py-2"
+          onClick={() => {
+            window.open("https://dashboard.rideflow.org/auth/login", "_blank");
+          }}
+        >
+          Get Started
+        </Button>
       </div>
     </div>
   );

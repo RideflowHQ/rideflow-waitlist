@@ -9,7 +9,6 @@ import {
 } from "@/components/ui/carousel";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-
 const testimonials = [
   {
     id: 1,
@@ -60,19 +59,19 @@ export const TestimoniesSection = () => {
   const scrollNext = () => carouselApi?.scrollNext();
 
   return (
-    <section className="py-20 bg-white">
+    <section className="py-12 md:py-16 lg:py-20 bg-white">
       {/* Header section with controls */}
-      <div className="container mx-auto px-4 flex justify-between items-end gap-16 mb-12">
-        <div className="flex flex-col gap-4">
+      <div className="container mx-auto px-6 flex flex-col sm:flex-row justify-between items-start sm:items-end gap-6 sm:gap-8 md:gap-12 lg:gap-16 mb-8 md:mb-10 lg:mb-12">
+        <div className="flex flex-col gap-3 md:gap-4">
           <Badge text="Trusted by clients" color="bg-body-gray" />
-          <h2 className="font-medium text-[2.6rem] leading-tight">
+          <h2 className="font-medium text-4xl sm:text-4xl md:text-4xl lg:text-[2.6rem] leading-tight">
             Trusted by teams and
             <br /> businesses alike
           </h2>
         </div>
 
-        {/* Navigation buttons */}
-        <div className="flex gap-2">
+        {/* Navigation buttons - Desktop only */}
+        <div className="hidden sm:flex gap-2">
           <button
             onClick={scrollPrev}
             className="w-10 h-10 rounded bg-body-gray flex items-center justify-center hover:bg-gray-50 transition-colors cursor-pointer"
@@ -106,15 +105,17 @@ export const TestimoniesSection = () => {
               {testimonials.map((testimonial) => (
                 <CarouselItem
                   key={testimonial.id}
-                  className="pl-4 basis-[85%] sm:basis-[45%] lg:basis-[28%]"
+                  className="pl-3 sm:pl-4 basis-[90%] sm:basis-[70%] md:basis-[50%] lg:basis-[28%]"
                 >
-                  <div className="bg-body-gray rounded-2xl p-9 h-full flex flex-col justify-between min-h-100">
+                  <div className="bg-body-gray rounded-2xl p-6 sm:p-7 md:p-9 h-full flex flex-col justify-between min-h-100">
                     {/* Quote */}
-                    <p className="leading-relaxed mb-8">{testimonial.quote}</p>
+                    <p className="text-sm sm:text-base leading-relaxed mb-6 sm:mb-8">
+                      {testimonial.quote}
+                    </p>
 
                     {/* Author info */}
-                    <div className="flex items-center gap-3 border-t border-dashed border-[#808080] pt-6">
-                      <div className="w-11 h-11 rounded overflow-hidden relative shrink-0">
+                    <div className="flex items-center gap-2 sm:gap-3 border-t border-dashed border-[#808080] pt-4 sm:pt-6">
+                      <div className="w-10 h-10 sm:w-11 sm:h-11 rounded overflow-hidden relative shrink-0">
                         <Image
                           src={testimonial.avatar}
                           alt={testimonial.author}
@@ -123,7 +124,7 @@ export const TestimoniesSection = () => {
                         />
                       </div>
                       <div>
-                        <p className="font-semibold text-gray-900">
+                        <p className="font-semibold text-gray-900 text-sm sm:text-base">
                           {testimonial.author}
                         </p>
                         <p className="text-xs text-gray-500">
@@ -137,6 +138,24 @@ export const TestimoniesSection = () => {
             </CarouselContent>
           </Carousel>
         </div>
+      </div>
+
+      {/* Navigation buttons - Mobile only, centered below carousel */}
+      <div className="container mx-auto px-4 mt-6 flex sm:hidden justify-center gap-2">
+        <button
+          onClick={scrollPrev}
+          className="w-9 h-9 rounded bg-body-gray flex items-center justify-center hover:bg-gray-50 transition-colors cursor-pointer"
+          aria-label="Previous testimonial"
+        >
+          <ChevronLeft className="w-4 h-4" />
+        </button>
+        <button
+          onClick={scrollNext}
+          className="w-9 h-9 rounded bg-body-gray flex items-center justify-center hover:bg-gray-50 transition-colors cursor-pointer"
+          aria-label="Next testimonial"
+        >
+          <ChevronRight className="w-4 h-4" />
+        </button>
       </div>
     </section>
   );

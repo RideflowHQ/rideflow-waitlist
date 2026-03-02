@@ -42,44 +42,61 @@ const targetAudiences = [
 
 export const TargetAudienceSection = () => {
   return (
-    <section className="min-h-[95vh] py-15 overflow-hidden">
-      <div className="relative h-full">
-        <div className="absolute top-0 bottom-0 left-[45%] -right-8 z-0">
-          <Image src="/home/i-mac.webp" alt="iMac" fill />
-        </div>
-        <div className="container mx-auto px-4 h-full relative z-10">
-          <div className="h-full flex">
-            <div className="w-[43%] pr-16">
-              <div className="mb-10">
-                <Badge text="Target audience" color="bg-white" />
-                <h2 className="text-[2.6rem] font-medium text-foreground leading-tight mt-4">
-                  Who Rideflow is for
-                </h2>
-              </div>
-              <div className="flex flex-col gap-10">
-                {targetAudiences.map((audience) => (
-                  <div key={audience.id} className="flex gap-2">
-                    <div className="w-8 h-8 bg-white rounded flex items-center justify-center shrink-0">
-                      <Image
-                        src={audience.icon}
-                        alt={audience.alt}
-                        width={20}
-                        height={20}
-                      />
-                    </div>
-                    <div>
-                      <p className="mb-2 font-medium text-xl">
-                        {audience.title}
-                      </p>
-                      <p className="text-sm">{audience.description}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
+    <section className="py-12 md:py-15 lg:min-h-[95vh] overflow-hidden lg:relative">
+      {/* Image Section - Absolute positioned on desktop only */}
+      <div className="hidden lg:block lg:absolute lg:top-0 lg:bottom-0 lg:left-[45%] lg:-right-8 lg:h-full lg:z-0">
+        <Image
+          src="/home/i-mac.webp"
+          alt="iMac"
+          fill
+          className="object-contain object-right"
+        />
+      </div>
+
+      {/* Content Section */}
+      <div className="container mx-auto px-6 lg:relative lg:z-10 lg:h-full">
+        <div className="lg:h-full lg:flex lg:items-center">
+          <div className="lg:w-[43%] lg:pr-16">
+            <div className="mb-8 md:mb-10">
+              <Badge text="Target audience" color="bg-white" />
+              <h2 className="text-4xl sm:text-4xl md:text-4xl lg:text-[2.6rem] font-medium text-foreground leading-tight mt-3 md:mt-4">
+                Who Rideflow is for
+              </h2>
             </div>
-            <div className="w-[55%]" />
+            <div className="flex flex-col gap-6 md:gap-8 lg:gap-10 mb-8 lg:mb-0">
+              {targetAudiences.map((audience) => (
+                <div key={audience.id} className="flex gap-2 md:gap-3">
+                  <div className="w-7 h-7 sm:w-8 sm:h-8 bg-white rounded flex items-center justify-center shrink-0">
+                    <Image
+                      src={audience.icon}
+                      alt={audience.alt}
+                      width={18}
+                      height={18}
+                      className="w-4.5 h-4.5 sm:w-5 sm:h-5"
+                    />
+                  </div>
+                  <div>
+                    <p className="mb-1 md:mb-2 font-medium text-base sm:text-lg md:text-xl">
+                      {audience.title}
+                    </p>
+                    <p className="text-xs sm:text-sm">{audience.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
+          <div className="lg:w-[55%]" />
         </div>
+      </div>
+
+      {/* Image Section - Below text on mobile only */}
+      <div className="relative h-75 sm:h-100 md:h-125 lg:hidden ml-4 sm:ml-6 -mr-4 sm:-mr-6">
+        <Image
+          src="/home/i-mac.webp"
+          alt="iMac"
+          fill
+          className="object-contain object-right"
+        />
       </div>
     </section>
   );

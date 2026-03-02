@@ -4,10 +4,10 @@ import ServicesCards from "./cards";
 export const ServiceDetails = () => {
   return (
     <section className="pb-10">
-      <div className="container mx-auto px-4 flex justify-center text-left">
-        <div className="w-[60%] space-y-8">
+      <div className="container mx-auto px-6 flex justify-center text-left">
+        <div className="w-full md:w-[80%] lg:w-[70%] xl:w-[60%] space-y-6 md:space-y-8">
           <div>
-            <h2 className="text-[1.8rem] font-medium text-foreground mb-4">
+            <h2 className="text-xl sm:text-2xl md:text-[1.8rem] font-medium text-foreground mb-4">
               Service Overview
             </h2>
             <p className="font-light mb-5">
@@ -22,7 +22,7 @@ export const ServiceDetails = () => {
             </p>
           </div>
           <div>
-            <h2 className="text-[1.8rem] font-medium text-foreground mb-4">
+            <h2 className="text-xl sm:text-2xl md:text-[1.8rem] font-medium text-foreground mb-4">
               Why Choose Us
             </h2>
             <ul className="font-light mb-4 list-disc list-inside space-y-1 pl-5">
@@ -38,7 +38,7 @@ export const ServiceDetails = () => {
             </p>
           </div>
           <div>
-            <h2 className="text-[1.8rem] font-medium text-foreground mb-4">
+            <h2 className="text-xl sm:text-2xl md:text-[1.8rem] font-medium text-foreground mb-4">
               How It Works
             </h2>
             <p className="font-light mb-5">

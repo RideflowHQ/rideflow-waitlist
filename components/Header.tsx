@@ -32,8 +32,8 @@ export default function Header() {
 
   return (
     <header className="w-full">
-      <nav className="w-full container fixed top-5 z-20 left-[50%] transform -translate-x-1/2 px-4">
-        <div className="flex justify-between items-center py-2 px-4 border-3 border-white bg-rideflow-gray-light rounded-2xl max-w-7xl mx-auto w-full">
+      <nav className="w-full container fixed top-5 z-20 left-[50%] transform -translate-x-1/2 px-6">
+        <div className="flex justify-between items-center py-2 px-6 border-3 border-white bg-rideflow-gray-light rounded-2xl max-w-7xl mx-auto w-full">
           <Link href="/" className="flex items-baseline gap-2">
             <Image
               className="object-contain"

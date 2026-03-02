@@ -38,12 +38,12 @@ export const ContactForm = () => {
   };
 
   return (
-    <section className="py-18 min-h-[80vh] bg-white">
-      <div className="container mx-auto px-4">
-        <h2 className="font-medium text-[2.6rem] text-center mb-6">
+    <section className="py-12 md:py-18 min-h-[80vh] bg-white">
+      <div className="container mx-auto px-6">
+        <h2 className="font-medium text-2xl sm:text-3xl md:text-4xl lg:text-[2.6rem] text-center mb-4 md:mb-6">
           Contact Form
         </h2>
-        <div className="bg-[#F1F1F2] rounded-[20px] max-w-200 mx-auto p-6">
+        <div className="bg-[#F1F1F2] rounded-[20px] max-w-200 mx-auto p-4 sm:p-6">
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
               {/* Full Name */}
@@ -67,7 +67,7 @@ export const ContactForm = () => {
                 )}
               />
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                 <FormField
                   control={form.control}
                   name="email"

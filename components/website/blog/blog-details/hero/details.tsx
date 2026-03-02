@@ -3,8 +3,8 @@ import React from "react";
 
 const BlogDetails = () => {
   return (
-    <div className="flex justify-center text-left mt-16">
-      <div className="w-[60%] space-y-8">
+    <div className="flex justify-center text-left mt-10 md:mt-16">
+      <div className="w-full md:w-[80%] lg:w-[60%] space-y-6 md:space-y-8">
         <p className="font-light mb-5">
           Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque
           faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi
@@ -14,7 +14,7 @@ const BlogDetails = () => {
           hendrerit semper vel class aptent taciti sociosqu.
         </p>
         <div>
-          <h2 className="text-[1.8rem] font-medium text-foreground mb-4">
+          <h2 className="text-xl sm:text-2xl md:text-[1.8rem] font-medium text-foreground mb-4">
             Heading
           </h2>
           <p className="font-light mb-5">
@@ -30,7 +30,7 @@ const BlogDetails = () => {
           </p>
         </div>
         <div>
-          <h2 className="text-[1.5rem] font-medium text-foreground mb-4">
+          <h2 className="text-lg sm:text-xl md:text-[1.5rem] font-medium text-foreground mb-4">
             Sub Heading
           </h2>
           <p className="font-light mb-5">
@@ -49,7 +49,7 @@ const BlogDetails = () => {
             Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut
             hendrerit semper vel class aptent taciti sociosqu.
           </p>
-          <div className="aspect-[16/5] relative">
+          <div className="aspect-16/5 relative">
             <Image
               src="/service/service-handshake.webp"
               alt="Service Handshake"
@@ -59,7 +59,7 @@ const BlogDetails = () => {
           </div>
         </div>
         <div>
-          <h2 className="text-[1.5rem] font-medium text-foreground mb-4">
+          <h2 className="text-lg sm:text-xl md:text-[1.5rem] font-medium text-foreground mb-4">
             Final Thoughts
           </h2>
           <p className="font-light mb-5">

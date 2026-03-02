@@ -66,15 +66,15 @@ const data = [
 
 const BlogsCards = () => {
   return (
-    <div className="mt-15">
-      <div className="grid grid-cols-2 gap-6 text-left">
+    <div className="mt-10 md:mt-15">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6 text-left">
         {data.map((item) => (
           <Link
             key={item.id}
             href={`/blog/${item.id}`}
-            className={`p-3 rounded-[20px] bg-[#F1F1F2] flex gap-4`}
+            className={`p-3 rounded-[20px] bg-[#F1F1F2] flex flex-col sm:flex-row gap-4`}
           >
-            <div className="rounded-[16px] aspect-[16/9] relative overflow-hidden flex-1">
+            <div className="rounded-2xl aspect-square sm:aspect-video relative overflow-hidden flex-1">
               <Image
                 src={item.imageUrl}
                 alt={item.title}
@@ -87,12 +87,12 @@ const BlogsCards = () => {
                 </span>
               )}
             </div>
-            <div className="flex-1 flex flex-col justify-between">
+            <div className="flex-none sm:flex-1 flex flex-col justify-between py-2">
               <div>
                 <p className="text-sm text-gray-600">{item.date}</p>
                 <h3 className="text-lg font-semibold">{item.title}</h3>
               </div>
-              <p className="flex gap-1 items-center text-sm">
+              <p className="flex gap-1 items-center text-sm mt-3 sm:mt-0">
                 <span className="underline">Read Full Blog</span>{" "}
                 <ArrowRight size={16} />
               </p>
@@ -100,8 +100,8 @@ const BlogsCards = () => {
           </Link>
         ))}
       </div>
-      <div className="flex justify-center mt-18">
-        <Button className="bg-rideflow-blue">Load More</Button>
+      <div className="flex justify-center mt-12 md:mt-18">
+        <Button className="bg-rideflow-blue px-8">Load More</Button>
       </div>
     </div>
   );
