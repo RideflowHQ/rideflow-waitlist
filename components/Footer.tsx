@@ -44,7 +44,7 @@ const footerQuickLink = [
     id: 2,
     title: "Legal",
     links: [
-      { linkTitle: "Terms of Service", link: "/" },
+      { linkTitle: "Terms of Service", link: "/terms-of-service" },
       { linkTitle: "Privacy Policy", link: "/" },
     ],
   },
