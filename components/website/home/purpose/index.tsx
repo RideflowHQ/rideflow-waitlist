@@ -42,7 +42,7 @@ export const PurposeSection = () => {
                 </div>
               </div>
               <div className="flex flex-col sm:flex-row gap-4 h-auto sm:h-87.5 lg:h-[50%]">
-                <div className="w-full sm:w-1/2 h-75 sm:h-full rounded-[20px] md:rounded-[25px] bg-emerald-300 relative overflow-hidden">
+                <div className="w-full sm:w-1/2 h-75 sm:h-full rounded-[20px] md:rounded-[25px] relative overflow-hidden">
                   <Image
                     src="/home/receive.webp"
                     alt="Receive"

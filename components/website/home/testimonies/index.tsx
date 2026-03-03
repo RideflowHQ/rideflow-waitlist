@@ -64,9 +64,8 @@ export const TestimoniesSection = () => {
       <div className="container mx-auto px-6 flex flex-col sm:flex-row justify-between items-start sm:items-end gap-6 sm:gap-8 md:gap-12 lg:gap-16 mb-8 md:mb-10 lg:mb-12">
         <div className="flex flex-col gap-3 md:gap-4">
           <Badge text="Trusted by clients" color="bg-body-gray" />
-          <h2 className="font-medium text-4xl sm:text-4xl md:text-4xl lg:text-[2.6rem] leading-tight">
-            Trusted by teams and
-            <br /> businesses alike
+          <h2 className="font-medium text-4xl sm:text-4xl md:text-4xl lg:text-[2.6rem] leading-tight md:w-[60%]">
+            Trusted by teams and businesses alike
           </h2>
         </div>
 

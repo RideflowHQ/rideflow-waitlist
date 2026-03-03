@@ -4,11 +4,19 @@ import WaitlistForm from "@/components/Form";
 import { useState } from "react";
 import Badge from "@/components/custom/badge";
 import MediaCarousels from "./media-carousels";
+import Image from "next/image";
 
 export const Hero = () => {
   const [isSuccess, setIsSuccess] = useState(false);
   return (
-    <section className="min-h-screen">
+    <section className="min-h-screen relative">
+      <Image
+        src="/home/home-curve.svg"
+        alt="curve"
+        height={210}
+        width={210}
+        className="absolute top-0 left-0 -z-5 hidden md:block"
+      />
       <div className="container mx-auto px-6 flex flex-col lg:flex-row items-center gap-8 lg:gap-12 h-full py-20 lg:py-0">
         <div className="w-full lg:w-[47%] flex flex-col items-start gap-4 md:gap-6 h-full justify-center">
           <Badge text="Built for Modern Logistics Teams" color="bg-white" />

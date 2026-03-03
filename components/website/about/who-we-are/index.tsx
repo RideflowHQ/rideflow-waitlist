@@ -26,7 +26,7 @@ export const WhoWeAreSection = () => {
                 width={40}
                 height={40}
               />
-              <p className="text-xl">
+              <p className="md:text-xl">
                 Operational
                 <br /> clarity
               </p>
@@ -38,7 +38,7 @@ export const WhoWeAreSection = () => {
                 width={40}
                 height={40}
               />
-              <p className="text-xl">
+              <p className="md:text-xl">
                 Reliable
                 <br /> executions
               </p>
@@ -50,7 +50,7 @@ export const WhoWeAreSection = () => {
                 width={40}
                 height={40}
               />
-              <p className="text-xl">
+              <p className="md:text-xl">
                 End-to-end
                 <br /> control
               </p>
