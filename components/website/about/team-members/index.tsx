@@ -103,21 +103,36 @@ const TeamMembersSection = () => {
                       className="bg-body-gray p-2 rounded-lg hover:bg-gray-300 transition-colors"
                       aria-label="Facebook"
                     >
-                      <Facebook size={20} />
+                      <Image
+                        src="/about/founder-facebook.svg"
+                        alt="facebook"
+                        width={18}
+                        height={18}
+                      />
                     </a>
                     <a
                       href={member.socials.instagram}
                       className="bg-body-gray p-2 rounded-lg hover:bg-gray-300 transition-colors"
-                      aria-label="Instagram"
+                      aria-label="linkedin"
                     >
-                      <Instagram size={20} />
+                      <Image
+                        src="/about/founder-linkedin.svg"
+                        alt="instagram"
+                        width={18}
+                        height={18}
+                      />
                     </a>
                     <a
                       href={member.socials.linkedin}
                       className="bg-body-gray p-2 rounded-lg hover:bg-gray-300 transition-colors"
-                      aria-label="LinkedIn"
+                      aria-label="x"
                     >
-                      <Linkedin size={20} />
+                      <Image
+                        src="/about/founder-x.svg"
+                        alt="x"
+                        width={18}
+                        height={18}
+                      />
                     </a>
                   </div>
                 )}

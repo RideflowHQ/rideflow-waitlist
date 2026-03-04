@@ -137,7 +137,7 @@ export const ContactForm = () => {
                 <Button
                   type="submit"
                   disabled={form.formState.isSubmitting}
-                  className="bg-rideflow-blue hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold cursor-pointer"
+                  className="bg-rideflow-blue px-8 py-3 text-white font-semibold hover:bg-blue-700 cursor-pointer w-full md:w-max"
                 >
                   {form.formState.isSubmitting ? "Submitting..." : "Submit"}
                 </Button>

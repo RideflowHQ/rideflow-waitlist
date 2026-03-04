@@ -36,9 +36,9 @@ const ServicesCards = () => {
       </div>
       <div className="flex justify-center mt-12 md:mt-18">
         <Button
-          className="bg-rideflow-blue w-max hover:bg-blue-700 px-8 py-2"
+          className="bg-rideflow-blue px-8 py-2 text-white font-semibold hover:bg-blue-700 cursor-pointer w-full md:w-max"
           onClick={() => {
-            window.open("https://dashboard.rideflow.org/auth/login", "_blank");
+            window.open("https://dashboard.rideflow.org/auth/register", "_blank");
           }}
         >
           Get Started

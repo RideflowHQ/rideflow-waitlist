@@ -52,9 +52,11 @@ export default function Header() {
               const isActive = pathname.includes(link.href);
               return (
                 <Link
-                  className={`text-sm md:text-lg font-semibold text-rideflow-text2 decoration-rideflow-blue ${
-                    isActive ? "underline" : "underline-transparent"
-                  } hover:underline transition-all duration-300`}
+                  className={`text-sm md:text-lg font-semibold text-rideflow-text2 underline decoration-2 underline-offset-4 transition-all duration-300 ${
+                    isActive
+                      ? "decoration-rideflow-blue"
+                      : "decoration-transparent hover:decoration-rideflow-blue"
+                  }`}
                   key={link.href}
                   href={link.href}
                 >
@@ -79,7 +81,7 @@ export default function Header() {
               Sign In
             </Button>
             <Button
-              className="bg-rideflow-blue px-4 py-2 text-white font-semibold hover:bg-blue-700"
+              className="bg-rideflow-blue px-4 py-2 text-white font-semibold hover:bg-blue-700 cursor-pointer w-full md:w-max"
               onClick={() => {
                 window.open("https://calendly.com/rideflow", "_blank");
               }}
@@ -109,9 +111,11 @@ export default function Header() {
                       key={link.href}
                       href={link.href}
                       onClick={() => setOpen(false)}
-                      className={`text-lg font-semibold text-rideflow-text2 decoration-rideflow-blue ${
-                        isActive ? "underline" : "underline-transparent"
-                      } hover:underline transition-all duration-300`}
+                      className={`text-lg font-semibold text-rideflow-text2 underline decoration-2 underline-offset-4 transition-all duration-300 ${
+                        isActive
+                          ? "decoration-rideflow-blue"
+                          : "decoration-transparent hover:decoration-rideflow-blue"
+                      }`}
                     >
                       {link.label}
                     </Link>

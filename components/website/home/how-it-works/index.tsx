@@ -54,7 +54,7 @@ export const HowItWorksSection = () => {
             </div>
           </div>
           <Button
-            className="bg-rideflow-blue w-full sm:w-max hover:bg-blue-700 px-8 py-2"
+            className="bg-rideflow-blue px-4 py-2 text-white font-semibold hover:bg-blue-700 cursor-pointer w-full md:w-max"
             onClick={() => {
               window.open(
                 "https://dashboard.rideflow.org/auth/login",
@@ -62,7 +62,7 @@ export const HowItWorksSection = () => {
               );
             }}
           >
-            Sign In
+            Get Started
           </Button>
         </div>
       </div>
@@ -119,15 +119,15 @@ export const HowItWorksSection = () => {
                 </div>
               </div>
               <Button
-                className="bg-rideflow-blue w-full sm:w-max hover:bg-blue-700 px-8 py-2"
+                className="bg-rideflow-blue px-4 py-2 text-white font-semibold hover:bg-blue-700 cursor-pointer w-full md:w-max"
                 onClick={() => {
                   window.open(
-                    "https://dashboard.rideflow.org/auth/login",
+                    "https://dashboard.rideflow.org/auth/register",
                     "_blank",
                   );
                 }}
               >
-                Sign In
+                Get Started
               </Button>
             </div>
           </div>

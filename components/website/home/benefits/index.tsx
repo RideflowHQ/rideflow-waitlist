@@ -11,6 +11,7 @@ const benefits = [
     image: "/home/drivers.webp",
     bgColor: "bg-[#EAEDFF]",
     borderColor: "border-[#9EACFE]",
+    hoverBgColor: "hover:bg-[#9EACFE]",
   },
   {
     id: 2,
@@ -19,6 +20,7 @@ const benefits = [
     image: "/home/expenses.webp",
     bgColor: "bg-[#ECFBF5]",
     borderColor: "border-[#B2EED6]",
+    hoverBgColor: "hover:bg-[#B2EED6]",
   },
   {
     id: 3,
@@ -27,6 +29,7 @@ const benefits = [
     image: "/home/documents.webp",
     bgColor: "bg-[#FFFBE5]",
     borderColor: "border-[#FFEF99]",
+    hoverBgColor: "hover:bg-[#FFEF99]",
   },
   {
     id: 4,
@@ -35,6 +38,7 @@ const benefits = [
     image: "/home/transit.webp",
     bgColor: "bg-[#FFEAED]",
     borderColor: "border-[#FE9EAC]",
+    hoverBgColor: "hover:bg-[#FE9EAC]",
   },
 ];
 
@@ -56,15 +60,15 @@ export const BenefitsSection = () => {
         </div>
         <div className="w-full lg:w-auto">
           <Button
-            className="bg-rideflow-blue w-full lg:w-max hover:bg-blue-700 px-8 py-2"
+            className="bg-rideflow-blue px-8 py-2 text-white font-semibold hover:bg-blue-700 cursor-pointer w-full md:w-max"
             onClick={() => {
               window.open(
-                "https://dashboard.rideflow.org/auth/login",
+                "https://dashboard.rideflow.org/auth/register",
                 "_blank",
               );
             }}
           >
-            Sign In
+            Get Started
           </Button>
         </div>
       </div>
@@ -78,7 +82,7 @@ export const BenefitsSection = () => {
             {benefits.map((benefit) => (
               <div
                 key={benefit.id}
-                className={`rounded-2xl ${benefit.bgColor} h-96 sm:h-100 md:h-[26.9rem] min-w-70 sm:min-w-[320px] md:min-w-150 shrink-0 overflow-hidden relative flex flex-col`}
+                className={`rounded-2xl ${benefit.bgColor} ${benefit.hoverBgColor} h-96 sm:h-100 md:h-[26.9rem] min-w-70 sm:min-w-[320px] md:min-w-150 shrink-0 overflow-hidden relative flex flex-col transition-colors duration-600`}
               >
                 <div className="p-5 sm:p-6 md:p-8">
                   <h2 className="font-medium text-lg sm:text-xl md:text-[22px] mb-1 md:mb-2">

@@ -8,23 +8,23 @@ import { Mail } from "lucide-react";
 const socials = [
   {
     id: 1,
-    icon: "/twitter.svg",
-    link: "https://x.com/RideflowHQ",
+    icon: "/blue-linkedin.svg",
+    link: "https://www.linkedin.com/company/rideflowlimited/",
   },
   {
     id: 2,
-    icon: "/facebook.svg",
-    link: "https://www.facebook.com/share/17JCxxuneN/?mibextid=wwXIfr",
+    icon: "/blue-x.svg",
+    link: "https://x.com/RideflowHQ",
   },
   {
     id: 3,
-    icon: "/instagram.svg",
+    icon: "/blue-instagram.svg",
     link: "https://www.instagram.com/rideflowhq/",
   },
   {
     id: 4,
-    icon: "/download.svg",
-    link: "https://www.linkedin.com/company/rideflowlimited/",
+    icon: "/blue-facebook.svg",
+    link: "https://www.facebook.com/share/17JCxxuneN/?mibextid=wwXIfr",
   },
 ];
 
@@ -73,7 +73,7 @@ export default function Footer() {
                 Manage orders, drivers, fleets and operational costs with
                 clarity and control — all in one place.
               </TextAnimate>
-              <div className="flex gap-6 text-sm pt-4">
+              <div className="flex gap-5 text-sm pt-4">
                 {socials.map((social) => (
                   <Link target="_blank" key={social.id} href={social.link}>
                     <Image
