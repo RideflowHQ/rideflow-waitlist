@@ -3,25 +3,19 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { getAllServices } from "@/lib/services-data";
 
-const data = [
-  {
-    id: "2",
-    imageUrl: "/service/bikes.webp",
-    title: "Fleet & Asset Management",
-    description:
-      "We offer a unique opportunity for individuals and organizations to invest in mobility assets and earn sustainable, reliable returns.",
-  },
-  {
-    id: "3",
-    imageUrl: "/service/bike-man.webp",
-    title: "Rider & Workforce Management",
-    description:
-      "We offer a unique opportunity for individuals and organizations to invest in mobility assets and earn sustainable, reliable returns.",
-  },
-];
+interface OtherServicesProps {
+  currentServiceId: string;
+}
 
-export const OtherServices = () => {
+export const OtherServices = ({ currentServiceId }: OtherServicesProps) => {
+  const allServices = getAllServices();
+  // Get two other services, excluding the current one
+  const otherServices = allServices
+    .filter((service) => service.id !== currentServiceId)
+    .slice(0, 2);
+
   return (
     <section className="py-16 md:py-24 lg:py-34 bg-[#04081A]">
       <div className="container mx-auto px-6 flex flex-col lg:flex-row gap-8 lg:gap-6">
@@ -33,10 +27,14 @@ export const OtherServices = () => {
             Explore our full range of services tailored to fit every need, from
             fleet management to operational clarity.
           </p>
-          <Button className="bg-rideflow-blue px-8">View All Services</Button>
+          <Link href="/services">
+            <Button className="bg-rideflow-blue hover:bg-rideflow-blue px-8">
+              View All Services
+            </Button>
+          </Link>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6 flex-1">
-          {data.map((item) => (
+          {otherServices.map((item) => (
             <Link
               key={item.id}
               href={`/services/${item.id}`}
@@ -55,7 +53,7 @@ export const OtherServices = () => {
                 {item.title}
               </h3>
               <p className="text-sm md:text-base text-rideflow-text mt-2 font-light">
-                {item.description}
+                {item.summary}
               </p>
             </Link>
           ))}

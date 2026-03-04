@@ -1,58 +1,47 @@
 import React from "react";
 import ServicesCards from "./cards";
+import { ServiceData } from "@/lib/services-data";
 
-export const ServiceDetails = () => {
+interface ServiceDetailsProps {
+  service: ServiceData;
+}
+
+export const ServiceDetails = ({ service }: ServiceDetailsProps) => {
   return (
     <section className="pb-10">
       <div className="container mx-auto px-6 flex justify-center text-left">
         <div className="w-full md:w-[80%] lg:w-[70%] xl:w-[60%] space-y-6 md:space-y-8">
-          <div>
-            <h2 className="text-xl sm:text-2xl md:text-[1.8rem] font-medium text-foreground mb-4">
-              Service Overview
-            </h2>
-            <p className="font-light mb-5">
-              In addition to transforming logistics operations, RideFlow offers
-              a unique opportunity for individuals and organizations to invest
-              in mobility assets and earn sustainable, reliable returns.
-            </p>
-            <p className="font-light">
-              Through our Asset Purchase Investment, investors can purchase a
-              motorcycle (or multiple units) and allow RideFlow to manage every
-              aspect of its operation, from rider assignment to daily tracking.
-            </p>
-          </div>
-          <div>
-            <h2 className="text-xl sm:text-2xl md:text-[1.8rem] font-medium text-foreground mb-4">
-              Why Choose Us
-            </h2>
-            <ul className="font-light mb-4 list-disc list-inside space-y-1 pl-5">
-              <li>Hassle‑free, passive income</li>
-              <li>Transparent reporting and asset monitoring</li>
-              <li>Full rider management with performance oversight</li>
-              <li>High‑demand transportation sector</li>
-              <li>Secure and well‑structured investment cycle</li>
-            </ul>
-            <p className="font-light">
-              With RideFlow, your investment works for you while we handle the
-              operations.
-            </p>
-          </div>
-          <div>
-            <h2 className="text-xl sm:text-2xl md:text-[1.8rem] font-medium text-foreground mb-4">
-              How It Works
-            </h2>
-            <p className="font-light mb-5">
-              In addition to transforming logistics operations, RideFlow offers
-              a unique opportunity for individuals and organizations to invest
-              in mobility assets and earn sustainable, reliable returns.
-            </p>
-            <p className="font-light">
-              Through our Asset Purchase Investment, investors can purchase a
-              motorcycle (or multiple units) and allow RideFlow to manage every
-              aspect of its operation, from rider assignment to daily tracking.
-            </p>
-          </div>
-          <ServicesCards />
+          {service.overview && (
+            <div>
+              <h2 className="text-xl sm:text-2xl md:text-[1.8rem] font-medium text-foreground mb-4">
+                Service Overview
+              </h2>
+              <p className="font-light">{service.overview}</p>
+            </div>
+          )}
+          {service.whyChoose && service.whyChoose.length > 0 && (
+            <div>
+              <h2 className="text-xl sm:text-2xl md:text-[1.8rem] font-medium text-foreground mb-4">
+                Why Choose Rideflow
+              </h2>
+              <ul className="font-light mb-4 list-disc list-inside space-y-1 pl-5">
+                {service.whyChoose.map((reason, index) => (
+                  <li key={index}>{reason}</li>
+                ))}
+              </ul>
+              {service.whyChooseClosing && (
+                <p className="font-light">{service.whyChooseClosing}</p>
+              )}
+            </div>
+          )}
+          {service.howItWorks && service.howItWorks.length > 0 && (
+            <div>
+              <h2 className="text-xl sm:text-2xl md:text-[1.8rem] font-medium text-foreground mb-4">
+                How It Works
+              </h2>
+              <ServicesCards steps={service.howItWorks} />
+            </div>
+          )}
         </div>
       </div>
     </section>
