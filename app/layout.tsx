@@ -1,24 +1,14 @@
 import type { Metadata } from "next";
-import { Geist_Mono, Inter_Tight } from "next/font/google";
+import { DM_Sans } from "next/font/google";
 import { Toaster } from "sonner";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import Header from "@/components/Header";
+import CustomCursor from "@/components/custom/CustomCursor";
+import dynamic from "next/dynamic";
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-  display: "swap",
-  preload: true,
-});
-
-const interTight = Inter_Tight({
-  variable: "--font-inter-tight",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  display: "swap",
-  preload: true,
-});
+const dmSans = DM_Sans({ subsets: ["latin"], variable: "--font-dm-sans" });
 
 export const metadata: Metadata = {
   title: "Ride Flow - Manage your rides with ease",
@@ -30,6 +20,10 @@ export const metadata: Metadata = {
     "dns-prefetch": "https://calendly.com",
   },
 };
+
+const Footer = dynamic(() => import("@/components/Footer"), {
+  loading: () => <div className="py-12" />,
+});
 
 export default function RootLayout({
   children,
@@ -43,10 +37,13 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://calendly.com" />
       </head>
       <body
-        className={`${interTight.variable} ${geistMono.variable} antialiased flex flex-col h-full`}
+        className={`${dmSans.variable} font-sans antialiased flex flex-col h-full cursor-none`}
       >
+        <CustomCursor />
         <Toaster />
+        <Header />
         {children}
+        <Footer />
         <Analytics />
         <SpeedInsights />
       </body>

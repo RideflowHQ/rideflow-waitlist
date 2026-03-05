@@ -1,0 +1,30 @@
+"use client";
+
+import { ServiceHero } from "@/components/website/services";
+import dynamic from "next/dynamic";
+
+const Faqs = dynamic(() => import("@/components/Faqs"), {
+  loading: () => <div className="py-20" />,
+});
+
+const BookingSection = dynamic(
+  () => import("@/components/website/shared/booking"),
+  {
+    loading: () => <div className="py-20" />,
+  },
+);
+
+// const Footer = dynamic(() => import("@/components/Footer"), {
+//   loading: () => <div className="py-12" />,
+// });
+
+export function ServicesPage() {
+  return (
+    <main className=" w-full  flex flex-col relative">
+      <ServiceHero />
+      <BookingSection />
+      <Faqs background={true} />
+    </main>
+  );
+}
+// mx-auto max-w-screen-2xl
