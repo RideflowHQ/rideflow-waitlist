@@ -146,6 +146,11 @@
   }
   body {
     @apply bg-body-gray text-foreground;
+    cursor: none;
+  }
+
+  * {
+    cursor: none !important;
   }
 }
 

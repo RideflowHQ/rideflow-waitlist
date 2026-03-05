@@ -5,6 +5,7 @@ import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import Header from "@/components/Header";
+import CustomCursor from "@/components/custom/CustomCursor";
 import dynamic from "next/dynamic";
 
 const dmSans = DM_Sans({ subsets: ["latin"], variable: "--font-dm-sans" });
@@ -36,8 +37,9 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://calendly.com" />
       </head>
       <body
-        className={`${dmSans.variable} font-sans antialiased flex flex-col h-full`}
+        className={`${dmSans.variable} font-sans antialiased flex flex-col h-full cursor-none`}
       >
+        <CustomCursor />
         <Toaster />
         <Header />
         {children}

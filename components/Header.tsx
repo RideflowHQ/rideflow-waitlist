@@ -55,7 +55,7 @@ export default function Header() {
             {headerLinks.map((link) => {
               const isActive = pathname.includes(link.href);
               return (
-                <div key={link.href} className="relative">
+                <div key={link.href} className="group relative">
                   <Link
                     className={`text-sm md:text-lg font-semibold text-rideflow-text2 underline decoration-2 underline-offset-4 transition-all duration-300 ${
                       isActive
@@ -72,7 +72,7 @@ export default function Header() {
                     {link.label}
                   </Link>
                   {link.comingSoon && (
-                    <span className="absolute -bottom-2 -right-7 bg-rideflow-blue -rotate-15 text-white text-[8px] px-2 py-0.5 rounded-full whitespace-nowrap font-medium">
+                    <span className="pointer-events-none absolute -top-6 left-1/2 -translate-x-1/2 scale-90 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-200 bg-rideflow-blue text-white text-[12px] px-2 py-0.5 rounded-full whitespace-nowrap font-medium shadow-md">
                       Coming Soon
                     </span>
                   )}

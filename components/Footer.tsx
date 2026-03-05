@@ -119,7 +119,7 @@ export default function Footer() {
                 </TextAnimate>
                 <div className="flex flex-col gap-2">
                   {quickLink.links.map((link, idx) => (
-                    <div key={idx} className="relative inline-block w-fit">
+                    <div key={idx} className="group relative inline-block w-fit">
                       <Link
                         className={`text-rideflow-text-light ${link.comingSoon ? "cursor-not-allowed opacity-60" : ""}`}
                         href={link.comingSoon ? "#" : link.link}
@@ -139,7 +139,7 @@ export default function Footer() {
                         </TextAnimate>
                       </Link>
                       {link.comingSoon && (
-                        <span className="absolute -top-1 left-12 bg-rideflow-blue text-white text-[10px] px-2 py-0.5 rounded-full whitespace-nowrap font-medium">
+                        <span className="pointer-events-none absolute -top-6 left-1/2 -translate-x-1/2 scale-90 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-200 bg-rideflow-blue text-white text-[12px] px-2 py-0.5 rounded-full whitespace-nowrap font-medium shadow-md">
                           Coming Soon
                         </span>
                       )}
