@@ -83,7 +83,7 @@ export default function Footer() {
               </TextAnimate>
               <div className="flex gap-5 text-sm pt-4">
                 {socials.map((social) => (
-                  <Link target="_blank" key={social.id} href={social.link}>
+                  <Link target="_blank" rel="noopener noreferrer" key={social.id} href={social.link}>
                     <Image
                       src={social.icon}
                       width={30}

@@ -1,3 +1,4 @@
+"use client";
 import Badge from "@/components/custom/badge";
 import React from "react";
 import Image from "next/image";
@@ -8,6 +9,7 @@ import {
   type CarouselApi,
 } from "@/components/ui/carousel";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { TextAnimate } from "@/components/ui/text-animate";
 
 const testimonials = [
   {
@@ -61,12 +63,21 @@ export const TestimoniesSection = () => {
   return (
     <section className="py-12 md:py-16 lg:py-20 bg-white">
       {/* Header section with controls */}
-      <div className="container mx-auto px-6 flex flex-col sm:flex-row justify-between items-start sm:items-end gap-6 sm:gap-8 md:gap-12 lg:gap-16 mb-8 md:mb-10 lg:mb-12" id="testimonies">
+      <div
+        className="container mx-auto px-6 flex flex-col sm:flex-row justify-between items-start sm:items-end gap-6 sm:gap-8 md:gap-12 lg:gap-16 mb-8 md:mb-10 lg:mb-12"
+        id="testimonies"
+      >
         <div className="flex flex-col gap-3 md:gap-4">
           <Badge text="Trusted by clients" color="bg-body-gray" />
-          <h2 className="font-medium text-4xl sm:text-4xl md:text-4xl lg:text-[2.6rem] leading-tight md:w-[60%]">
+          <TextAnimate
+            animation="blurIn"
+            by="word"
+            startOnView
+            once
+            className="font-medium text-4xl sm:text-4xl md:text-4xl lg:text-[2.6rem] leading-tight md:w-[60%]"
+          >
             Trusted by teams and businesses alike
-          </h2>
+          </TextAnimate>
         </div>
 
         {/* Navigation buttons - Desktop only */}

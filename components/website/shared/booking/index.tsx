@@ -2,6 +2,7 @@
 import Badge from "@/components/custom/badge";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import { TextAnimate } from "@/components/ui/text-animate";
 
 const BookingSection = () => {
   const [open, setOpen] = useState(false);
@@ -17,9 +18,15 @@ const BookingSection = () => {
     >
       <div className="container mx-auto px-4 md:px-6 flex text-center flex-col items-center justify-center gap-3 md:gap-4 h-full">
         <Badge text="Start your journey" color="bg-white" />
-        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-[2.5rem] font-medium text-white leading-tight mb-3 md:mb-5 w-[80%] md:w-[75%] lg:w-[55%]">
+        <TextAnimate
+          animation="blurIn"
+          by="word"
+          startOnView
+          once
+          className="text-2xl sm:text-3xl md:text-4xl lg:text-[2.5rem] font-medium text-white leading-tight mb-3 md:mb-5 w-[80%] md:w-[75%] lg:w-[55%]"
+        >
           Book a customized walkthrough with our solutions team
-        </h1>
+        </TextAnimate>
         <Button
           className="bg-rideflow-blue px-4 py-2 text-white font-semibold hover:bg-blue-700 cursor-pointer w-full md:w-max"
           onClick={() => {

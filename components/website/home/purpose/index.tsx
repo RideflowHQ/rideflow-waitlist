@@ -1,6 +1,7 @@
 import Badge from "@/components/custom/badge";
 import React from "react";
 import Image from "next/image";
+import { TextAnimate } from "@/components/ui/text-animate";
 
 export const PurposeSection = () => {
   return (
@@ -15,11 +16,17 @@ export const PurposeSection = () => {
       <div className="container mx-auto px-6 flex text-center flex-col items-center justify-center gap-6 md:gap-8 h-full">
         <Badge text="Driven by purpose" color="bg-white" />
         <div className="flex flex-col gap-4 md:gap-6 items-center">
-          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-[2.6rem] font-medium w-full md:w-[90%] lg:w-[78%] mb-6 md:mb-8 lg:mb-10">
+          <TextAnimate
+            animation="blurIn"
+            by="word"
+            startOnView
+            once
+            className="text-xl sm:text-2xl md:text-3xl lg:text-[2.6rem] font-medium w-full md:w-[90%] lg:w-[78%] mb-6 md:mb-8 lg:mb-10"
+          >
             We're not just about deliveries and dashboards. We're building
             smarter systems that help logistics teams stay in control, reduce
             waste, and move goods more efficiently—every single day.
-          </h2>
+          </TextAnimate>
           <div className="flex flex-col lg:flex-row gap-4 min-h-200 sm:min-h-225 lg:min-h-152 w-full">
             <div className="w-full lg:w-[65%] h-auto lg:h-full flex flex-col">
               <div className="w-full h-87.5 sm:h-100 lg:h-[50%] rounded-[20px] md:rounded-[25px] bg-[#2844E6] mb-4 relative p-4 sm:p-6 md:p-8 text-white flex flex-col sm:flex-row items-end gap-4 sm:gap-6 md:gap-8">

@@ -2,6 +2,7 @@ import Badge from "@/components/custom/badge";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import React from "react";
+import { TextAnimate } from "@/components/ui/text-animate";
 
 export const HowItWorksSection = () => {
   return (
@@ -22,9 +23,15 @@ export const HowItWorksSection = () => {
         <div className="px-6 py-12 md:py-15">
           <div className="space-y-3 md:space-y-4">
             <Badge text="How It Works" color="bg-white" />
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-medium text-white leading-tight">
+            <TextAnimate
+              animation="blurIn"
+              by="word"
+              startOnView
+              once
+              className="text-2xl sm:text-3xl md:text-4xl font-medium text-white leading-tight"
+            >
               Three simple steps to get started
-            </h2>
+            </TextAnimate>
           </div>
           <div className="flex flex-col gap-6 md:gap-8 text-white mt-8 md:mt-10 mb-8 md:mb-10">
             <div>
@@ -86,9 +93,15 @@ export const HowItWorksSection = () => {
             <div className="w-[57%] pl-16 h-full  py-20">
               <div className="space-y-3 md:space-y-4">
                 <Badge text="How It Works" color="bg-white" />
-                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[2.6rem] font-medium text-white leading-tight">
+                <TextAnimate
+                  animation="blurIn"
+                  by="word"
+                  startOnView
+                  once
+                  className="text-2xl sm:text-3xl md:text-4xl lg:text-[2.6rem] font-medium text-white leading-tight"
+                >
                   Three simple steps to get started
-                </h2>
+                </TextAnimate>
               </div>
               <div className="flex flex-col gap-6 md:gap-8 lg:gap-10 text-white mt-8 md:mt-10 lg:mt-12 mb-8 md:mb-10 lg:mb-12">
                 <div>

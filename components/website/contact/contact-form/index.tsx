@@ -16,6 +16,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { contactFormSchema, ContactFormValues } from "./schema";
+import { TextAnimate } from "@/components/ui/text-animate";
 
 export const ContactForm = () => {
   const form = useForm<ContactFormValues>({
@@ -61,9 +62,15 @@ export const ContactForm = () => {
   return (
     <section className="py-12 md:py-18 min-h-[80vh] bg-white">
       <div className="container mx-auto px-6">
-        <h2 className="font-medium text-2xl sm:text-3xl md:text-4xl lg:text-[2.6rem] text-center mb-4 md:mb-6">
+        <TextAnimate
+          animation="blurIn"
+          by="word"
+          startOnView
+          once
+          className="font-medium text-2xl sm:text-3xl md:text-4xl lg:text-[2.6rem] text-center mb-4 md:mb-6"
+        >
           Contact Form
-        </h2>
+        </TextAnimate>
         <div className="bg-[#F1F1F2] rounded-[20px] max-w-200 mx-auto p-4 sm:p-6">
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">

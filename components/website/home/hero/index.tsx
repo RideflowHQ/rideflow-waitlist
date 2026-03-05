@@ -21,9 +21,15 @@ export const Hero = () => {
         <div className="w-full lg:w-[47%] flex flex-col items-start gap-4 md:gap-6 h-full justify-center">
           <Badge text="Built for Modern Logistics Teams" color="bg-white" />
           <div>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold text-foreground">
-              Streamline your <br /> Logistics
-            </h1>
+            <TextAnimate
+              animation="blurIn"
+              by="word"
+              startOnView
+              once
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold text-foreground"
+            >
+              Streamline your Logistics
+            </TextAnimate>
             <p className="text-base sm:text-lg md:text-xl text-rideflow-text mt-3 md:mt-4">
               Take control of your entire transportation business from a single
               dashboard. Easily manage your fleet, staff, and deliveries to

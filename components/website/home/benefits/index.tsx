@@ -2,6 +2,7 @@ import Badge from "@/components/custom/badge";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import React from "react";
+import { TextAnimate } from "@/components/ui/text-animate";
 
 const benefits = [
   {
@@ -48,15 +49,27 @@ export const BenefitsSection = () => {
       <div className="container mx-auto px-6 flex flex-col lg:flex-row justify-between items-start lg:items-end gap-6 md:gap-10 lg:gap-16 mb-8 md:mb-10 lg:mb-12">
         <div className="flex flex-col gap-3 md:gap-4 w-full lg:w-auto">
           <Badge text="Core benefits" color="bg-body-gray" />
-          <h2 className="font-medium text-4xl sm:text-4xl md:text-4xl lg:text-[2.6rem] leading-tight">
+          <TextAnimate
+            animation="blurIn"
+            by="word"
+            startOnView
+            once
+            className="font-medium text-4xl sm:text-4xl md:text-4xl lg:text-[2.6rem] leading-tight"
+          >
             Built for Real Logistics Operations
-          </h2>
-          <p className="text-sm sm:text-base text-rideflow-text-light w-full lg:w-[80%]">
+          </TextAnimate>
+          <TextAnimate
+            animation="blurIn"
+            by="word"
+            startOnView
+            once
+            className="text-sm sm:text-base text-rideflow-text-light w-full lg:w-[80%]"
+          >
             Rideflow goes beyond surface-level features. Every tool is designed
             to solve the everyday operational challenges logistics teams
             face—helping you work faster, stay organized, and make better
             decisions as you scale.
-          </p>
+          </TextAnimate>
         </div>
         <div className="w-full lg:w-auto">
           <Button

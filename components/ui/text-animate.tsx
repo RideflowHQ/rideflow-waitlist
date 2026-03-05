@@ -318,20 +318,24 @@ const TextAnimateBase = ({
 }: TextAnimateProps) => {
   const MotionComponent = motion.create(Component);
 
+  // Convert children to string if it's not already
+  const textContent =
+    typeof children === "string" ? children : String(children);
+
   let segments: string[] = [];
   switch (by) {
     case "word":
-      segments = children.split(/(\s+)/);
+      segments = textContent.split(/(\s+)/);
       break;
     case "character":
-      segments = children.split("");
+      segments = textContent.split("");
       break;
     case "line":
-      segments = children.split("\n");
+      segments = textContent.split("\n");
       break;
     case "text":
     default:
-      segments = [children];
+      segments = [textContent];
       break;
   }
 
@@ -358,27 +362,27 @@ const TextAnimateBase = ({
         item: variants,
       }
     : animation
-    ? {
-        container: {
-          ...defaultItemAnimationVariants[animation].container,
-          show: {
-            ...defaultItemAnimationVariants[animation].container.show,
-            transition: {
-              delayChildren: delay,
-              staggerChildren: duration / segments.length,
+      ? {
+          container: {
+            ...defaultItemAnimationVariants[animation].container,
+            show: {
+              ...defaultItemAnimationVariants[animation].container.show,
+              transition: {
+                delayChildren: delay,
+                staggerChildren: duration / segments.length,
+              },
+            },
+            exit: {
+              ...defaultItemAnimationVariants[animation].container.exit,
+              transition: {
+                staggerChildren: duration / segments.length,
+                staggerDirection: -1,
+              },
             },
           },
-          exit: {
-            ...defaultItemAnimationVariants[animation].container.exit,
-            transition: {
-              staggerChildren: duration / segments.length,
-              staggerDirection: -1,
-            },
-          },
-        },
-        item: defaultItemAnimationVariants[animation].item,
-      }
-    : { container: defaultContainerVariants, item: defaultItemVariants };
+          item: defaultItemAnimationVariants[animation].item,
+        }
+      : { container: defaultContainerVariants, item: defaultItemVariants };
 
   return (
     <AnimatePresence mode="popLayout">
@@ -390,10 +394,10 @@ const TextAnimateBase = ({
         exit="exit"
         className={cn("whitespace-pre-wrap", className)}
         viewport={{ once }}
-        aria-label={accessible ? children : undefined}
+        aria-label={accessible ? textContent : undefined}
         {...props}
       >
-        {accessible && <span className="sr-only">{children}</span>}
+        {accessible && <span className="sr-only">{textContent}</span>}
         {segments.map((segment, i) => (
           <motion.span
             key={`${by}-${segment}-${i}`}
@@ -402,7 +406,7 @@ const TextAnimateBase = ({
             className={cn(
               by === "line" ? "block" : "inline-block whitespace-pre",
               by === "character" && "",
-              segmentClassName
+              segmentClassName,
             )}
             aria-hidden={accessible ? true : undefined}
           >

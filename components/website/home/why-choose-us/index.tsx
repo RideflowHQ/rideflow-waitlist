@@ -1,6 +1,7 @@
 import Badge from "@/components/custom/badge";
 import Image from "next/image";
 import React from "react";
+import { TextAnimate } from "@/components/ui/text-animate";
 
 const reasons = [
   {
@@ -47,10 +48,15 @@ export const WhyChooseUsSection = () => {
       <div className="container mx-auto px-6 md:px-6 flex flex-col lg:flex-row gap-8 md:gap-12 lg:gap-16">
         <div className="w-full lg:w-[40%] flex flex-col gap-3 md:gap-4 items-start">
           <Badge text="Why choose us" color="bg-body-gray" />
-          <h2 className="font-medium text-4xl sm:text-4xl md:text-4xl lg:text-[2.6rem] leading-tight">
-            What you can do
-            <br /> with Rideflow
-          </h2>
+          <TextAnimate
+            animation="blurIn"
+            by="word"
+            startOnView
+            once
+            className="font-medium text-4xl sm:text-4xl md:text-4xl lg:text-[2.6rem] leading-tight"
+          >
+            What you can do with Rideflow
+          </TextAnimate>
         </div>
         <div className="w-full lg:w-[60%] grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
           {reasons.map((reason) => (

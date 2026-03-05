@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { getAllServices } from "@/lib/services-data";
+import { TextAnimate } from "@/components/ui/text-animate";
 
 interface OtherServicesProps {
   currentServiceId: string;
@@ -20,9 +21,15 @@ export const OtherServices = ({ currentServiceId }: OtherServicesProps) => {
     <section className="py-16 md:py-24 lg:py-34 bg-[#04081A]">
       <div className="container mx-auto px-6 flex flex-col lg:flex-row gap-8 lg:gap-6">
         <div className="w-full lg:w-[40%]">
-          <h2 className="text-2xl sm:text-3xl md:text-[2.6rem] font-medium text-white mb-4 md:mb-5">
+          <TextAnimate
+            animation="blurIn"
+            by="word"
+            startOnView
+            once
+            className="text-2xl sm:text-3xl md:text-[2.6rem] font-medium text-white mb-4 md:mb-5"
+          >
             Other Services
-          </h2>
+          </TextAnimate>
           <p className="text-white font-normal mb-6 md:mb-8 text-base md:text-lg w-full lg:w-[70%]">
             Explore our full range of services tailored to fit every need, from
             fleet management to operational clarity.

@@ -1,6 +1,7 @@
 import Badge from "@/components/custom/badge";
 import Image from "next/image";
 import React from "react";
+import { TextAnimate } from "@/components/ui/text-animate";
 
 const values = [
   {
@@ -35,10 +36,15 @@ export const ValueSection = () => {
       <div className="container mx-auto px-6 flex flex-col lg:flex-row gap-8 md:gap-16">
         <div className="w-full lg:w-[40%] flex flex-col gap-4 items-start">
           <Badge text="Values Pillars" color="bg-body-gray" />
-          <h2 className="font-medium text-2xl sm:text-3xl md:text-[2.6rem] leading-tight">
-            What Makes
-            <br /> Rideflow Different
-          </h2>
+          <TextAnimate
+            animation="blurIn"
+            by="word"
+            startOnView
+            once
+            className="font-medium text-2xl sm:text-3xl md:text-[2.6rem] leading-tight"
+          >
+            What Makes Rideflow Different
+          </TextAnimate>
         </div>
         <div className="w-full lg:w-[60%] grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
           {values.map((value) => (

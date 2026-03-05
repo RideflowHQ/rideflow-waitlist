@@ -1,6 +1,7 @@
 import Badge from "@/components/custom/badge";
 import Image from "next/image";
 import React from "react";
+import { TextAnimate } from "@/components/ui/text-animate";
 
 const targetAudiences = [
   {
@@ -66,9 +67,15 @@ export const TargetAudienceSection = () => {
           <div className="lg:w-[43%] lg:pr-16">
             <div className="mb-8 md:mb-10">
               <Badge text="Target audience" color="bg-white" />
-              <h2 className="text-4xl sm:text-4xl md:text-4xl lg:text-[2.6rem] font-medium text-foreground leading-tight mt-3 md:mt-4">
+              <TextAnimate
+                animation="blurIn"
+                by="word"
+                startOnView
+                once
+                className="text-4xl sm:text-4xl md:text-4xl lg:text-[2.6rem] font-medium text-foreground leading-tight mt-3 md:mt-4"
+              >
                 Who Rideflow is for
-              </h2>
+              </TextAnimate>
             </div>
             <div className="flex flex-col gap-6 md:gap-8 lg:gap-10 mb-8 lg:mb-0">
               {targetAudiences.map((audience) => (

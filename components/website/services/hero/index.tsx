@@ -1,6 +1,7 @@
 import React from "react";
 import ServicesCards from "./cards";
 import Image from "next/image";
+import { TextAnimate } from "@/components/ui/text-animate";
 
 export const ServiceHero = () => {
   return (
@@ -13,14 +14,26 @@ export const ServiceHero = () => {
         className="absolute top-0 right-0 -z-5 hidden md:block"
       />
       <div className="container mx-auto px-6 text-center">
-        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold text-foreground pt-28">
+        <TextAnimate
+          animation="blurIn"
+          by="word"
+          startOnView
+          once
+          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold text-foreground pt-28"
+        >
           Our Services
-        </h1>
-        <p className="text-base md:text-lg lg:text-xl text-rideflow-text mt-4 w-full sm:w-[80%] md:w-[60%] lg:w-[50%] mx-auto">
+        </TextAnimate>
+        <TextAnimate
+          animation="blurIn"
+          by="word"
+          startOnView
+          once
+          className="text-base md:text-lg lg:text-xl text-rideflow-text mt-4 w-full sm:w-[80%] md:w-[60%] lg:w-[50%] mx-auto"
+        >
           Everything we offer is designed to remove friction from your delivery
           operations — from smarter order management to better driver
           coordination and cost control.
-        </p>
+        </TextAnimate>
         <ServicesCards />
       </div>
     </section>
