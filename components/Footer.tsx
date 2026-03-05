@@ -35,7 +35,7 @@ const footerQuickLink = [
     links: [
       { linkTitle: "About", link: "/about" },
       { linkTitle: "Services", link: "/services" },
-      { linkTitle: "Testimonials", link: "/" },
+      { linkTitle: "Testimonials", link: "#testimonies" },
       { linkTitle: "Blog", link: "/blog" },
       { linkTitle: "Contact", link: "/contact" },
     ],
@@ -45,7 +45,7 @@ const footerQuickLink = [
     title: "Legal",
     links: [
       { linkTitle: "Terms of Service", link: "/terms-of-service" },
-      { linkTitle: "Privacy Policy", link: "/" },
+      { linkTitle: "Privacy Policy", link: "/privacy-policy" },
     ],
   },
 ];

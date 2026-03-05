@@ -61,7 +61,7 @@ export const TestimoniesSection = () => {
   return (
     <section className="py-12 md:py-16 lg:py-20 bg-white">
       {/* Header section with controls */}
-      <div className="container mx-auto px-6 flex flex-col sm:flex-row justify-between items-start sm:items-end gap-6 sm:gap-8 md:gap-12 lg:gap-16 mb-8 md:mb-10 lg:mb-12">
+      <div className="container mx-auto px-6 flex flex-col sm:flex-row justify-between items-start sm:items-end gap-6 sm:gap-8 md:gap-12 lg:gap-16 mb-8 md:mb-10 lg:mb-12" id="testimonies">
         <div className="flex flex-col gap-3 md:gap-4">
           <Badge text="Trusted by clients" color="bg-body-gray" />
           <h2 className="font-medium text-4xl sm:text-4xl md:text-4xl lg:text-[2.6rem] leading-tight md:w-[60%]">

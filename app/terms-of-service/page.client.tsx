@@ -390,7 +390,12 @@ export function TermsOfServicePage() {
               <p>
                 If you have any complaints, feedback, or questions regarding
                 Rideflow, our Services, or these Terms, please contact us at
-                info@rideflow.org.
+                <a
+                  href="mailto:info@rideflow.org"
+                  className="text-rideflow-blue hover:underline"
+                >
+                  info@rideflow.org
+                </a>
               </p>
             </section>
           </div>
