@@ -42,6 +42,11 @@ function getBackgroundLuminance(el: HTMLElement): number | null {
 export default function CustomCursor() {
   const [cursorState, setCursorState] = useState<CursorState>("default");
   const [isVisible, setIsVisible] = useState(false);
+  const [isFinePointer, setIsFinePointer] = useState(false);
+
+  useEffect(() => {
+    setIsFinePointer(window.matchMedia("(pointer: fine)").matches);
+  }, []);
 
   const mouseX = useMotionValue(-100);
   const mouseY = useMotionValue(-100);
@@ -112,6 +117,8 @@ export default function CustomCursor() {
       opacity: 1,
     },
   };
+
+  if (!isFinePointer) return null;
 
   return (
     <motion.div
