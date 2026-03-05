@@ -133,6 +133,12 @@
   --sidebar-ring: oklch(0.556 0 0);
 }
 
+@media (pointer: fine) {
+  *, *::before, *::after {
+    cursor: none !important;
+  }
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;
@@ -146,11 +152,6 @@
   }
   body {
     @apply bg-body-gray text-foreground;
-    cursor: none;
-  }
-
-  * {
-    cursor: none !important;
   }
 }
 
