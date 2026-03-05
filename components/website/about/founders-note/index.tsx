@@ -8,7 +8,7 @@ export const FoundersNoteSection = () => {
       <div className="container mx-auto px-6 flex flex-col lg:flex-row gap-8 md:gap-16 items-center">
         <div className="w-full lg:w-1/2 aspect-square relative">
           <Image
-            src="/about/founder.jpg"
+            src="/about/new-founder.jpeg"
             alt="Founder"
             fill
             className="object-cover rounded-[20px]"

@@ -1,4 +1,3 @@
-import { Facebook, Instagram, Linkedin } from "lucide-react";
 import Image from "next/image";
 import React from "react";
 
@@ -7,11 +6,12 @@ const teamMembers = [
     id: 1,
     name: "Michael Idris",
     role: "Founder & CEO",
-    image: "/about/founder.jpg",
+    image: "/about/new-founder.jpeg",
     socials: {
-      facebook: "#",
-      instagram: "#",
-      linkedin: "#",
+      facebook: " https://www.facebook.com/share/1L3K2PdoNt/?mibextid=wwXIfr",
+      x: " https://x.com/idrisweb?s=21",
+      linkedin:
+        "https://www.linkedin.com/in/michael-idris-a06815123?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
     },
   },
   {
@@ -37,41 +37,34 @@ const teamMembers = [
   },
   {
     id: 5,
-    name: "Toriola Oladeji",
-    role: "Business Development Manager",
-    image: "/about/bus-man.jpg",
-    socials: null,
-  },
-  {
-    id: 6,
     name: "Stephanie Okudo",
     role: "Social Media Manager",
     image: "/about/soc-man.png",
     socials: null,
   },
   {
-    id: 7,
+    id: 6,
     name: "Nazeer Adeniji",
     role: "Product Designer",
     image: "/about/pro-des.jpg",
     socials: null,
   },
   {
-    id: 8,
+    id: 7,
     name: "Precious Abegunde",
     role: "Backend Engineer",
     image: "/about/bac-eng.jpg",
     socials: null,
   },
   {
-    id: 9,
+    id: 8,
     name: "Tooni Olaniyan",
     role: "Frontend Engineer",
     image: "/about/fro-eng.jpg",
     socials: null,
   },
   {
-    id: 10,
+    id: 9,
     name: "Richard Amune",
     role: "Motion Graphics Designer",
     image: "/about/mot-des.jpg",
@@ -111,19 +104,19 @@ const TeamMembersSection = () => {
                       />
                     </a>
                     <a
-                      href={member.socials.instagram}
+                      href={member.socials.linkedin}
                       className="bg-body-gray p-2 rounded-lg hover:bg-gray-300 transition-colors"
                       aria-label="linkedin"
                     >
                       <Image
                         src="/about/founder-linkedin.svg"
-                        alt="instagram"
+                        alt="linkedin"
                         width={18}
                         height={18}
                       />
                     </a>
                     <a
-                      href={member.socials.linkedin}
+                      href={member.socials.x}
                       className="bg-body-gray p-2 rounded-lg hover:bg-gray-300 transition-colors"
                       aria-label="x"
                     >

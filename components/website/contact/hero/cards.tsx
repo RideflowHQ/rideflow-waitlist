@@ -21,7 +21,8 @@ const contactData = [
     icon: "/contact/MapPin.svg",
     alt: "Location",
     title: "Address",
-    content: "Placeholder - Insert company physical address here",
+    content:
+      "EridanSpace, The Philippi Center, Oluwalogbon House, Plot A, Obafemi Awolowo Way, Ikeja, Lagos, Nigeria",
   },
   {
     id: 4,

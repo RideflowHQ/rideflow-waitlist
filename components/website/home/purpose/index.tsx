@@ -4,7 +4,14 @@ import Image from "next/image";
 
 export const PurposeSection = () => {
   return (
-    <section className="py-12 md:py-16 lg:py-18 min-h-[80vh]">
+    <section className="py-12 md:py-16 lg:py-18 min-h-[80vh] relative">
+      <Image
+        src="/home/blog-curve-right.svg"
+        alt="curve"
+        height={300}
+        width={300}
+        className="absolute top-0 right-0 -z-5 hidden md:block"
+      />
       <div className="container mx-auto px-6 flex text-center flex-col items-center justify-center gap-6 md:gap-8 h-full">
         <Badge text="Driven by purpose" color="bg-white" />
         <div className="flex flex-col gap-4 md:gap-6 items-center">
@@ -16,6 +23,13 @@ export const PurposeSection = () => {
           <div className="flex flex-col lg:flex-row gap-4 min-h-200 sm:min-h-225 lg:min-h-152 w-full">
             <div className="w-full lg:w-[65%] h-auto lg:h-full flex flex-col">
               <div className="w-full h-87.5 sm:h-100 lg:h-[50%] rounded-[20px] md:rounded-[25px] bg-[#2844E6] mb-4 relative p-4 sm:p-6 md:p-8 text-white flex flex-col sm:flex-row items-end gap-4 sm:gap-6 md:gap-8">
+                <Image
+                  src="/home/delivery-curve.svg"
+                  alt="curve"
+                  height={300}
+                  width={300}
+                  className="absolute top-0 left-[50%] -translate-x-1/2 hidden md:block"
+                />
                 <div className="flex flex-col justify-start sm:justify-between items-start w-full sm:w-[65%] h-full gap-5 sm:gap-0">
                   <p className="font-medium text-xs sm:text-sm">
                     On-Time Delivery Rates

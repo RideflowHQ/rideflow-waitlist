@@ -33,19 +33,27 @@ const footerQuickLink = [
     id: 1,
     title: "Company",
     links: [
-      { linkTitle: "About", link: "/about" },
-      { linkTitle: "Services", link: "/services" },
-      { linkTitle: "Testimonials", link: "#testimonies" },
-      { linkTitle: "Blog", link: "/blog" },
-      { linkTitle: "Contact", link: "/contact" },
+      { linkTitle: "About", link: "/about", comingSoon: false },
+      { linkTitle: "Services", link: "/services", comingSoon: false },
+      { linkTitle: "Testimonials", link: "/#testimonies", comingSoon: false },
+      { linkTitle: "Blog", link: "/blog", comingSoon: true },
+      { linkTitle: "Contact", link: "/contact", comingSoon: false },
     ],
   },
   {
     id: 2,
     title: "Legal",
     links: [
-      { linkTitle: "Terms of Service", link: "/terms-of-service" },
-      { linkTitle: "Privacy Policy", link: "/privacy-policy" },
+      {
+        linkTitle: "Terms of Service",
+        link: "/terms-of-service",
+        comingSoon: false,
+      },
+      {
+        linkTitle: "Privacy Policy",
+        link: "/privacy-policy",
+        comingSoon: false,
+      },
     ],
   },
 ];
@@ -111,20 +119,31 @@ export default function Footer() {
                 </TextAnimate>
                 <div className="flex flex-col gap-2">
                   {quickLink.links.map((link, idx) => (
-                    <Link
-                      className="text-rideflow-text-light"
-                      key={idx}
-                      href={`${link.link}`}
-                    >
-                      <TextAnimate
-                        animation="blurInUp"
-                        by="word"
-                        startOnView
-                        once
+                    <div key={idx} className="relative inline-block w-fit">
+                      <Link
+                        className={`text-rideflow-text-light ${link.comingSoon ? "cursor-not-allowed opacity-60" : ""}`}
+                        href={link.comingSoon ? "#" : link.link}
+                        onClick={(e) => {
+                          if (link.comingSoon) {
+                            e.preventDefault();
+                          }
+                        }}
                       >
-                        {link.linkTitle}
-                      </TextAnimate>
-                    </Link>
+                        <TextAnimate
+                          animation="blurInUp"
+                          by="word"
+                          startOnView
+                          once
+                        >
+                          {link.linkTitle}
+                        </TextAnimate>
+                      </Link>
+                      {link.comingSoon && (
+                        <span className="absolute -top-1 left-12 bg-rideflow-blue text-white text-[10px] px-2 py-0.5 rounded-full whitespace-nowrap font-medium">
+                          Coming Soon
+                        </span>
+                      )}
+                    </div>
                   ))}
                 </div>
               </div>

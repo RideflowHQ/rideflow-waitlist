@@ -15,18 +15,22 @@ export default function Header() {
     {
       label: "About",
       href: "/about",
+      comingSoon: false,
     },
     {
       label: "Services",
       href: "/services",
+      comingSoon: false,
     },
     {
       label: "Blog",
       href: "/blog",
+      comingSoon: true,
     },
     {
       label: "Contact",
       href: "/contact",
+      comingSoon: false,
     },
   ];
 
@@ -51,17 +55,28 @@ export default function Header() {
             {headerLinks.map((link) => {
               const isActive = pathname.includes(link.href);
               return (
-                <Link
-                  className={`text-sm md:text-lg font-semibold text-rideflow-text2 underline decoration-2 underline-offset-4 transition-all duration-300 ${
-                    isActive
-                      ? "decoration-rideflow-blue"
-                      : "decoration-transparent hover:decoration-rideflow-blue"
-                  }`}
-                  key={link.href}
-                  href={link.href}
-                >
-                  {link.label}
-                </Link>
+                <div key={link.href} className="relative">
+                  <Link
+                    className={`text-sm md:text-lg font-semibold text-rideflow-text2 underline decoration-2 underline-offset-4 transition-all duration-300 ${
+                      isActive
+                        ? "decoration-rideflow-blue"
+                        : "decoration-transparent hover:decoration-rideflow-blue"
+                    } ${link.comingSoon ? "cursor-not-allowed opacity-60" : ""}`}
+                    href={link.comingSoon ? "#" : link.href}
+                    onClick={(e) => {
+                      if (link.comingSoon) {
+                        e.preventDefault();
+                      }
+                    }}
+                  >
+                    {link.label}
+                  </Link>
+                  {link.comingSoon && (
+                    <span className="absolute -bottom-2 -right-7 bg-rideflow-blue -rotate-15 text-white text-[8px] px-2 py-0.5 rounded-full whitespace-nowrap font-medium">
+                      Coming Soon
+                    </span>
+                  )}
+                </div>
               );
             })}
           </div>
@@ -70,7 +85,7 @@ export default function Header() {
           <div className="hidden lg:flex items-center gap-3">
             <Button
               variant="outline"
-              className="px-4 py-2 font-semibold border-rideflow-blue text-rideflow-blue hover:bg-rideflow-blue hover:text-white"
+              className="px-4 py-2 font-semibold border-rideflow-blue text-rideflow-blue hover:bg-body-gray hover:text-rideflow-blue cursor-pointer"
               onClick={() => {
                 window.open(
                   "https://dashboard.rideflow.org/auth/login",
@@ -107,18 +122,30 @@ export default function Header() {
                 {headerLinks.map((link) => {
                   const isActive = pathname.includes(link.href);
                   return (
-                    <Link
-                      key={link.href}
-                      href={link.href}
-                      onClick={() => setOpen(false)}
-                      className={`text-lg font-semibold text-rideflow-text2 underline decoration-2 underline-offset-4 transition-all duration-300 ${
-                        isActive
-                          ? "decoration-rideflow-blue"
-                          : "decoration-transparent hover:decoration-rideflow-blue"
-                      }`}
-                    >
-                      {link.label}
-                    </Link>
+                    <div key={link.href} className="relative">
+                      <Link
+                        href={link.comingSoon ? "#" : link.href}
+                        onClick={(e) => {
+                          if (link.comingSoon) {
+                            e.preventDefault();
+                          } else {
+                            setOpen(false);
+                          }
+                        }}
+                        className={`text-lg font-semibold text-rideflow-text2 underline decoration-2 underline-offset-4 transition-all duration-300 ${
+                          isActive
+                            ? "decoration-rideflow-blue"
+                            : "decoration-transparent hover:decoration-rideflow-blue"
+                        } ${link.comingSoon ? "cursor-not-allowed opacity-60" : ""}`}
+                      >
+                        {link.label}
+                      </Link>
+                      {link.comingSoon && (
+                        <span className="absolute -top-1 left-14 bg-rideflow-blue text-white text-[10px] px-2 py-0.5 rounded-full whitespace-nowrap font-medium">
+                          Coming Soon
+                        </span>
+                      )}
+                    </div>
                   );
                 })}
                 <div className="flex flex-col gap-3 mt-4">

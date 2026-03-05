@@ -80,10 +80,10 @@ export const HowItWorksSection = () => {
         </div>
 
         {/* Content layer - Desktop */}
-        <div className="container mx-auto px-4 h-full relative z-10">
-          <div className="h-full flex items-center">
+        <div className="container mx-auto px-4 min-h-[90vh] relative z-10 flex items-center">
+          <div className="flex items-center w-full">
             <div className="w-[43%]" />
-            <div className="w-[57%] pl-16 py-15">
+            <div className="w-[57%] pl-16 h-full  py-20">
               <div className="space-y-3 md:space-y-4">
                 <Badge text="How It Works" color="bg-white" />
                 <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[2.6rem] font-medium text-white leading-tight">

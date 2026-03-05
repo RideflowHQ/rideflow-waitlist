@@ -1,7 +1,5 @@
-
-import { BlogsDetailPage } from "./page.client";
+import { redirect } from "next/navigation";
 
 export default async function BlogDetailPage() {
-  return <BlogsDetailPage />;
+  redirect("/");
 }
-

@@ -43,6 +43,13 @@ const targetAudiences = [
 export const TargetAudienceSection = () => {
   return (
     <section className="py-12 md:py-15 lg:min-h-[95vh] overflow-hidden lg:relative">
+      <Image
+        src="/home/blog-curve-left.svg"
+        alt="curve"
+        height={300}
+        width={300}
+        className="absolute top-0 left-0 -z-5 hidden md:block"
+      />
       {/* Image Section - Absolute positioned on desktop only */}
       <div className="hidden lg:block lg:absolute lg:top-0 lg:bottom-0 lg:left-[45%] lg:-right-8 lg:h-full lg:z-0">
         <Image
