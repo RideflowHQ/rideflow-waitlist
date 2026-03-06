@@ -96,7 +96,7 @@ export default function Footer() {
               </div>
             </div>
             <div>
-              <p className="text-rideflow-text-light">RC 1200124</p>
+              <p className="text-rideflow-text-light">RC 8742605</p>
               <p className="text-rideflow-text-light">
                 {" "}
                 <Mail className="inline-block mr-1" size={16} />{" "}
