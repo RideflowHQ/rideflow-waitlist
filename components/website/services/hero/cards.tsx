@@ -13,7 +13,7 @@ const ServicesCards = () => {
         {data.map((item) => (
           <Link
             key={item.id}
-            href={`/services/${item.id}`}
+            href={`/services/${item.slug}`}
             className="bg-white p-4 rounded-[20px]"
           >
             <div className="rounded-2xl aspect-video relative overflow-hidden">
@@ -38,7 +38,10 @@ const ServicesCards = () => {
         <Button
           className="bg-rideflow-blue px-8 py-2 text-white font-semibold hover:bg-blue-700 cursor-pointer w-full md:w-max"
           onClick={() => {
-            window.open("https://dashboard.rideflow.org/auth/register", "_blank");
+            window.open(
+              "https://dashboard.rideflow.org/auth/register",
+              "_blank",
+            );
           }}
         >
           Get Started

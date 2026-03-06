@@ -1,5 +1,6 @@
 export interface ServiceData {
   id: string;
+  slug: string;
   title: string;
   summary: string;
   imageUrl: string;
@@ -16,6 +17,7 @@ export interface ServiceData {
 export const servicesData: ServiceData[] = [
   {
     id: "1",
+    slug: "asset-investment-hire-purchase",
     title: "Asset Investment [Hire Purchase]",
     summary:
       "We offer a unique opportunity for individuals and organizations to invest in mobility assets and earn sustainable, reliable returns.",
@@ -60,6 +62,7 @@ export const servicesData: ServiceData[] = [
   },
   {
     id: "2",
+    slug: "fleet-asset-management",
     title: "Fleet & Asset Management",
     summary:
       "Track and manage your bikes, vehicles, and delivery assets in one system with full visibility into usage, maintenance, and performance.",
@@ -103,6 +106,7 @@ export const servicesData: ServiceData[] = [
   },
   {
     id: "3",
+    slug: "rider-workforce-management",
     title: "Rider & Workforce Management",
     summary:
       "Manage riders and logistics staff in one structured system from onboarding and assignments to performance tracking.",
@@ -144,6 +148,7 @@ export const servicesData: ServiceData[] = [
   },
   {
     id: "4",
+    slug: "logistics-operations-management",
     title: "Logistics & Operations Management",
     summary:
       "Run your delivery operations from one system instead of managing everything through calls, messages, and spreadsheets.",
@@ -185,6 +190,7 @@ export const servicesData: ServiceData[] = [
   },
   {
     id: "5",
+    slug: "payments-payroll-installments",
     title: "Payments, Payroll & Installments",
     summary:
       "Manage rider payments, payroll, and installment tracking in one structured financial system.",
@@ -224,6 +230,7 @@ export const servicesData: ServiceData[] = [
   },
   {
     id: "6",
+    slug: "reporting-insights-control-dashboard",
     title: "Reporting, Insights & Control Dashboard",
     summary:
       "See the full picture of your logistics business with real-time reports and operational insights.",
@@ -267,6 +274,10 @@ export const servicesData: ServiceData[] = [
 
 export function getServiceById(id: string): ServiceData | undefined {
   return servicesData.find((service) => service.id === id);
+}
+
+export function getServiceBySlug(slug: string): ServiceData | undefined {
+  return servicesData.find((service) => service.slug === slug);
 }
 
 export function getAllServices(): ServiceData[] {
