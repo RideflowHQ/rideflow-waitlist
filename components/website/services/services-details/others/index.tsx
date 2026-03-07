@@ -44,7 +44,7 @@ export const OtherServices = ({ currentServiceId }: OtherServicesProps) => {
           {otherServices.map((item) => (
             <Link
               key={item.id}
-              href={`/services/${item.id}`}
+              href={`/services/${item.slug}`}
               className="bg-white p-4 rounded-[20px]"
             >
               <div className="rounded-2xl aspect-video relative overflow-hidden">

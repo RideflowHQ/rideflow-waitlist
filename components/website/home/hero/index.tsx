@@ -17,7 +17,7 @@ export const Hero = () => {
         width={210}
         className="absolute top-0 left-0 -z-5 hidden md:block"
       />
-      <div className="container mx-auto px-6 flex flex-col lg:flex-row items-center gap-8 lg:gap-12 h-full py-20 lg:py-0">
+      <div className="container mx-auto px-6 flex flex-col lg:flex-row items-center gap-8 lg:gap-12 h-full pb-20 pt-30 lg:py-0">
         <div className="w-full lg:w-[47%] flex flex-col items-start gap-4 md:gap-6 h-full justify-center">
           <Badge text="Built for Modern Logistics Teams" color="bg-white" />
           <div>

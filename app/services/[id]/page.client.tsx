@@ -5,7 +5,7 @@ import { ServiceDetails } from "@/components/website/services/services-details/d
 import { OtherServices } from "@/components/website/services/services-details/others";
 import dynamic from "next/dynamic";
 import { useParams } from "next/navigation";
-import { getServiceById } from "@/lib/services-data";
+import { getServiceBySlug } from "@/lib/services-data";
 
 const BookingSection = dynamic(
   () => import("@/components/website/shared/booking"),
@@ -16,8 +16,8 @@ const BookingSection = dynamic(
 
 export function ServicesDetailPage() {
   const params = useParams();
-  const serviceId = params.id as string;
-  const service = getServiceById(serviceId);
+  const serviceSlug = params.id as string;
+  const service = getServiceBySlug(serviceSlug);
 
   if (!service) {
     return (
@@ -36,7 +36,7 @@ export function ServicesDetailPage() {
     <main className="w-full flex flex-col relative">
       <DetailHero service={service} />
       <ServiceDetails service={service} />
-      <OtherServices currentServiceId={serviceId} />
+      <OtherServices currentServiceId={service.id} />
       <BookingSection />
     </main>
   );
