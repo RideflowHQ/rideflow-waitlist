@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { DM_Sans } from "next/font/google";
 import { Toaster } from "sonner";
 import "./globals.css";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import Header from "@/components/Header";
@@ -106,6 +107,9 @@ export default function RootLayout({
         <Header />
         {children}
         <Footer />
+        {process.env.NEXT_PUBLIC_GA_ID ? (
+          <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
+        ) : null}
         <Analytics />
         <SpeedInsights />
       </body>

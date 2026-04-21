@@ -81,7 +81,7 @@ export const BenefitsSection = () => {
               );
             }}
           >
-            Get Started
+            Start free
           </Button>
         </div>
       </div>

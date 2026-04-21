@@ -185,7 +185,7 @@ export default function WaitlistForm({ onSuccessChange }: FormProps) {
                   className="absolute  right-0 font-semibold top-0 bottom-0 bg-rideflow-blue flex justify-center items-center cursor-pointer text-white px-5 py-2 m-2 rounded-2xl hover:bg-opacity-90 transition-all disabled:opacity-50"
                   disabled={loading}
                 >
-                  Get Started
+                  Get early access
                 </button>
               </motion.div>
             ) : (
