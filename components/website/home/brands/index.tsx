@@ -3,18 +3,21 @@ import Marquee from "react-fast-marquee";
 import Image from "next/image";
 
 const brands = [
-  { id: 1, src: "/about/imprintify.svg", alt: "Imprintify" },
-  { id: 2, src: "/about/berlin.svg", alt: "Berlin" },
-  { id: 3, src: "/about/oslo.svg", alt: "Oslo" },
-  { id: 4, src: "/about/then.svg", alt: "Then" },
-  { id: 5, src: "/about/swiss.svg", alt: "Swiss" },
-  { id: 6, src: "/about/kobe.svg", alt: "Kobe" },
-  { id: 7, src: "/about/imprintify.svg", alt: "Imprintify" },
-  { id: 8, src: "/about/berlin.svg", alt: "Berlin" },
-  { id: 9, src: "/about/oslo.svg", alt: "Oslo" },
-  { id: 10, src: "/about/then.svg", alt: "Then" },
-  { id: 11, src: "/about/swiss.svg", alt: "Swiss" },
-  { id: 12, src: "/about/kobe.svg", alt: "Kobe" },
+  {
+    id: 1,
+    src: "https://res.cloudinary.com/dy7brekso/image/upload/v1773750022/rideflow/general/utttl3yevpdw2xl8dzo0.png",
+    alt: "Flash Delivery",
+  },
+  { id: 2, src: "/home/t4cLogistics.png", alt: "T4C Logistics" },
+  { id: 3, src: "/home/majestyLogistics.png", alt: "Majesty Logistics" },
+  { id: 4, src: "/home/DesLogistics.png", alt: "Des Logistics" },
+  { id: 5, src: "/about/kobe.svg", alt: "Kobe" },
+  { id: 6, src: "/about/imprintify.svg", alt: "Imprintify" },
+  { id: 7, src: "/about/berlin.svg", alt: "Berlin" },
+  { id: 8, src: "/about/oslo.svg", alt: "Oslo" },
+  { id: 9, src: "/about/then.svg", alt: "Then" },
+  { id: 10, src: "/about/swiss.svg", alt: "Swiss" },
+  { id: 11, src: "/about/kobe.svg", alt: "Kobe" },
 ];
 
 export const Brands = () => {
@@ -39,7 +42,7 @@ export const Brands = () => {
                   alt={brand.alt}
                   width={100}
                   height={50}
-                  className="object-contain w-20 sm:w-25 md:w-30 h-auto"
+                  className="object-contain w-20 sm:w-25 md:w-30 h-auto grayscale"
                 />
               </div>
             ))}

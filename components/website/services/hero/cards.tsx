@@ -44,7 +44,7 @@ const ServicesCards = () => {
             );
           }}
         >
-          Get Started
+          Start free
         </Button>
       </div>
     </div>

@@ -28,6 +28,11 @@ export default function Header() {
       comingSoon: true,
     },
     {
+      label: "Pricing",
+      href: "/pricing",
+      comingSoon: false,
+    },
+    {
       label: "Contact",
       href: "/contact",
       comingSoon: false,
@@ -88,12 +93,12 @@ export default function Header() {
               className="px-4 py-2 font-semibold border-rideflow-blue text-rideflow-blue hover:bg-body-gray hover:text-rideflow-blue cursor-pointer"
               onClick={() => {
                 window.open(
-                  "https://dashboard.rideflow.org/auth/login",
+                  "https://dashboard.rideflow.org/auth/register",
                   "_blank",
                 );
               }}
             >
-              Sign In
+              Start for free
             </Button>
             <Button
               className="bg-rideflow-blue px-4 py-2 text-white font-semibold hover:bg-blue-700 cursor-pointer w-full md:w-max"
@@ -154,13 +159,13 @@ export default function Header() {
                     className="cursor-pointer px-4 py-2 font-semibold border-rideflow-blue text-rideflow-blue hover:bg-rideflow-blue hover:text-white w-full"
                     onClick={() => {
                       window.open(
-                        "https://dashboard.rideflow.org/auth/login",
+                        "https://dashboard.rideflow.org/auth/register",
                         "_blank",
                       );
                       setOpen(false);
                     }}
                   >
-                    Sign In
+                    Start for free
                   </Button>
                   <Button
                     className="bg-rideflow-blue px-4 py-2 text-white font-semibold hover:bg-blue-700 w-full cursor-pointer"

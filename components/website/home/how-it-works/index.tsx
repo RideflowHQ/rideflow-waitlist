@@ -30,7 +30,7 @@ export const HowItWorksSection = () => {
               once
               className="text-2xl sm:text-3xl md:text-4xl font-medium text-white leading-tight"
             >
-              Three simple steps to get started
+              Get up and running in three steps
             </TextAnimate>
           </div>
           <div className="flex flex-col gap-6 md:gap-8 text-white mt-8 md:mt-10 mb-8 md:mb-10">
@@ -64,12 +64,12 @@ export const HowItWorksSection = () => {
             className="bg-rideflow-blue px-4 py-2 text-white font-semibold hover:bg-blue-700 cursor-pointer w-full md:w-max"
             onClick={() => {
               window.open(
-                "https://dashboard.rideflow.org/auth/login",
+                "https://dashboard.rideflow.org/auth/register",
                 "_blank",
               );
             }}
           >
-            Get Started
+            Start free
           </Button>
         </div>
       </div>
@@ -100,7 +100,7 @@ export const HowItWorksSection = () => {
                   once
                   className="text-2xl sm:text-3xl md:text-4xl lg:text-[2.6rem] font-medium text-white leading-tight"
                 >
-                  Three simple steps to get started
+                  Get up and running in three steps
                 </TextAnimate>
               </div>
               <div className="flex flex-col gap-6 md:gap-8 lg:gap-10 text-white mt-8 md:mt-10 lg:mt-12 mb-8 md:mb-10 lg:mb-12">
@@ -140,7 +140,7 @@ export const HowItWorksSection = () => {
                   );
                 }}
               >
-                Get Started
+                Start free
               </Button>
             </div>
           </div>

@@ -37,6 +37,7 @@ const footerQuickLink = [
       { linkTitle: "Services", link: "/services", comingSoon: false },
       { linkTitle: "Testimonials", link: "/#testimonies", comingSoon: false },
       { linkTitle: "Blog", link: "/blog", comingSoon: true },
+      { linkTitle: "Pricing", link: "/pricing", comingSoon: false },
       { linkTitle: "Contact", link: "/contact", comingSoon: false },
     ],
   },
