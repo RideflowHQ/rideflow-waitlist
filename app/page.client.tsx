@@ -3,6 +3,7 @@
 import {
   BenefitsSection,
   Brands,
+  PlatformStatsSection,
   Hero,
   HowItWorksSection,
   PurposeSection,
@@ -32,6 +33,7 @@ export function LandingPage() {
     <main className=" w-full flex flex-col relative">
       <Hero />
       <Brands />
+      <PlatformStatsSection />
       <WhyChooseUsSection />
       <HowItWorksSection />
       <PurposeSection />
