@@ -30,13 +30,12 @@ export const Hero = () => {
               once
               className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold text-foreground"
             >
-              Stop Running Your Logistics Business on WhatsApp, Spreadsheets, and
-              Four Other Apps.
+              Streamline Your Logistics Operations.
             </TextAnimate>
             <p className="text-base sm:text-lg md:text-lg text-rideflow-text mt-3 md:mt-4">
               Rideflow is the all-in-one operations platform built for Nigerian
-              logistics businesses. Manage your team, fleet, dispatch, compliance,
-              and finances from one dashboard, in real time.
+              logistics businesses. Manage your team, fleet, dispatch,
+              compliance, and finances from one dashboard, in real time.
             </p>
           </div>
           <div className="flex flex-col sm:flex-row gap-3 w-full mt-2 md:mt-4">
