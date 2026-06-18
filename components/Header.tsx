@@ -4,40 +4,28 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "./ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
-import { Menu } from "lucide-react";
+import { ChevronDown, Menu } from "lucide-react";
 import { useState } from "react";
+import { CALENDLY_URL, REGISTER_URL } from "@/lib/content/site";
+
+const platformLinks = [
+  { label: "Features", href: "/platform#features" },
+  { label: "How It Works", href: "/platform#how-it-works" },
+];
+
+const headerLinks = [
+  { label: "Pricing", href: "/pricing" },
+  { label: "Logistics Hub", href: "/logistics-hub" },
+  { label: "About", href: "/about" },
+  { label: "Blog", href: "/blog" },
+];
 
 export default function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const [platformOpen, setPlatformOpen] = useState(false);
 
-  const headerLinks = [
-    {
-      label: "About",
-      href: "/about",
-      comingSoon: false,
-    },
-    {
-      label: "Services",
-      href: "/services",
-      comingSoon: false,
-    },
-    {
-      label: "Blog",
-      href: "/blog",
-      comingSoon: true,
-    },
-    {
-      label: "Pricing",
-      href: "/pricing",
-      comingSoon: false,
-    },
-    {
-      label: "Contact",
-      href: "/contact",
-      comingSoon: false,
-    },
-  ];
+  const isPlatformActive = pathname.startsWith("/platform");
 
   return (
     <header className="w-full">
@@ -55,62 +43,74 @@ export default function Header() {
             />
           </Link>
 
-          {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-8">
-            {headerLinks.map((link) => {
-              const isActive = pathname.includes(link.href);
-              return (
-                <div key={link.href} className="group relative">
-                  <Link
-                    className={`text-sm md:text-lg font-semibold text-rideflow-text2 underline decoration-2 underline-offset-4 transition-all duration-300 ${
-                      isActive
-                        ? "decoration-rideflow-blue"
-                        : "decoration-transparent hover:decoration-rideflow-blue"
-                    } ${link.comingSoon ? "cursor-not-allowed opacity-60" : ""}`}
-                    href={link.comingSoon ? "#" : link.href}
-                    onClick={(e) => {
-                      if (link.comingSoon) {
-                        e.preventDefault();
-                      }
-                    }}
-                  >
-                    {link.label}
-                  </Link>
-                  {link.comingSoon && (
-                    <span className="pointer-events-none absolute -top-6 left-1/2 -translate-x-1/2 scale-90 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-200 bg-rideflow-blue text-white text-[12px] px-2 py-0.5 rounded-full whitespace-nowrap font-medium shadow-md">
-                      Coming Soon
-                    </span>
-                  )}
+            <div
+              className="group relative"
+              onMouseEnter={() => setPlatformOpen(true)}
+              onMouseLeave={() => setPlatformOpen(false)}
+            >
+              <Link
+                href="/platform"
+                className={`inline-flex items-center gap-1 text-sm md:text-lg font-semibold text-rideflow-text2 underline decoration-2 underline-offset-4 transition-all duration-300 ${
+                  isPlatformActive
+                    ? "decoration-rideflow-blue"
+                    : "decoration-transparent hover:decoration-rideflow-blue"
+                }`}
+              >
+                Platform
+                <ChevronDown className="size-4" />
+              </Link>
+              {platformOpen && (
+                <div className="absolute left-0 top-full pt-2">
+                  <div className="min-w-44 rounded-xl border border-white bg-rideflow-gray-light p-2 shadow-lg">
+                    {platformLinks.map((link) => (
+                      <Link
+                        key={link.href}
+                        href={link.href}
+                        className="block rounded-lg px-3 py-2 text-sm font-medium text-rideflow-text2 hover:bg-white hover:text-rideflow-blue"
+                      >
+                        {link.label}
+                      </Link>
+                    ))}
+                  </div>
                 </div>
+              )}
+            </div>
+
+            {headerLinks.map((link) => {
+              const isActive = pathname.startsWith(link.href);
+              return (
+                <Link
+                  key={link.href}
+                  className={`text-sm md:text-lg font-semibold text-rideflow-text2 underline decoration-2 underline-offset-4 transition-all duration-300 ${
+                    isActive
+                      ? "decoration-rideflow-blue"
+                      : "decoration-transparent hover:decoration-rideflow-blue"
+                  }`}
+                  href={link.href}
+                >
+                  {link.label}
+                </Link>
               );
             })}
           </div>
 
-          {/* Desktop Buttons */}
           <div className="hidden lg:flex items-center gap-3">
             <Button
               variant="outline"
               className="px-4 py-2 font-semibold border-rideflow-blue text-rideflow-blue hover:bg-body-gray hover:text-rideflow-blue cursor-pointer"
-              onClick={() => {
-                window.open(
-                  "https://dashboard.rideflow.org/auth/register",
-                  "_blank",
-                );
-              }}
+              onClick={() => window.open(REGISTER_URL, "_blank")}
             >
               Start for free
             </Button>
             <Button
               className="bg-rideflow-blue px-4 py-2 text-white font-semibold hover:bg-blue-700 cursor-pointer w-full md:w-max"
-              onClick={() => {
-                window.open("https://calendly.com/rideflow", "_blank");
-              }}
+              onClick={() => window.open(CALENDLY_URL, "_blank")}
             >
               Book a Demo
             </Button>
           </div>
 
-          {/* Mobile Menu */}
           <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger asChild className="lg:hidden">
               <Button
@@ -124,44 +124,56 @@ export default function Header() {
             </SheetTrigger>
             <SheetContent side="right" className="w-75 sm:w-100 p-5">
               <nav className="flex flex-col gap-6 mt-8">
-                {headerLinks.map((link) => {
-                  const isActive = pathname.includes(link.href);
-                  return (
-                    <div key={link.href} className="relative">
+                <div>
+                  <Link
+                    href="/platform"
+                    onClick={() => setOpen(false)}
+                    className={`text-lg font-semibold text-rideflow-text2 underline decoration-2 underline-offset-4 ${
+                      pathname.startsWith("/platform")
+                        ? "decoration-rideflow-blue"
+                        : "decoration-transparent"
+                    }`}
+                  >
+                    Platform
+                  </Link>
+                  <div className="mt-3 ml-3 flex flex-col gap-2">
+                    {platformLinks.map((link) => (
                       <Link
-                        href={link.comingSoon ? "#" : link.href}
-                        onClick={(e) => {
-                          if (link.comingSoon) {
-                            e.preventDefault();
-                          } else {
-                            setOpen(false);
-                          }
-                        }}
-                        className={`text-lg font-semibold text-rideflow-text2 underline decoration-2 underline-offset-4 transition-all duration-300 ${
-                          isActive
-                            ? "decoration-rideflow-blue"
-                            : "decoration-transparent hover:decoration-rideflow-blue"
-                        } ${link.comingSoon ? "cursor-not-allowed opacity-60" : ""}`}
+                        key={link.href}
+                        href={link.href}
+                        onClick={() => setOpen(false)}
+                        className="text-sm text-rideflow-text-light hover:text-rideflow-blue"
                       >
                         {link.label}
                       </Link>
-                      {link.comingSoon && (
-                        <span className="absolute -top-1 left-14 bg-rideflow-blue text-white text-[10px] px-2 py-0.5 rounded-full whitespace-nowrap font-medium">
-                          Coming Soon
-                        </span>
-                      )}
-                    </div>
+                    ))}
+                  </div>
+                </div>
+
+                {headerLinks.map((link) => {
+                  const isActive = pathname.startsWith(link.href);
+                  return (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      onClick={() => setOpen(false)}
+                      className={`text-lg font-semibold text-rideflow-text2 underline decoration-2 underline-offset-4 transition-all duration-300 ${
+                        isActive
+                          ? "decoration-rideflow-blue"
+                          : "decoration-transparent hover:decoration-rideflow-blue"
+                      }`}
+                    >
+                      {link.label}
+                    </Link>
                   );
                 })}
+
                 <div className="flex flex-col gap-3 mt-4">
                   <Button
                     variant="outline"
                     className="cursor-pointer px-4 py-2 font-semibold border-rideflow-blue text-rideflow-blue hover:bg-rideflow-blue hover:text-white w-full"
                     onClick={() => {
-                      window.open(
-                        "https://dashboard.rideflow.org/auth/register",
-                        "_blank",
-                      );
+                      window.open(REGISTER_URL, "_blank");
                       setOpen(false);
                     }}
                   >
@@ -170,7 +182,7 @@ export default function Header() {
                   <Button
                     className="bg-rideflow-blue px-4 py-2 text-white font-semibold hover:bg-blue-700 w-full cursor-pointer"
                     onClick={() => {
-                      window.open("https://calendly.com/rideflow", "_blank");
+                      window.open(CALENDLY_URL, "_blank");
                       setOpen(false);
                     }}
                   >

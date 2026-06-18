@@ -16,43 +16,38 @@ export const FoundersNoteSection = () => {
           />
         </div>
         <div className="w-full lg:w-1/2 flex flex-col items-start gap-4 md:gap-6 text-white">
-          <Badge text="Founder's Note" color="bg-white" />
-          <div className="space-y-3 md:space-y-4">
-            <TextAnimate
-              animation="blurIn"
-              by="word"
-              startOnView
-              once
-              className="text-2xl sm:text-3xl md:text-4xl font-medium"
-            >
-              A Note from the Founder
-            </TextAnimate>
-            <p className="text-lg font-light">
-              Logistics is one of those industries that quietly keeps everything
-              moving, yet the people running it are often forced to work with
-              fragmented tools and inefficient systems.
+          <Badge text="Where We Started" color="bg-white" />
+          <TextAnimate
+            animation="blurIn"
+            by="word"
+            startOnView
+            once
+            className="text-2xl sm:text-3xl md:text-4xl font-medium"
+          >
+            Built From Frustration. Refined by Operators.
+          </TextAnimate>
+          <div className="space-y-4 text-lg font-light leading-7">
+            <p>
+              Rideflow was founded by Michael Idris after seeing firsthand how
+              fragmented and manual logistics operations were across Nigeria —
+              businesses with real scale and real ambition, held back by tools
+              that couldn&apos;t keep up.
             </p>
-            <p className="text-lg font-light">
-              Rideflow was born from seeing firsthand how much time, money, and
-              energy logistics teams lose trying to manage operations across
-              spreadsheets, calls, and disconnected platforms. We believed there
-              had to be a better way—one system that brings clarity, structure,
-              and confidence to daily operations.
+            <p>
+              The first version of Rideflow was built to solve one problem: give
+              logistics operators a single place to manage everything. Since
+              then, it has grown into a full operations platform, covering HR,
+              fleet, dispatch, compliance, payroll, and analytics, shaped at
+              every stage by the operators actually using it.
             </p>
-            <p className="text-lg font-light">
-              Our goal with Rideflow is simple: build practical tools that work
-              in the real world. Software that supports the people behind every
-              delivery, helps businesses grow sustainably, and removes
-              unnecessary friction from logistics operations.
+            <p>
+              Today, Rideflow is trusted by logistics businesses across Nigeria,
+              with 2,418 orders processed, 1,879 deliveries completed, 2,174
+              customers served, and ₦11,068,850 in delivery fees tracked across
+              the platform.
             </p>
-            <p className="text-lg font-light">
-              We’re excited to be building alongside teams who care deeply about
-              doing logistics better.
-            </p>
+            <p>We&apos;re just getting started.</p>
           </div>
-          <p className="text-lg font-semibold">
-            — Michael Idris, Founder & CEO
-          </p>
         </div>
       </div>
     </section>

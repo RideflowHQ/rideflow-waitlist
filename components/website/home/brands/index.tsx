@@ -11,7 +11,7 @@ const brands = [
   { id: 2, src: "/home/t4cLogistics.png", alt: "T4C Logistics" },
   { id: 3, src: "/home/majestyLogistics.png", alt: "Majesty Logistics" },
   { id: 4, src: "/home/DesLogistics.png", alt: "Des Logistics" },
-  { id: 5, src: "/about/kobe.svg", alt: "Kobe" },
+  { id: 5, src: "/home/sendMeLogistic.png", alt: "Send Me Logistics" },
   { id: 6, src: "/about/imprintify.svg", alt: "Imprintify" },
   { id: 7, src: "/about/berlin.svg", alt: "Berlin" },
   { id: 8, src: "/about/oslo.svg", alt: "Oslo" },

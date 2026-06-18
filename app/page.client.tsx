@@ -1,15 +1,14 @@
 "use client";
 
 import {
-  BenefitsSection,
+  Hero,
   Brands,
   PlatformStatsSection,
-  Hero,
-  HowItWorksSection,
-  PurposeSection,
-  TargetAudienceSection,
-  TestimoniesSection,
   WhyChooseUsSection,
+  HowItWorksSection,
+  StakesSection,
+  PartnerBridgeSection,
+  TestimoniesSection,
 } from "@/components/website/home";
 import dynamic from "next/dynamic";
 
@@ -24,25 +23,19 @@ const BookingSection = dynamic(
   },
 );
 
-// const Footer = dynamic(() => import("@/components/Footer"), {
-//   loading: () => <div className="py-12" />,
-// });
-
 export function LandingPage() {
   return (
     <main className=" w-full flex flex-col relative">
       <Hero />
       <Brands />
       <PlatformStatsSection />
-      <WhyChooseUsSection />
       <HowItWorksSection />
-      <PurposeSection />
-      <BenefitsSection />
-      <TargetAudienceSection />
+      <WhyChooseUsSection />
+      <StakesSection />
       <TestimoniesSection />
+      <PartnerBridgeSection />
       <BookingSection />
       <Faqs />
     </main>
   );
 }
-// mx-auto max-w-screen-2xl
