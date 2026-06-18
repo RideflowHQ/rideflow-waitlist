@@ -5,10 +5,7 @@ import {
   parseGeneratedAt,
   resolveStatsUrls,
 } from "@/lib/stats-adapter";
-import type {
-  PublicPlatformStats,
-  PublicPlatformStatsResponse,
-} from "@/lib/types/stats";
+import type { PublicPlatformStats } from "@/lib/types/stats";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { io, type Socket } from "socket.io-client";
 
@@ -57,10 +54,10 @@ export function usePlatformStats() {
           throw new Error("Unable to load platform stats");
         }
 
-        const json = (await response.json()) as PublicPlatformStatsResponse;
+        const json = await response.json();
 
         if (!cancelled) {
-          applySnapshot(json.data);
+          applySnapshot(json);
         }
       } catch (err) {
         if (!cancelled && !hasLoadedOnceRef.current) {

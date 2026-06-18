@@ -1,16 +1,6 @@
 import { MetadataRoute } from "next";
-import { getAllServices } from "@/lib/services-data";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const services = getAllServices();
-
-  const serviceUrls = services.map((service) => ({
-    url: `https://rideflow.org/services/${service.slug}`,
-    lastModified: new Date(),
-    changeFrequency: "monthly" as const,
-    priority: 0.8,
-  }));
-
   return [
     {
       url: "https://rideflow.org",
@@ -25,7 +15,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
-      url: "https://rideflow.org/services",
+      url: "https://rideflow.org/platform",
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 0.9,
@@ -36,7 +26,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.9,
     },
-    ...serviceUrls,
+    {
+      url: "https://rideflow.org/logistics-hub",
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+    {
+      url: "https://rideflow.org/blog",
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
     {
       url: "https://rideflow.org/contact",
       lastModified: new Date(),

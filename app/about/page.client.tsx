@@ -2,20 +2,16 @@
 
 import {
   AboutHero,
-  Brands,
   FoundersNoteSection,
   ValueSection,
   WhoWeAreSection,
 } from "@/components/website/about";
+import {
+  AboutClosingSection,
+  AboutStatsSection,
+  VisionSection,
+} from "@/components/website/about/vision";
 import TeamMembersSection from "@/components/website/about/team-members";
-import dynamic from "next/dynamic";
-
-const BookingSection = dynamic(
-  () => import("@/components/website/shared/booking"),
-  {
-    loading: () => <div className="py-20" />,
-  },
-);
 
 export function AboutPage() {
   return (
@@ -23,10 +19,11 @@ export function AboutPage() {
       <AboutHero />
       <WhoWeAreSection />
       <FoundersNoteSection />
-      <ValueSection />
+      <VisionSection />
+      <AboutStatsSection />
       <TeamMembersSection />
-      <Brands />
-      <BookingSection />
+      <ValueSection />
+      <AboutClosingSection />
     </main>
   );
 }

@@ -1,93 +1,29 @@
+import Badge from "@/components/custom/badge";
 import Image from "next/image";
 import React from "react";
 import { TextAnimate } from "@/components/ui/text-animate";
-
-const teamMembers = [
-  {
-    id: 1,
-    name: "Michael Idris",
-    role: "Founder & CEO",
-    image: "/about/new-founder.jpeg",
-    socials: {
-      facebook: " https://www.facebook.com/share/1L3K2PdoNt/?mibextid=wwXIfr",
-      x: " https://x.com/idrisweb?s=21",
-      linkedin:
-        "https://www.linkedin.com/in/michael-idris-a06815123?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
-    },
-  },
-  {
-    id: 2,
-    name: "Nkpozi Kelechi",
-    role: "CTO",
-    image: "/about/mob-dev.jpg",
-    socials: null,
-  },
-  {
-    id: 3,
-    name: "Olayiwola Mariam",
-    role: "Director",
-    image: "/about/director.jpg",
-    socials: null,
-  },
-  {
-    id: 4,
-    name: "Ajibola Akinsola",
-    role: "Executive Assistant / HR Manager",
-    image: "/about/hr.jpg",
-    socials: null,
-  },
-  {
-    id: 5,
-    name: "Stephanie Okudo",
-    role: "Social Media Manager",
-    image: "/about/soc-man.png",
-    socials: null,
-  },
-  {
-    id: 6,
-    name: "Nazeer Adeniji",
-    role: "Product Designer",
-    image: "/about/pro-des.jpg",
-    socials: null,
-  },
-  {
-    id: 7,
-    name: "Precious Abegunde",
-    role: "Backend Engineer",
-    image: "/about/bac-eng.jpg",
-    socials: null,
-  },
-  {
-    id: 8,
-    name: "Tooni Olaniyan",
-    role: "Frontend Engineer",
-    image: "/about/fro-eng.jpg",
-    socials: null,
-  },
-  {
-    id: 9,
-    name: "Richard Amune",
-    role: "Motion Graphics Designer",
-    image: "/about/mot-des.jpg",
-    socials: null,
-  },
-];
+import { aboutTeam } from "@/lib/content/about";
 
 const TeamMembersSection = () => {
   return (
     <section className="py-12 md:py-18 min-h-[80vh] bg-white border-y border-dashed border-[#808080]">
       <div className="container mx-auto px-6">
+        <Badge text="The People Behind Rideflow" color="bg-body-gray" />
         <TextAnimate
           animation="blurIn"
           by="word"
           startOnView
           once
-          className="text-2xl sm:text-3xl md:text-[2.6rem] font-medium mb-6 md:mb-8"
+          className="text-2xl sm:text-3xl md:text-[2.6rem] font-medium mb-2"
         >
-          Meet the Minds Behind Rideflow
+          Experienced Team. Hands-On Builders.
         </TextAnimate>
+        <p className="text-rideflow-text-light mb-8 md:mb-10 max-w-2xl">
+          We&apos;re a small, focused team of engineers, designers, and
+          operators, building fast and staying close to the problem.
+        </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {teamMembers.map((member) => (
+          {aboutTeam.map((member) => (
             <div key={member.id} className="flex flex-col gap-4">
               <div className="rounded-[20px] overflow-hidden aspect-square relative">
                 <Image
@@ -146,6 +82,9 @@ const TeamMembersSection = () => {
               <div>
                 <p className="font-medium text-[22px]">{member.name}</p>
                 <p className="text-rideflow-text font-light">{member.role}</p>
+                <p className="mt-2 text-sm leading-6 text-rideflow-text-light">
+                  {member.bio}
+                </p>
               </div>
             </div>
           ))}

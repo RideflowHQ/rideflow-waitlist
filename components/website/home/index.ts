@@ -1,9 +1,8 @@
-export * from "./hero";
-export * from "./how-it-works";
-export * from "./target-audience";
-export * from "./brands";
-export * from "./purpose";
-export * from "./why-choose-us";
-export * from "./testimonies";
-export * from "./benefits";
-export * from "./platform-stats";
+export { Hero } from "./hero";
+export { Brands } from "./brands";
+export { PlatformStatsSection } from "./platform-stats";
+export { WhyChooseUsSection } from "./why-choose-us";
+export { HowItWorksSection } from "./how-it-works";
+export { StakesSection } from "./stakes";
+export { PartnerBridgeSection } from "./partner-bridge";
+export { TestimoniesSection } from "./testimonies";

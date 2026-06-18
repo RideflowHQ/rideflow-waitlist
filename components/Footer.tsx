@@ -4,6 +4,7 @@ import Image from "next/image";
 import { TextAnimate } from "./ui/text-animate";
 import { motion } from "motion/react";
 import { Mail } from "lucide-react";
+import { CALENDLY_URL, CONTACT_EMAIL } from "@/lib/content/site";
 
 const socials = [
   {
@@ -28,33 +29,46 @@ const socials = [
   },
 ];
 
-const footerQuickLink = [
+type FooterLink = {
+  linkTitle: string;
+  link: string;
+  external?: boolean;
+};
+
+const footerColumns: { id: number; title: string; links: FooterLink[] }[] = [
   {
     id: 1,
-    title: "Company",
+    title: "Product",
     links: [
-      { linkTitle: "About", link: "/about", comingSoon: false },
-      { linkTitle: "Services", link: "/services", comingSoon: false },
-      { linkTitle: "Testimonials", link: "/#testimonies", comingSoon: false },
-      { linkTitle: "Blog", link: "/blog", comingSoon: true },
-      { linkTitle: "Pricing", link: "/pricing", comingSoon: false },
-      { linkTitle: "Contact", link: "/contact", comingSoon: false },
+      { linkTitle: "Features", link: "/platform#features" },
+      { linkTitle: "Pricing", link: "/pricing" },
+      { linkTitle: "How It Works", link: "/platform#how-it-works" },
+      { linkTitle: "Book a Demo", link: CALENDLY_URL, external: true },
     ],
   },
   {
     id: 2,
+    title: "Company",
+    links: [
+      { linkTitle: "About", link: "/about" },
+      { linkTitle: "Blog", link: "/blog" },
+      { linkTitle: "Contact", link: "/contact" },
+    ],
+  },
+  {
+    id: 3,
+    title: "Logistics Hub",
+    links: [
+      { linkTitle: "Join the Hub", link: "/logistics-hub#join" },
+      { linkTitle: "Hub FAQ", link: "/logistics-hub#trust" },
+    ],
+  },
+  {
+    id: 4,
     title: "Legal",
     links: [
-      {
-        linkTitle: "Terms of Service",
-        link: "/terms-of-service",
-        comingSoon: false,
-      },
-      {
-        linkTitle: "Privacy Policy",
-        link: "/privacy-policy",
-        comingSoon: false,
-      },
+      { linkTitle: "Terms of Service", link: "/terms-of-service" },
+      { linkTitle: "Privacy Policy", link: "/privacy-policy" },
     ],
   },
 ];
@@ -79,12 +93,17 @@ export default function Footer() {
                 once
                 className="w-full lg:w-[65%] text-rideflow-text-light"
               >
-                Manage orders, drivers, fleets and operational costs with
-                clarity and control — all in one place.
+                Manage orders, drivers, fleets and operational costs with clarity
+                and control — all in one place.
               </TextAnimate>
               <div className="flex gap-5 text-sm pt-4">
                 {socials.map((social) => (
-                  <Link target="_blank" rel="noopener noreferrer" key={social.id} href={social.link}>
+                  <Link
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    key={social.id}
+                    href={social.link}
+                  >
                     <Image
                       src={social.icon}
                       width={30}
@@ -99,16 +118,14 @@ export default function Footer() {
             <div>
               <p className="text-rideflow-text-light">RC 8742605</p>
               <p className="text-rideflow-text-light">
-                {" "}
-                <Mail className="inline-block mr-1" size={16} />{" "}
-                info@rideflow.org
+                <Mail className="inline-block mr-1" size={16} /> {CONTACT_EMAIL}
               </p>
             </div>
           </div>
 
-          <div className="flex-1 flex flex-row pl-0 lg:pl-10 gap-30 sm:gap-24 lg:gap-60 pr-4 sm:pr-0">
-            {footerQuickLink.map((quickLink, idx) => (
-              <div className="flex flex-col gap-2" key={quickLink.id}>
+          <div className="flex-1 grid grid-cols-2 gap-8 sm:grid-cols-4 lg:pl-10">
+            {footerColumns.map((column) => (
+              <div className="flex flex-col gap-2" key={column.id}>
                 <TextAnimate
                   animation="blurInUp"
                   by="word"
@@ -116,33 +133,38 @@ export default function Footer() {
                   once
                   className="text-lg text-rideflow-text-light font-bold"
                 >
-                  {quickLink.title}
+                  {column.title}
                 </TextAnimate>
                 <div className="flex flex-col gap-2">
-                  {quickLink.links.map((link, idx) => (
-                    <div key={idx} className="group relative inline-block w-fit">
-                      <Link
-                        className={`text-rideflow-text-light ${link.comingSoon ? "cursor-not-allowed opacity-60" : ""}`}
-                        href={link.comingSoon ? "#" : link.link}
-                        onClick={(e) => {
-                          if (link.comingSoon) {
-                            e.preventDefault();
-                          }
-                        }}
-                      >
-                        <TextAnimate
-                          animation="blurInUp"
-                          by="word"
-                          startOnView
-                          once
+                  {column.links.map((link) => (
+                    <div key={link.linkTitle} className="group relative inline-block w-fit">
+                      {link.external ? (
+                        <a
+                          className="text-rideflow-text-light"
+                          href={link.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
                         >
-                          {link.linkTitle}
-                        </TextAnimate>
-                      </Link>
-                      {link.comingSoon && (
-                        <span className="pointer-events-none absolute -top-6 left-1/2 -translate-x-1/2 scale-90 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-200 bg-rideflow-blue text-white text-[12px] px-2 py-0.5 rounded-full whitespace-nowrap font-medium shadow-md">
-                          Coming Soon
-                        </span>
+                          <TextAnimate
+                            animation="blurInUp"
+                            by="word"
+                            startOnView
+                            once
+                          >
+                            {link.linkTitle}
+                          </TextAnimate>
+                        </a>
+                      ) : (
+                        <Link className="text-rideflow-text-light" href={link.link}>
+                          <TextAnimate
+                            animation="blurInUp"
+                            by="word"
+                            startOnView
+                            once
+                          >
+                            {link.linkTitle}
+                          </TextAnimate>
+                        </Link>
                       )}
                     </div>
                   ))}
@@ -154,7 +176,7 @@ export default function Footer() {
 
         <div className="w-full border-rideflow-text2 border-b border-t border-dashed py-7">
           <p className="text-sm text-muted-foreground">
-            &copy; {new Date().getFullYear()} RIDE FLOW. All rights reserved.
+            &copy; {new Date().getFullYear()} Rideflow. All rights reserved.
           </p>
         </div>
       </div>

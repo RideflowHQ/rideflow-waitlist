@@ -2,6 +2,10 @@
 
 import { TextAnimate } from "@/components/ui/text-animate";
 import { usePlatformStats } from "@/hooks/use-platform-stats";
+import {
+  PLATFORM_STAT_LABELS,
+  resolvePlatformDisplayStats,
+} from "@/lib/stats-adapter";
 import { motion } from "motion/react";
 import { StatItem } from "./stat-item";
 
@@ -42,13 +46,13 @@ function StatDivider() {
 export const PlatformStatsSection = () => {
   const { stats, isLoading, error, lastUpdated, hasLoadedOnce } =
     usePlatformStats();
+  const displayStats = resolvePlatformDisplayStats(stats);
   const updatedLabel = formatLastUpdated(lastUpdated);
 
   return (
     <section className="bg-[#04081A] text-white py-16 md:py-20 lg:py-24">
       <div className="container mx-auto px-6">
         <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 xl:gap-24">
-          {/* Left column — narrative */}
           <div className="w-full lg:w-[38%] flex flex-col gap-6 md:gap-8">
             <TextAnimate
               animation="blurIn"
@@ -57,7 +61,7 @@ export const PlatformStatsSection = () => {
               once
               className="font-medium text-3xl sm:text-4xl md:text-5xl lg:text-[2.75rem] leading-[1.15] text-white text-left"
             >
-              Trusted by teams running logistics for real
+              Rideflow by the Numbers
             </TextAnimate>
 
             <div className="flex flex-col gap-4 text-sm md:text-base leading-relaxed text-white/70">
@@ -67,9 +71,9 @@ export const PlatformStatsSection = () => {
                 on our platform every single day.
               </p>
               <p>
-                The numbers you see are live and proof that teams chose us, they found
-                value, and keep building their operations on Rideflow because it
-                works when their business depends on it.
+                The numbers you see are live and proof that teams chose us, they
+                found value, and keep building their operations on Rideflow
+                because it works when their business depends on it.
               </p>
             </div>
 
@@ -78,7 +82,6 @@ export const PlatformStatsSection = () => {
             )}
           </div>
 
-          {/* Right column — open stats grid */}
           <motion.div
             variants={rowVariants}
             initial="hidden"
@@ -87,9 +90,8 @@ export const PlatformStatsSection = () => {
             className="w-full lg:w-[62%] flex flex-col"
           >
             <StatItem
-              label="Total orders processed"
-              sublabel="Across all active vendors on the platform"
-              value={stats?.totalOrdersProcessed ?? 0}
+              label={PLATFORM_STAT_LABELS.ordersProcessed}
+              value={displayStats.ordersProcessed}
               isLoading={isLoading}
               size="hero"
             />
@@ -98,18 +100,14 @@ export const PlatformStatsSection = () => {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 sm:divide-x sm:divide-white/10">
               <StatItem
-                label="Delivered amount"
-                sublabel="Total value of completed deliveries"
-                value={stats?.deliveredAmount ?? 0}
-                format="currency"
-                currency={stats?.currency ?? "NGN"}
+                label={PLATFORM_STAT_LABELS.deliveriesCompleted}
+                value={displayStats.deliveriesCompleted}
                 isLoading={isLoading}
                 className="sm:pr-8"
               />
               <StatItem
-                label="Active businesses"
-                sublabel="Businesses using Rideflow"
-                value={stats?.activeVendors ?? 0}
+                label={PLATFORM_STAT_LABELS.customersServed}
+                value={displayStats.customersServed}
                 isLoading={isLoading}
                 className="sm:pl-8"
               />
@@ -117,12 +115,23 @@ export const PlatformStatsSection = () => {
 
             <StatDivider />
 
-            <StatItem
-              label="Fleet in use"
-              sublabel="Vehicles actively assigned to deliveries"
-              value={stats?.fleetInUse ?? 0}
-              isLoading={isLoading}
-            />
+            <div className="grid grid-cols-1 sm:grid-cols-2 sm:divide-x sm:divide-white/10">
+              <StatItem
+                label={PLATFORM_STAT_LABELS.deliveryFeesTracked}
+                value={displayStats.deliveryFeesTracked}
+                format="currency"
+                currency={displayStats.currency}
+                isLoading={isLoading}
+                className="sm:pr-10"
+              />
+              <StatItem
+                label={PLATFORM_STAT_LABELS.activeBusinesses}
+                value={displayStats.activeBusinesses}
+                format="number"
+                isLoading={isLoading}
+                className="sm:pl-8"
+              />
+            </div>
 
             {error && !isLoading && (
               <p className="pt-4 text-xs text-white/40">
