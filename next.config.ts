@@ -16,6 +16,15 @@ const nextConfig: NextConfig = {
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
+  async rewrites() {
+    // Same-origin Socket.IO (guide §6): proxy engine.io traffic to the backend.
+    // ponytail: websocket upgrade won't survive a Vercel rewrite; polling transport carries updates.
+    const origin = (process.env.NEXT_PUBLIC_API_BASE_URL ?? "")
+      .replace(/\/+$/, "")
+      .replace(/\/api$/, "");
+    if (!origin) return [];
+    return [{ source: "/socket.io/:path*", destination: `${origin}/socket.io/:path*` }];
+  },
   compress: true,
   poweredByHeader: false,
   reactStrictMode: true,

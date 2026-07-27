@@ -131,8 +131,9 @@ export function TrackingPageClient({ companyName, branding }: TrackingPageClient
     if (!activeReference) return;
 
     // Same-origin Socket.IO; namespace /public (engine path /socket.io/*).
+    // Polling first: the /socket.io rewrite can't carry a websocket upgrade.
     const socket = io("/public", {
-      transports: ["websocket", "polling"],
+      transports: ["polling", "websocket"],
       autoConnect: true,
       reconnection: true,
     });
