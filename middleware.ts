@@ -21,9 +21,13 @@ export function middleware(request: NextRequest) {
         return NextResponse.redirect(url);
       })();
 
+  // Debug headers
   response.headers.set("x-debug-hostname", hostname);
   response.headers.set("x-debug-is-owned", String(isOwned));
   response.headers.set("x-debug-pathname", request.nextUrl.pathname);
+  response.headers.set("x-debug-host-header", request.headers.get("host") || "missing");
+  response.headers.set("x-debug-forwarded-host", request.headers.get("x-forwarded-host") || "missing");
+  response.headers.set("x-debug-nexturl-hostname", request.nextUrl.hostname);
 
   return response;
 }
