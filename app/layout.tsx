@@ -8,6 +8,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import Header from "@/components/Header";
 import CustomCursor from "@/components/custom/CustomCursor";
 import dynamic from "next/dynamic";
+import { resolvePublicApiBase } from "@/lib/tracking/public-api";
 
 const dmSans = DM_Sans({ subsets: ["latin"], variable: "--font-dm-sans" });
 
@@ -37,11 +38,12 @@ const Footer = dynamic(() => import("@/components/Footer"), {
   loading: () => <div className="py-12" />,
 });
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const { isCustomDomainHost } = await resolvePublicApiBase();
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
@@ -100,13 +102,13 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${dmSans.variable} font-sans antialiased flex flex-col h-full cursor-none`}
+        className={`${dmSans.variable} font-sans antialiased flex flex-col h-full${isCustomDomainHost ? "" : " cursor-none"}`}
       >
-        <CustomCursor />
+        {!isCustomDomainHost ? <CustomCursor /> : null}
         <Toaster />
-        <Header />
+        {!isCustomDomainHost ? <Header /> : null}
         {children}
-        <Footer />
+        {!isCustomDomainHost ? <Footer /> : null}
         {process.env.NEXT_PUBLIC_GA_ID ? (
           <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
         ) : null}

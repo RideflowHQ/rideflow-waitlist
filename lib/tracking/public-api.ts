@@ -25,7 +25,6 @@ export async function resolvePublicApiBase(): Promise<{
   const h = await headers();
   const hostname =
     h.get("x-forwarded-host") ?? h.get("host") ?? "localhost:3000";
-    console.log('this is the host name' , hostname)
   const isCustomDomainHost = !isRideflowOwnedHost(hostname);
 
   if (isCustomDomainHost) {
