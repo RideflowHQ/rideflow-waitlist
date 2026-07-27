@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { headers } from "next/headers";
 
 import { TrackingPageClient } from "./page.client";
 
@@ -8,6 +9,8 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-export default function TrackingPage() {
+export default async function TrackingPage() {
+  const h = await headers();
+  console.log(h);
   return <TrackingPageClient />;
 }
