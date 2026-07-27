@@ -11,7 +11,7 @@ export async function shouldShowSiteChrome(): Promise<boolean> {
   const { headers } = await import("next/headers");
   const h = await headers();
   const hostname =
-    h.get("host") ?? h.get("x-forwarded-host") ?? "localhost:3000";
+    h.get("x-forwarded-host") ?? h.get("host") ?? "localhost:3000";
 
   return isRideflowOwnedHost(hostname);
 }

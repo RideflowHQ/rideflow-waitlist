@@ -17,7 +17,7 @@ export async function GET(
   const { path } = await params;
   const upstreamUrl = `${origin}/api/public/${path.map(encodeURIComponent).join("/")}${request.nextUrl.search}`;
   const trackingHost =
-    request.headers.get("host") ?? request.headers.get("x-forwarded-host") ?? "";
+    request.headers.get("x-forwarded-host") ?? request.headers.get("host") ?? "";
 
   try {
     const upstream = await fetch(upstreamUrl, {
