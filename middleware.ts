@@ -8,41 +8,20 @@ export function middleware(request: NextRequest) {
     request.headers.get("host") ??
     request.nextUrl.hostname;
 
-  const isOwned = isRideflowOwnedHost(hostname);
-  const isTrackingPath = request.nextUrl.pathname.startsWith("/tracking");
+  if (isRideflowOwnedHost(hostname)) {
+    return NextResponse.next();
+  }
 
-  // Debug: add headers to see what's happening
-  const response = isOwned || isTrackingPath
-    ? NextResponse.next()
-    : (() => {
-        const url = request.nextUrl.clone();
-        url.pathname = "/tracking";
-        url.search = "";
-        return NextResponse.redirect(url);
-      })();
+  if (request.nextUrl.pathname.startsWith("/tracking")) {
+    return NextResponse.next();
+  }
 
-  // Debug headers
-  response.headers.set("x-debug-hostname", hostname);
-  response.headers.set("x-debug-is-owned", String(isOwned));
-  response.headers.set("x-debug-pathname", request.nextUrl.pathname);
-  response.headers.set("x-debug-host-header", request.headers.get("host") || "missing");
-  response.headers.set("x-debug-forwarded-host", request.headers.get("x-forwarded-host") || "missing");
-  response.headers.set("x-debug-nexturl-hostname", request.nextUrl.hostname);
-
-  return response;
+  const url = request.nextUrl.clone();
+  url.pathname = "/tracking";
+  url.search = "";
+  return NextResponse.redirect(url);
 }
 
 export const config = {
-  matcher: [
-    "/",
-    "/about",
-    "/blog/:path*",
-    "/contact",
-    "/logistics-hub",
-    "/platform",
-    "/pricing",
-    "/privacy-policy",
-    "/services/:path*",
-    "/terms-of-service",
-  ],
+  matcher: ["/((?!api|_next|favicon.ico|.*\\..*).*)"],
 };

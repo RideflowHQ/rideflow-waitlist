@@ -17,9 +17,12 @@ import type {
   PublicTrackingStatusEvent,
 } from "@/lib/tracking/types";
 
-type TrackingPageClientProps = {
-  companyName: string;
-  branding: PublicTrackingBranding;
+const DEFAULTS = {
+  companyName: "Rideflow",
+  branding: {
+    primaryColor: "#2563EB",
+    font: "DM_SANS",
+  } satisfies PublicTrackingBranding,
 };
 
 function formatOccurredAt(value?: string) {
@@ -40,15 +43,16 @@ function sortedHistory(history: PublicTrackingStatusEvent[] | undefined) {
   return [...history].sort((a, b) => a.sequence - b.sequence);
 }
 
-/**
- * Always loads GET /api/public/site on the current page host (rideflow.org or
- * customer hostname). Backend resolves the company from Host; response.isCustomDomain
- * tells the UI whether this is a custom tracking domain.
- */
-export function TrackingPageClient({ companyName, branding }: TrackingPageClientProps) {
-  const [site, setSite] = useState({
-    companyName,
-    branding,
+export function TrackingPageClient() {
+  const [site, setSite] = useState<{
+    companyName: string;
+    branding: PublicTrackingBranding;
+    isCustomDomain: boolean;
+    unavailable: boolean;
+    error: string;
+  }>({
+    companyName: DEFAULTS.companyName,
+    branding: DEFAULTS.branding,
     isCustomDomain: false,
     unavailable: false,
     error: "",
@@ -130,8 +134,6 @@ export function TrackingPageClient({ companyName, branding }: TrackingPageClient
   useEffect(() => {
     if (!activeReference) return;
 
-    // Same-origin Socket.IO; namespace /public (engine path /socket.io/*).
-    // Polling first: the /socket.io rewrite can't carry a websocket upgrade.
     const socket = io("/public", {
       transports: ["polling", "websocket"],
       autoConnect: true,
@@ -153,9 +155,7 @@ export function TrackingPageClient({ companyName, branding }: TrackingPageClient
 
     socket.on("connect", join);
     socket.on("TRACKING_UPDATED", onUpdated);
-    socket.on("ERROR", () => {
-      // Non-sensitive; keep current UI.
-    });
+    socket.on("ERROR", () => {});
 
     if (socket.connected) join();
 

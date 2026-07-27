@@ -17,8 +17,6 @@ const nextConfig: NextConfig = {
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
   async rewrites() {
-    // Same-origin Socket.IO (guide §6): proxy engine.io traffic to the backend.
-    // ponytail: websocket upgrade won't survive a Vercel rewrite; polling transport carries updates.
     const origin = (process.env.NEXT_PUBLIC_API_BASE_URL ?? "")
       .replace(/\/+$/, "")
       .replace(/\/api$/, "");
