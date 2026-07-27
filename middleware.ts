@@ -8,17 +8,24 @@ export function middleware(request: NextRequest) {
     request.headers.get("x-forwarded-host") ??
     request.nextUrl.hostname;
 
-  if (
-    isRideflowOwnedHost(hostname) ||
-    request.nextUrl.pathname.startsWith("/tracking")
-  ) {
-    return NextResponse.next();
-  }
+  const isOwned = isRideflowOwnedHost(hostname);
+  const isTrackingPath = request.nextUrl.pathname.startsWith("/tracking");
 
-  const url = request.nextUrl.clone();
-  url.pathname = "/tracking";
-  url.search = "";
-  return NextResponse.redirect(url);
+  // Debug: add headers to see what's happening
+  const response = isOwned || isTrackingPath
+    ? NextResponse.next()
+    : (() => {
+        const url = request.nextUrl.clone();
+        url.pathname = "/tracking";
+        url.search = "";
+        return NextResponse.redirect(url);
+      })();
+
+  response.headers.set("x-debug-hostname", hostname);
+  response.headers.set("x-debug-is-owned", String(isOwned));
+  response.headers.set("x-debug-pathname", request.nextUrl.pathname);
+
+  return response;
 }
 
 export const config = {
