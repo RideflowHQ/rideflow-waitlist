@@ -11,22 +11,14 @@ function unwrapData<T>(json: unknown): T | null {
   return "data" in json ? ((json as { data: T }).data ?? null) : (json as T);
 }
 
-function apiUrl(path: string, apiBase: string, isCustomDomain: boolean) {
-  return isCustomDomain ? `/api${path}` : `${apiBase}${path}`;
+/** Same-origin public API so Host is the current page hostname (rideflow.org or custom). */
+function apiUrl(path: string) {
+  return `/api${path}`;
 }
 
-async function publicGet<T>(
-  path: string,
-  apiBase: string,
-  isCustomDomain: boolean,
-  fallback: string,
-): Promise<PublicApiResult<T>> {
-  if (!isCustomDomain && !apiBase) {
-    return { ok: false, status: 503, error: "Tracking service is not configured" };
-  }
-
+async function publicGet<T>(path: string, fallback: string): Promise<PublicApiResult<T>> {
   try {
-    const response = await fetch(apiUrl(path, apiBase, isCustomDomain), {
+    const response = await fetch(apiUrl(path), {
       headers: { Accept: "application/json" },
     });
     const json = await response.json().catch(() => null);
@@ -51,14 +43,9 @@ async function publicGet<T>(
   }
 }
 
-export async function fetchTrackingSite(
-  apiBase: string,
-  isCustomDomain: boolean,
-): Promise<PublicApiResult<PublicTrackingSite>> {
+export async function fetchTrackingSite(): Promise<PublicApiResult<PublicTrackingSite>> {
   const result = await publicGet<PublicTrackingSite>(
     "/public/site",
-    apiBase,
-    isCustomDomain,
     "Unable to load tracking site",
   );
   if (!result.ok && result.status === 404) {
@@ -69,13 +56,9 @@ export async function fetchTrackingSite(
 
 export async function fetchTracking(
   reference: string,
-  apiBase: string,
-  isCustomDomain: boolean,
 ): Promise<PublicApiResult<PublicTrackingData>> {
   const result = await publicGet<PublicTrackingData>(
     `/public/tracking/${encodeURIComponent(reference)}`,
-    apiBase,
-    isCustomDomain,
     "Unable to load tracking information",
   );
   if (!result.ok && result.status === 404) {

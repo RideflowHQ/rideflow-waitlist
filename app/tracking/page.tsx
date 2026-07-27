@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 
 import { TrackingPageClient } from "./page.client";
-import { resolvePublicApiBase } from "@/lib/tracking/public-api";
 import type { PublicTrackingBranding } from "@/lib/tracking/types";
 import { fontCssFamily } from "@/lib/tracking/utils";
 
@@ -17,8 +16,7 @@ const DEFAULT_BRANDING: PublicTrackingBranding = {
   font: "DM_SANS",
 };
 
-export default async function TrackingPage() {
-  const { apiBase, socketUrl, isCustomDomainHost } = await resolvePublicApiBase();
+export default function TrackingPage() {
   const fontFamily = fontCssFamily(DEFAULT_BRANDING.font);
   const googleFamily = encodeURIComponent(fontFamily);
 
@@ -28,13 +26,7 @@ export default async function TrackingPage() {
         rel="stylesheet"
         href={`https://fonts.googleapis.com/css2?family=${googleFamily}:wght@400;500;600;700&display=swap`}
       />
-      <TrackingPageClient
-        companyName="Rideflow"
-        branding={DEFAULT_BRANDING}
-        apiBase={apiBase}
-        socketUrl={socketUrl}
-        isCustomDomain={isCustomDomainHost}
-      />
+      <TrackingPageClient companyName="Rideflow" branding={DEFAULT_BRANDING} />
     </>
   );
 }

@@ -1,6 +1,6 @@
 import { shouldShowSiteChrome } from "@/lib/tracking/host";
 
-import { HideOnBrowserCustomDomain } from "../hide-on-browser-custom-domain";
+import { HideOnTrackingPath } from "../hide-on-tracking-path";
 import CustomCursorClient from "./custom-cursor-client";
 
 export default async function CustomCursor() {
@@ -9,8 +9,8 @@ export default async function CustomCursor() {
   }
 
   return (
-    <HideOnBrowserCustomDomain>
+    <HideOnTrackingPath>
       <CustomCursorClient />
-    </HideOnBrowserCustomDomain>
+    </HideOnTrackingPath>
   );
 }

@@ -1,6 +1,6 @@
 import { shouldShowSiteChrome } from "@/lib/tracking/host";
 
-import { HideOnBrowserCustomDomain } from "./hide-on-browser-custom-domain";
+import { HideOnTrackingPath } from "./hide-on-tracking-path";
 import FooterClient from "./footer-client";
 
 export default async function Footer() {
@@ -9,8 +9,8 @@ export default async function Footer() {
   }
 
   return (
-    <HideOnBrowserCustomDomain>
+    <HideOnTrackingPath>
       <FooterClient />
-    </HideOnBrowserCustomDomain>
+    </HideOnTrackingPath>
   );
 }

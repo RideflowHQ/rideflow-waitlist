@@ -9,7 +9,6 @@ import { io, type Socket } from "socket.io-client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { isRideflowOwnedHost } from "@/lib/tracking/host";
 import { fetchTracking, fetchTrackingSite } from "@/lib/tracking/public-client";
 import { fontCssFamily, normalizeTrackingReference } from "@/lib/tracking/utils";
 import type {
@@ -21,9 +20,6 @@ import type {
 type TrackingPageClientProps = {
   companyName: string;
   branding: PublicTrackingBranding;
-  apiBase: string;
-  socketUrl: string;
-  isCustomDomain: boolean;
 };
 
 function formatOccurredAt(value?: string) {
@@ -44,23 +40,20 @@ function sortedHistory(history: PublicTrackingStatusEvent[] | undefined) {
   return [...history].sort((a, b) => a.sequence - b.sequence);
 }
 
-export function TrackingPageClient({
-  companyName,
-  branding,
-  apiBase,
-  socketUrl,
-  isCustomDomain,
-}: TrackingPageClientProps) {
-  // SSR host can be rewritten to staging.*; browser hostname is the source of truth for custom domains.
-  const [useCustomDomain, setUseCustomDomain] = useState(isCustomDomain);
-  const [hostChecked, setHostChecked] = useState(false);
+/**
+ * Always loads GET /api/public/site on the current page host (rideflow.org or
+ * customer hostname). Backend resolves the company from Host; response.isCustomDomain
+ * tells the UI whether this is a custom tracking domain.
+ */
+export function TrackingPageClient({ companyName, branding }: TrackingPageClientProps) {
   const [site, setSite] = useState({
     companyName,
     branding,
+    isCustomDomain: false,
     unavailable: false,
     error: "",
   });
-  const [isSiteLoading, setIsSiteLoading] = useState(isCustomDomain);
+  const [isSiteLoading, setIsSiteLoading] = useState(true);
   const [query, setQuery] = useState("");
   const [activeReference, setActiveReference] = useState<string | null>(null);
   const [result, setResult] = useState<PublicTrackingData | null>(null);
@@ -69,9 +62,6 @@ export function TrackingPageClient({
   const [isPending, startTransition] = useTransition();
   const socketRef = useRef<Socket | null>(null);
 
-  const effectiveApiBase = useCustomDomain ? "" : apiBase;
-  const effectiveSocketUrl = useCustomDomain ? "/public" : socketUrl;
-
   const primaryColor = site.branding.primaryColor || "#2563EB";
   const fontFamily = fontCssFamily(site.branding.font);
   const supportPhone = result?.company?.companyPhone || site.branding.companyPhone;
@@ -79,20 +69,9 @@ export function TrackingPageClient({
   const history = useMemo(() => sortedHistory(result?.statusHistory), [result?.statusHistory]);
 
   useEffect(() => {
-    const browserCustom = !isRideflowOwnedHost(window.location.hostname);
-    const custom = isCustomDomain || browserCustom;
-    setUseCustomDomain(custom);
-    setHostChecked(true);
-    if (!custom) setIsSiteLoading(false);
-  }, [isCustomDomain]);
-
-  useEffect(() => {
-    if (!hostChecked || !useCustomDomain) return;
-
     let cancelled = false;
-    setIsSiteLoading(true);
 
-    void fetchTrackingSite(effectiveApiBase, true).then((response) => {
+    void fetchTrackingSite().then((response) => {
       if (cancelled) return;
       setIsSiteLoading(false);
       if (!response.ok) {
@@ -102,6 +81,7 @@ export function TrackingPageClient({
       setSite({
         companyName: response.data.company.companyName,
         branding: response.data.branding,
+        isCustomDomain: response.data.isCustomDomain,
         unavailable: false,
         error: "",
       });
@@ -110,7 +90,7 @@ export function TrackingPageClient({
     return () => {
       cancelled = true;
     };
-  }, [hostChecked, useCustomDomain, effectiveApiBase]);
+  }, []);
 
   useEffect(() => {
     const href = `https://fonts.googleapis.com/css2?family=${encodeURIComponent(fontFamily)}:wght@400;500;600;700&display=swap`;
@@ -122,38 +102,36 @@ export function TrackingPageClient({
     document.head.appendChild(link);
   }, [fontFamily]);
 
-  const runLookup = useCallback(
-    (raw: string) => {
-      const normalized = normalizeTrackingReference(raw);
-      if (!normalized) {
-        setError("Enter a tracking ID");
+  const runLookup = useCallback((raw: string) => {
+    const normalized = normalizeTrackingReference(raw);
+    if (!normalized) {
+      setError("Enter a tracking ID");
+      setResult(null);
+      setActiveReference(null);
+      return;
+    }
+
+    startTransition(async () => {
+      setError(null);
+      setRetryAfterSeconds(undefined);
+      const response = await fetchTracking(normalized);
+      if (!response.ok) {
         setResult(null);
         setActiveReference(null);
+        setError(response.error);
+        setRetryAfterSeconds(response.retryAfterSeconds);
         return;
       }
-
-      startTransition(async () => {
-        setError(null);
-        setRetryAfterSeconds(undefined);
-        const response = await fetchTracking(normalized, effectiveApiBase, useCustomDomain);
-        if (!response.ok) {
-          setResult(null);
-          setActiveReference(null);
-          setError(response.error);
-          setRetryAfterSeconds(response.retryAfterSeconds);
-          return;
-        }
-        setResult(response.data);
-        setActiveReference(normalizeTrackingReference(response.data.referenceId || normalized));
-      });
-    },
-    [effectiveApiBase, useCustomDomain],
-  );
+      setResult(response.data);
+      setActiveReference(normalizeTrackingReference(response.data.referenceId || normalized));
+    });
+  }, []);
 
   useEffect(() => {
-    if (!activeReference || !effectiveSocketUrl) return;
+    if (!activeReference) return;
 
-    const socket = io(effectiveSocketUrl, {
+    // Same-origin Socket.IO; namespace /public (engine path /socket.io/*).
+    const socket = io("/public", {
       transports: ["websocket", "polling"],
       autoConnect: true,
       reconnection: true,
@@ -188,9 +166,9 @@ export function TrackingPageClient({
       socket.disconnect();
       socketRef.current = null;
     };
-  }, [activeReference, effectiveSocketUrl, runLookup]);
+  }, [activeReference, runLookup]);
 
-  if (!hostChecked || isSiteLoading) {
+  if (isSiteLoading) {
     return (
       <main className="flex min-h-[70vh] items-center justify-center bg-[#F3F4F6]">
         <Loader2 className="size-5 animate-spin text-slate-500" aria-label="Loading tracking site" />
@@ -220,6 +198,7 @@ export function TrackingPageClient({
     <main
       className="min-h-screen bg-[#F3F4F6] px-4 py-10 sm:px-6 sm:py-14"
       style={{ fontFamily: `"${fontFamily}", sans-serif` }}
+      data-custom-domain={site.isCustomDomain ? "true" : "false"}
     >
       <div className="mx-auto w-full max-w-2xl space-y-4">
         <div className="flex flex-col items-center gap-2 text-center">
