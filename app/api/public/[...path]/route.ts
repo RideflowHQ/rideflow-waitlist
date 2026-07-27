@@ -1,11 +1,5 @@
 import { type NextRequest, NextResponse } from "next/server";
 
-/**
- * Server-side proxy for the Rideflow public API (guide §7–8). The backend sees
- * the API host, so the original tracking hostname is forwarded via trusted
- * headers. RIDEFLOW_EDGE_SECRET is server-only and never reaches the browser.
- */
-
 function backendOrigin() {
   const base = process.env.RIDEFLOW_API_BASE ?? process.env.NEXT_PUBLIC_API_BASE_URL ?? "";
   return base.replace(/\/+$/, "").replace(/\/api$/, "");

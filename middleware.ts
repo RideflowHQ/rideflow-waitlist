@@ -22,5 +22,16 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/((?!api|_next|socket\\.io|.*\\..*).*)"],
+  matcher: [
+    "/",
+    "/about",
+    "/blog/:path*",
+    "/contact",
+    "/logistics-hub",
+    "/platform",
+    "/pricing",
+    "/privacy-policy",
+    "/services/:path*",
+    "/terms-of-service",
+  ],
 };
