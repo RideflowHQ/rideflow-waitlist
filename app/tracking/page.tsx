@@ -11,6 +11,11 @@ export const metadata: Metadata = {
 
 export default async function TrackingPage() {
   const h = await headers();
-  console.log(h);
+  console.log("[tracking page headers]", {
+    host: h.get("host"),
+    "x-forwarded-host": h.get("x-forwarded-host"),
+    "x-forwarded-proto": h.get("x-forwarded-proto"),
+  });
+
   return <TrackingPageClient />;
 }
