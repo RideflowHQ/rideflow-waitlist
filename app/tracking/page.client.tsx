@@ -9,7 +9,7 @@ import { io, type Socket } from "socket.io-client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { fetchTracking, fetchTrackingSite } from "@/lib/tracking/public-client";
+import { fetchTracking } from "@/lib/tracking/public-client";
 import { fontCssFamily, normalizeTrackingReference } from "@/lib/tracking/utils";
 import type {
   PublicTrackingBranding,
@@ -22,7 +22,6 @@ type TrackingPageClientProps = {
   branding: PublicTrackingBranding;
   apiBase: string;
   socketUrl: string;
-  isCustomDomain: boolean;
 };
 
 function formatOccurredAt(value?: string) {
@@ -48,15 +47,7 @@ export function TrackingPageClient({
   branding,
   apiBase,
   socketUrl,
-  isCustomDomain,
 }: TrackingPageClientProps) {
-  const [site, setSite] = useState({
-    companyName,
-    branding,
-    unavailable: false,
-    error: "",
-  });
-  const [isSiteLoading, setIsSiteLoading] = useState(isCustomDomain);
   const [query, setQuery] = useState("");
   const [activeReference, setActiveReference] = useState<string | null>(null);
   const [result, setResult] = useState<PublicTrackingData | null>(null);
@@ -65,28 +56,10 @@ export function TrackingPageClient({
   const [isPending, startTransition] = useTransition();
   const socketRef = useRef<Socket | null>(null);
 
-  const primaryColor = site.branding.primaryColor || "#2563EB";
-  const fontFamily = fontCssFamily(site.branding.font);
+  const primaryColor = branding.primaryColor || "#2563EB";
+  const fontFamily = fontCssFamily(branding.font);
 
   const history = useMemo(() => sortedHistory(result?.statusHistory), [result?.statusHistory]);
-
-  useEffect(() => {
-    if (!isCustomDomain) return;
-
-    void fetchTrackingSite(apiBase, true).then((response) => {
-      setIsSiteLoading(false);
-      if (!response.ok) {
-        setSite((current) => ({ ...current, unavailable: true, error: response.error }));
-        return;
-      }
-      setSite({
-        companyName: response.data.company.companyName,
-        branding: response.data.branding,
-        unavailable: false,
-        error: "",
-      });
-    });
-  }, [apiBase, isCustomDomain]);
 
   useEffect(() => {
     const href = `https://fonts.googleapis.com/css2?family=${encodeURIComponent(fontFamily)}:wght@400;500;600;700&display=swap`;
@@ -110,7 +83,7 @@ export function TrackingPageClient({
     startTransition(async () => {
       setError(null);
       setRetryAfterSeconds(undefined);
-      const response = await fetchTracking(normalized, apiBase, isCustomDomain);
+      const response = await fetchTracking(normalized, apiBase);
       if (!response.ok) {
         setResult(null);
         setActiveReference(null);
@@ -121,7 +94,7 @@ export function TrackingPageClient({
       setResult(response.data);
       setActiveReference(normalizeTrackingReference(response.data.referenceId || normalized));
     });
-  }, [apiBase, isCustomDomain]);
+  }, [apiBase]);
 
   useEffect(() => {
     if (!activeReference || !socketUrl) return;
@@ -163,31 +136,15 @@ export function TrackingPageClient({
     };
   }, [activeReference, socketUrl, runLookup]);
 
-  if (site.unavailable) {
-    return (
-      <main className="flex min-h-[70vh] flex-col items-center justify-center bg-[#F3F4F6] px-4 py-16 text-center">
-        <h1 className="text-2xl font-semibold text-slate-900">Tracking unavailable</h1>
-        <p className="mt-2 max-w-md text-sm text-slate-600">
-          {site.error || "This tracking site could not be found."}
-        </p>
-      </main>
-    );
-  }
-
-  if (isSiteLoading) {
-    return (
-      <main className="flex min-h-[70vh] items-center justify-center bg-[#F3F4F6]">
-        <Loader2 className="size-5 animate-spin text-slate-500" aria-label="Loading tracking site" />
-      </main>
-    );
-  }
-
   const displayId =
     result?.trackingId ||
     result?.shipmentNumber ||
     result?.orderId ||
     result?.referenceId ||
     "";
+
+  const displayCompanyName = result?.company?.companyName || companyName;
+  const logoUrl = result?.company?.companyLogo || branding.logoUrl;
 
   return (
     <main
@@ -196,17 +153,17 @@ export function TrackingPageClient({
     >
       <div className="mx-auto w-full max-w-2xl space-y-4">
         <div className="flex flex-col items-center gap-2 text-center">
-          {site.branding.logoUrl ? (
+          {logoUrl ? (
             <Image
-              src={site.branding.logoUrl}
-              alt={`${site.companyName} logo`}
+              src={logoUrl}
+              alt={`${displayCompanyName} logo`}
               width={160}
               height={48}
               className="h-12 w-auto max-w-45 object-contain"
               unoptimized
             />
           ) : (
-            <p className="text-lg font-semibold text-slate-900">{site.companyName}</p>
+            <p className="text-lg font-semibold text-slate-900">{displayCompanyName}</p>
           )}
           <h1 className="text-2xl font-bold text-slate-900 sm:text-3xl">Track Your Order</h1>
           <p className="text-sm text-slate-600">
@@ -359,7 +316,7 @@ export function TrackingPageClient({
             <div className="rounded-xl border border-gray-200 bg-white p-6 text-center shadow-sm">
               <p className="text-sm font-semibold text-slate-900">Need Help with Your Order?</p>
               <p className="mt-1 text-xs text-slate-600">
-                Contact {site.companyName}
+                Contact {displayCompanyName}
                 {result.company?.companyEmail ? ` at ${result.company.companyEmail}` : ""}
                 {result.company?.companyPhone ? ` or ${result.company.companyPhone}` : ""}.
               </p>
