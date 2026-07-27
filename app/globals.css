@@ -134,7 +134,10 @@
 }
 
 @media (pointer: fine) {
-  *, *::before, *::after {
+  body.cursor-none,
+  body.cursor-none *,
+  body.cursor-none *::before,
+  body.cursor-none *::after {
     cursor: none !important;
   }
 }
