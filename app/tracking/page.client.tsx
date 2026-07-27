@@ -70,6 +70,8 @@ export function TrackingPageClient({
 
   const history = useMemo(() => sortedHistory(result?.statusHistory), [result?.statusHistory]);
 
+  console.log("is this a custom domain?", isCustomDomain);
+
   useEffect(() => {
     if (!isCustomDomain) return;
 
