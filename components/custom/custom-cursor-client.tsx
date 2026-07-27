@@ -2,6 +2,9 @@
 
 import { useEffect, useState } from "react";
 import { motion, useMotionValue, useSpring } from "motion/react";
+import { usePathname } from "next/navigation";
+
+import { isRideflowOwnedHost } from "@/lib/tracking/host";
 
 const TEXT_TAGS = [
   "P",
@@ -40,6 +43,12 @@ function getBackgroundLuminance(el: HTMLElement): number | null {
 }
 
 export default function CustomCursorClient() {
+  const pathname = usePathname();
+  const disabled =
+    pathname === "/tracking" ||
+    pathname?.startsWith("/tracking/") ||
+    (typeof window !== "undefined" &&
+      !isRideflowOwnedHost(window.location.hostname));
   const [cursorState, setCursorState] = useState<CursorState>("default");
   const [isVisible, setIsVisible] = useState(false);
   const [isFinePointer, setIsFinePointer] = useState(false);
@@ -56,14 +65,21 @@ export default function CustomCursorClient() {
   const y = useSpring(mouseY, springConfig);
 
   useEffect(() => {
+    if (disabled) {
+      document.body.classList.remove("cursor-none");
+      return;
+    }
+
     document.body.classList.add("cursor-none");
 
     return () => {
       document.body.classList.remove("cursor-none");
     };
-  }, []);
+  }, [disabled]);
 
   useEffect(() => {
+    if (disabled) return;
+
     const handleMouseMove = (e: MouseEvent) => {
       mouseX.set(e.clientX);
       mouseY.set(e.clientY);
@@ -100,7 +116,7 @@ export default function CustomCursorClient() {
         handleMouseLeave,
       );
     };
-  }, [mouseX, mouseY]);
+  }, [disabled, mouseX, mouseY]);
 
   const variants = {
     default: {
@@ -126,7 +142,7 @@ export default function CustomCursorClient() {
     },
   };
 
-  if (!isFinePointer) return null;
+  if (disabled || !isFinePointer) return null;
 
   return (
     <motion.div
