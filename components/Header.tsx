@@ -1,5 +1,6 @@
 import { shouldShowSiteChrome } from "@/lib/tracking/host";
 
+import { HideOnBrowserCustomDomain } from "./hide-on-browser-custom-domain";
 import HeaderClient from "./header-client";
 
 export default async function Header() {
@@ -7,5 +8,9 @@ export default async function Header() {
     return null;
   }
 
-  return <HeaderClient />;
+  return (
+    <HideOnBrowserCustomDomain>
+      <HeaderClient />
+    </HideOnBrowserCustomDomain>
+  );
 }

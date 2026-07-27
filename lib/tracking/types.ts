@@ -7,6 +7,7 @@ export type TrackingBrandFont =
 
 export type PublicTrackingBranding = {
   logoUrl?: string;
+  companyPhone?: string;
   primaryColor: string;
   font: TrackingBrandFont;
 };

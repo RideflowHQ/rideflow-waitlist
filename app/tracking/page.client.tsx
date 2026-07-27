@@ -9,6 +9,7 @@ import { io, type Socket } from "socket.io-client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { isRideflowOwnedHost } from "@/lib/tracking/host";
 import { fetchTracking, fetchTrackingSite } from "@/lib/tracking/public-client";
 import { fontCssFamily, normalizeTrackingReference } from "@/lib/tracking/utils";
 import type {
@@ -50,6 +51,9 @@ export function TrackingPageClient({
   socketUrl,
   isCustomDomain,
 }: TrackingPageClientProps) {
+  // SSR host can be rewritten to staging.*; browser hostname is the source of truth for custom domains.
+  const [useCustomDomain, setUseCustomDomain] = useState(isCustomDomain);
+  const [hostChecked, setHostChecked] = useState(false);
   const [site, setSite] = useState({
     companyName,
     branding,
@@ -65,17 +69,31 @@ export function TrackingPageClient({
   const [isPending, startTransition] = useTransition();
   const socketRef = useRef<Socket | null>(null);
 
+  const effectiveApiBase = useCustomDomain ? "" : apiBase;
+  const effectiveSocketUrl = useCustomDomain ? "/public" : socketUrl;
+
   const primaryColor = site.branding.primaryColor || "#2563EB";
   const fontFamily = fontCssFamily(site.branding.font);
+  const supportPhone = result?.company?.companyPhone || site.branding.companyPhone;
 
   const history = useMemo(() => sortedHistory(result?.statusHistory), [result?.statusHistory]);
 
-  console.log("is this a custom domain?", isCustomDomain);
+  useEffect(() => {
+    const browserCustom = !isRideflowOwnedHost(window.location.hostname);
+    const custom = isCustomDomain || browserCustom;
+    setUseCustomDomain(custom);
+    setHostChecked(true);
+    if (!custom) setIsSiteLoading(false);
+  }, [isCustomDomain]);
 
   useEffect(() => {
-    if (!isCustomDomain) return;
+    if (!hostChecked || !useCustomDomain) return;
 
-    void fetchTrackingSite(apiBase, true).then((response) => {
+    let cancelled = false;
+    setIsSiteLoading(true);
+
+    void fetchTrackingSite(effectiveApiBase, true).then((response) => {
+      if (cancelled) return;
       setIsSiteLoading(false);
       if (!response.ok) {
         setSite((current) => ({ ...current, unavailable: true, error: response.error }));
@@ -88,7 +106,11 @@ export function TrackingPageClient({
         error: "",
       });
     });
-  }, [apiBase, isCustomDomain]);
+
+    return () => {
+      cancelled = true;
+    };
+  }, [hostChecked, useCustomDomain, effectiveApiBase]);
 
   useEffect(() => {
     const href = `https://fonts.googleapis.com/css2?family=${encodeURIComponent(fontFamily)}:wght@400;500;600;700&display=swap`;
@@ -113,7 +135,7 @@ export function TrackingPageClient({
       startTransition(async () => {
         setError(null);
         setRetryAfterSeconds(undefined);
-        const response = await fetchTracking(normalized, apiBase, isCustomDomain);
+        const response = await fetchTracking(normalized, effectiveApiBase, useCustomDomain);
         if (!response.ok) {
           setResult(null);
           setActiveReference(null);
@@ -125,13 +147,13 @@ export function TrackingPageClient({
         setActiveReference(normalizeTrackingReference(response.data.referenceId || normalized));
       });
     },
-    [apiBase, isCustomDomain],
+    [effectiveApiBase, useCustomDomain],
   );
 
   useEffect(() => {
-    if (!activeReference || !socketUrl) return;
+    if (!activeReference || !effectiveSocketUrl) return;
 
-    const socket = io(socketUrl, {
+    const socket = io(effectiveSocketUrl, {
       transports: ["websocket", "polling"],
       autoConnect: true,
       reconnection: true,
@@ -166,7 +188,15 @@ export function TrackingPageClient({
       socket.disconnect();
       socketRef.current = null;
     };
-  }, [activeReference, socketUrl, runLookup]);
+  }, [activeReference, effectiveSocketUrl, runLookup]);
+
+  if (!hostChecked || isSiteLoading) {
+    return (
+      <main className="flex min-h-[70vh] items-center justify-center bg-[#F3F4F6]">
+        <Loader2 className="size-5 animate-spin text-slate-500" aria-label="Loading tracking site" />
+      </main>
+    );
+  }
 
   if (site.unavailable) {
     return (
@@ -175,14 +205,6 @@ export function TrackingPageClient({
         <p className="mt-2 max-w-md text-sm text-slate-600">
           {site.error || "This tracking site could not be found."}
         </p>
-      </main>
-    );
-  }
-
-  if (isSiteLoading) {
-    return (
-      <main className="flex min-h-[70vh] items-center justify-center bg-[#F3F4F6]">
-        <Loader2 className="size-5 animate-spin text-slate-500" aria-label="Loading tracking site" />
       </main>
     );
   }
@@ -366,7 +388,7 @@ export function TrackingPageClient({
               <p className="mt-1 text-xs text-slate-600">
                 Contact {site.companyName}
                 {result.company?.companyEmail ? ` at ${result.company.companyEmail}` : ""}
-                {result.company?.companyPhone ? ` or ${result.company.companyPhone}` : ""}.
+                {supportPhone ? ` or ${supportPhone}` : ""}.
               </p>
               {result.company?.companyEmail ? (
                 <a
