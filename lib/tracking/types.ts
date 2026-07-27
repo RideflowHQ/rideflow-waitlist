@@ -11,6 +11,14 @@ export type PublicTrackingBranding = {
   font: TrackingBrandFont;
 };
 
+export type PublicTrackingSite = {
+  isCustomDomain: boolean;
+  company: {
+    companyName: string;
+  };
+  branding: PublicTrackingBranding;
+};
+
 export type PublicTrackingStatusEvent = {
   sequence: number;
   status: string;

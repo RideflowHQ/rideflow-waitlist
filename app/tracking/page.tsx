@@ -17,8 +17,8 @@ const DEFAULT_BRANDING: PublicTrackingBranding = {
   font: "DM_SANS",
 };
 
-export default function TrackingPage() {
-  const { apiBase, socketUrl } = resolvePublicApiBase();
+export default async function TrackingPage() {
+  const { apiBase, socketUrl, isCustomDomainHost } = await resolvePublicApiBase();
   const fontFamily = fontCssFamily(DEFAULT_BRANDING.font);
   const googleFamily = encodeURIComponent(fontFamily);
 
@@ -33,6 +33,7 @@ export default function TrackingPage() {
         branding={DEFAULT_BRANDING}
         apiBase={apiBase}
         socketUrl={socketUrl}
+        isCustomDomain={isCustomDomainHost}
       />
     </>
   );
