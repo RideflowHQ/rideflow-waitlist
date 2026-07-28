@@ -6,6 +6,7 @@ import { motion } from "motion/react";
 import { Mail } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { CALENDLY_URL, CONTACT_EMAIL } from "@/lib/content/site";
+import { isCustomDomainBrowser } from "@/lib/tracking/host";
 
 const socials = [
   {
@@ -76,7 +77,7 @@ const footerColumns: { id: number; title: string; links: FooterLink[] }[] = [
 
 export default function Footer() {
   const pathname = usePathname();
-  if (pathname.startsWith("/tracking")) return null;
+  if (pathname.startsWith("/tracking") || isCustomDomainBrowser()) return null;
 
   return (
     <footer

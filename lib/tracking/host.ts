@@ -6,3 +6,10 @@ export function isRideflowOwnedHost(hostname: string): boolean {
     host.endsWith(".rideflow.org")
   );
 }
+
+export function isCustomDomainBrowser(): boolean {
+  return (
+    typeof window !== "undefined" &&
+    !isRideflowOwnedHost(window.location.hostname)
+  );
+}

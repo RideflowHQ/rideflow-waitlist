@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { motion, useMotionValue, useSpring } from "motion/react";
 import { usePathname } from "next/navigation";
 
+import { isCustomDomainBrowser } from "@/lib/tracking/host";
+
 const TEXT_TAGS = [
   "P",
   "H1",
@@ -42,7 +44,7 @@ function getBackgroundLuminance(el: HTMLElement): number | null {
 
 export default function CustomCursor() {
   const pathname = usePathname();
-  const disabled = pathname.startsWith("/tracking");
+  const disabled = pathname.startsWith("/tracking") || isCustomDomainBrowser();
   const [cursorState, setCursorState] = useState<CursorState>("default");
   const [isVisible, setIsVisible] = useState(false);
   const [isFinePointer, setIsFinePointer] = useState(false);

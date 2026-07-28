@@ -7,6 +7,7 @@ import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
 import { ChevronDown, Menu } from "lucide-react";
 import { useState } from "react";
 import { CALENDLY_URL, REGISTER_URL } from "@/lib/content/site";
+import { isCustomDomainBrowser } from "@/lib/tracking/host";
 
 const platformLinks = [
   { label: "Features", href: "/platform#features" },
@@ -25,7 +26,7 @@ export default function Header() {
   const [open, setOpen] = useState(false);
   const [platformOpen, setPlatformOpen] = useState(false);
 
-  if (pathname.startsWith("/tracking")) return null;
+  if (pathname.startsWith("/tracking") || isCustomDomainBrowser()) return null;
 
   const isPlatformActive = pathname.startsWith("/platform");
 
