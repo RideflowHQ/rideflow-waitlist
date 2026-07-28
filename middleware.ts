@@ -20,14 +20,14 @@ export function middleware(request: NextRequest) {
 
   const { pathname } = request.nextUrl;
 
-  // Rewrite keeps the browser URL — redirect stray marketing paths to /
+  // Rewrite keeps the browser URL — redirect stray marketing paths to /.
+  // Reuse request.nextUrl's own scheme/host/port (don't force the resolved
+  // customer hostname here) so the redirect can't bounce across whatever
+  // proxy hop got this request to us in the first place.
   if (pathname !== "/") {
     const url = request.nextUrl.clone();
     url.pathname = "/";
     url.search = "";
-    const [publicHost, publicPort] = hostname.split(":");
-    if (publicHost) url.hostname = publicHost;
-    if (publicPort) url.port = publicPort;
     return NextResponse.redirect(url);
   }
 
