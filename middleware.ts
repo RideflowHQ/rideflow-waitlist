@@ -2,7 +2,7 @@ import { type NextRequest, NextResponse } from "next/server";
 
 import { isRideflowOwnedHost } from "@/lib/tracking/host";
 
-const TRACKING_REWRITE_HEADER = "x-rideflow-tracking-rewrite";
+const TRACKING_REWRITE_PARAM = "__rideflow_tracking_rewrite";
 
 function resolveHostname(request: NextRequest): string {
   return (
@@ -20,10 +20,15 @@ export function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
-  const { pathname } = request.nextUrl;
-  const isTrackingRewrite = request.headers.get(TRACKING_REWRITE_HEADER) === "1";
+  const { pathname, search } = request.nextUrl;
+  const isTrackingRewrite =
+    request.nextUrl.searchParams.get(TRACKING_REWRITE_PARAM) === "1";
 
-  if (pathname !== "/" && !isTrackingRewrite) {
+  if (isTrackingRewrite) {
+    return NextResponse.next();
+  }
+
+  if (pathname !== "/" || search) {
     const url = request.nextUrl.clone();
     url.pathname = "/";
     url.search = "";
@@ -32,15 +37,8 @@ export function middleware(request: NextRequest) {
 
   const url = request.nextUrl.clone();
   url.pathname = "/tracking";
-
-  const requestHeaders = new Headers(request.headers);
-  requestHeaders.set(TRACKING_REWRITE_HEADER, "1");
-
-  return NextResponse.rewrite(url, {
-    request: {
-      headers: requestHeaders,
-    },
-  });
+  url.searchParams.set(TRACKING_REWRITE_PARAM, "1");
+  return NextResponse.rewrite(url);
 }
 
 export const config = {
