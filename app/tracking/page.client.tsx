@@ -9,6 +9,7 @@ import { io, type Socket } from "socket.io-client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { isCustomDomainBrowser } from "@/lib/tracking/host";
 import { fetchTracking, fetchTrackingSite } from "@/lib/tracking/public-client";
 import { fontCssFamily, normalizeTrackingReference } from "@/lib/tracking/utils";
 import type {
@@ -71,6 +72,14 @@ export function TrackingPageClient() {
   const supportPhone = result?.company?.companyPhone || site.branding.companyPhone;
 
   const history = useMemo(() => sortedHistory(result?.statusHistory), [result?.statusHistory]);
+
+  useEffect(() => {
+    if (!isCustomDomainBrowser()) return;
+    const cleanUrl = `${window.location.origin}/`;
+    if (window.location.href !== cleanUrl) {
+      window.history.replaceState(null, "", cleanUrl);
+    }
+  }, []);
 
   useEffect(() => {
     let cancelled = false;
