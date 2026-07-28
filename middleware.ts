@@ -4,6 +4,7 @@ import { isRideflowOwnedHost } from "@/lib/tracking/host";
 
 export function middleware(request: NextRequest) {
   const hostname =
+    request.headers.get("x-original-host") ??
     request.headers.get("x-forwarded-host") ??
     request.headers.get("host") ??
     request.nextUrl.hostname;
