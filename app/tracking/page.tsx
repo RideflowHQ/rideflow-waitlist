@@ -15,6 +15,9 @@ export default async function TrackingPage() {
     host: h.get("host"),
     "x-forwarded-host": h.get("x-forwarded-host"),
     "x-forwarded-proto": h.get("x-forwarded-proto"),
+    "x-forwarded-for": h.get("x-forwarded-for"),
+    "x-forwarded-port": h.get("x-forwarded-port"),
+    "x-forwarded-ua": h.get("x-forwarded-ua"),
   });
 
   return <TrackingPageClient />;
