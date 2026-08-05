@@ -38,29 +38,32 @@ type FooterLink = {
 const footerColumns: { id: number; title: string; links: FooterLink[] }[] = [
   {
     id: 1,
-    title: "Product",
+    title: "Move Goods",
     links: [
-      { linkTitle: "Features", link: "/platform#features" },
-      { linkTitle: "Pricing", link: "/pricing" },
-      { linkTitle: "How It Works", link: "/platform#how-it-works" },
-      { linkTitle: "Book a Demo", link: CALENDLY_URL, external: true },
+      { linkTitle: "How It Works", link: "/move#how-it-works" },
+      { linkTitle: "Why Rideflow", link: "/move#why-rideflow" },
+      { linkTitle: "Claim Your Slot", link: "/move#claim" },
     ],
   },
   {
     id: 2,
+    title: "Run Logistics",
+    links: [
+      { linkTitle: "Platform", link: "/platform" },
+      { linkTitle: "Rider Sourcing", link: "/rider-sourcing" },
+      { linkTitle: "Pricing", link: "/pricing" },
+      { linkTitle: "Rideflow Hub", link: "/hub" },
+      { linkTitle: "For Riders", link: "/riders" },
+      { linkTitle: "Book a Demo", link: CALENDLY_URL, external: true },
+    ],
+  },
+  {
+    id: 3,
     title: "Company",
     links: [
       { linkTitle: "About", link: "/about" },
       { linkTitle: "Blog", link: "/blog" },
       { linkTitle: "Contact", link: "/contact" },
-    ],
-  },
-  {
-    id: 3,
-    title: "Logistics Hub",
-    links: [
-      { linkTitle: "Join the Hub", link: "/logistics-hub#join" },
-      { linkTitle: "Hub FAQ", link: "/logistics-hub#trust" },
     ],
   },
   {

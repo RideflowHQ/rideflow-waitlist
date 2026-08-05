@@ -19,9 +19,50 @@ const nextConfig: NextConfig = {
   compress: true,
   poweredByHeader: false,
   reactStrictMode: true,
-  swcMinify: true,
   experimental: {
     optimizePackageImports: ["lucide-react", "motion"],
+  },
+  async redirects() {
+    return [
+      // /services is absorbed into /platform. Each service maps to the platform
+      // category that now carries it, so inbound links land on relevant content
+      // instead of the top of the page.
+      { source: "/services", destination: "/platform", permanent: true },
+      {
+        source: "/services/asset-investment-hire-purchase",
+        destination: "/platform#finance",
+        permanent: true,
+      },
+      {
+        source: "/services/fleet-asset-management",
+        destination: "/platform#assets",
+        permanent: true,
+      },
+      {
+        source: "/services/rider-workforce-management",
+        destination: "/platform#people",
+        permanent: true,
+      },
+      {
+        source: "/services/logistics-operations-management",
+        destination: "/platform#operations",
+        permanent: true,
+      },
+      {
+        source: "/services/payments-payroll-installments",
+        destination: "/platform#finance",
+        permanent: true,
+      },
+      {
+        source: "/services/reporting-insights-control-dashboard",
+        destination: "/platform#finance",
+        permanent: true,
+      },
+      // Catch any service slug added later or mistyped.
+      { source: "/services/:slug", destination: "/platform", permanent: true },
+      // The Hub keeps its SEO equity under a shorter, lane-neutral path.
+      { source: "/logistics-hub", destination: "/hub", permanent: true },
+    ];
   },
 };
 

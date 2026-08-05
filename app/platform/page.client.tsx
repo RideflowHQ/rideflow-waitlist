@@ -110,7 +110,7 @@ export function PlatformPage() {
 
           <div className="mt-10 flex flex-col gap-10">
             {platformCategories.map((category) => (
-              <div key={category.id}>
+              <div key={category.id} id={category.id} className="scroll-mt-28">
                 <h3 className="text-xl font-semibold text-rideflow-text mb-4">
                   {category.label}
                 </h3>

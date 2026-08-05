@@ -11,10 +11,11 @@ import {
   TestimoniesSection,
 } from "@/components/website/home";
 import dynamic from "next/dynamic";
-
-const Faqs = dynamic(() => import("@/components/Faqs"), {
-  loading: () => <div className="py-20" />,
-});
+// Imported statically on purpose: loading it through next/dynamic puts the Radix
+// Accordion inside a lazy/Suspense boundary, and React 19 folds Suspense into
+// useId generation — so the server and client produced different radix-_R_… ids
+// and hydration warned on every load.
+import Faqs from "@/components/Faqs";
 
 const BookingSection = dynamic(
   () => import("@/components/website/shared/booking"),
