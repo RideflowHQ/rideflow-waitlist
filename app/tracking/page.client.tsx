@@ -23,6 +23,7 @@ const DEFAULTS = {
   branding: {
     primaryColor: "#2563EB",
     font: "DM_SANS",
+    logoUrl: '/logo.svg',
   } satisfies PublicTrackingBranding,
 };
 
@@ -50,13 +51,13 @@ export function TrackingPageClient() {
     branding: PublicTrackingBranding;
     isCustomDomain: boolean;
     unavailable: boolean;
-    error: string;
+    error: string | undefined;
   }>({
     companyName: DEFAULTS.companyName,
     branding: DEFAULTS.branding,
     isCustomDomain: false,
     unavailable: false,
-    error: "",
+    error: undefined,
   });
   const [isSiteLoading, setIsSiteLoading] = useState(true);
   const [query, setQuery] = useState("");
@@ -98,7 +99,10 @@ export function TrackingPageClient() {
       }
       setSite({
         companyName: response.data.company.companyName,
-        branding: response.data.branding,
+        branding: {
+          ...response.data.branding,
+          logoUrl: response.data.branding.logoUrl || DEFAULTS.branding.logoUrl,
+        },
         isCustomDomain: response.data.isCustomDomain,
         unavailable: false,
         error: "",
