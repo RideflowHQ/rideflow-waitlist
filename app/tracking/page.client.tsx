@@ -82,6 +82,11 @@ export function TrackingPageClient() {
   }, []);
 
   useEffect(() => {
+    if (!isCustomDomainBrowser()) {
+      setIsSiteLoading(false);
+      return;
+    }
+
     let cancelled = false;
 
     void fetchTrackingSite().then((response) => {
