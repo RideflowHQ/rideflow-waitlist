@@ -99,7 +99,11 @@ export default function RootLayout({
           }}
         />
       </head>
+      {/* Browser extensions (Grammarly and similar) inject attributes such as
+          data-gr-ext-installed onto <body> before React hydrates. Nothing in the
+          app controls those, so suppress the diff on this element only. */}
       <body
+        suppressHydrationWarning
         className={`${dmSans.variable} font-sans antialiased flex flex-col h-full`}
       >
         <CustomCursor />

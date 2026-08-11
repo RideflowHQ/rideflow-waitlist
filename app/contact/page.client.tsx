@@ -25,10 +25,10 @@ export function ContactPage() {
           </TextAnimate>
           <p className="mt-4 text-rideflow-text-light leading-7">
             If you&apos;re a logistics company or independent rider looking to join
-            the Rideflow Logistics Hub, we&apos;d love to hear from you.
+            the Rideflow Hub, we&apos;d love to hear from you.
           </p>
           <Button asChild className="mt-8 bg-rideflow-blue text-white hover:bg-blue-700">
-            <Link href="/logistics-hub">Learn About the Logistics Hub →</Link>
+            <Link href="/hub">Learn About the Rideflow Hub →</Link>
           </Button>
         </div>
       </section>
