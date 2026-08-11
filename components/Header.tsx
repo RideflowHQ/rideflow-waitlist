@@ -7,7 +7,6 @@ import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
 import { ChevronDown, Menu } from "lucide-react";
 import { useEffect, useState } from "react";
 import { CALENDLY_URL, REGISTER_URL } from "@/lib/content/site";
-import { isCustomDomainBrowser } from "@/lib/tracking/host";
 import {
   DEFAULT_LANE,
   LANE_HOME,
@@ -24,6 +23,7 @@ const companyLinks: NavLink[] = [
   { label: "About", href: "/about" },
   { label: "Blog", href: "/blog" },
   { label: "Contact", href: "/contact" },
+  { label: "Track Order", href: "/tracking" },
 ];
 
 const runNav: NavItem[] = [
@@ -53,11 +53,9 @@ export default function Header() {
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [platformOpen, setPlatformOpen] = useState(false);
-
-  if (pathname.startsWith("/tracking") || isCustomDomainBrowser()) return null;
+  const [openMenu, setOpenMenu] = useState<string | null>(null);
 
   const isPlatformActive = pathname.startsWith("/platform");
-  const [openMenu, setOpenMenu] = useState<string | null>(null);
 
   const pathLane = laneFromPathname(pathname);
   const [lane, setLane] = useState<Lane>(pathLane ?? DEFAULT_LANE);

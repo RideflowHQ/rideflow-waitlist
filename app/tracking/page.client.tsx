@@ -215,7 +215,11 @@ export function TrackingPageClient() {
 
   return (
     <main
-      className="min-h-screen bg-[#F3F4F6] px-4 py-10 sm:px-6 sm:py-14"
+      className={`min-h-screen bg-[#F3F4F6] px-4 sm:px-6 ${
+        site.isCustomDomain || isCustomDomainBrowser()
+          ? "py-10 sm:py-14"
+          : "pb-10 pt-28 sm:pb-14 sm:pt-32"
+      }`}
       style={{ fontFamily: `"${fontFamily}", sans-serif` }}
       data-custom-domain={site.isCustomDomain ? "true" : "false"}
     >

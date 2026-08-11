@@ -4,9 +4,7 @@ import Image from "next/image";
 import { TextAnimate } from "./ui/text-animate";
 import { motion } from "motion/react";
 import { Mail } from "lucide-react";
-import { usePathname } from "next/navigation";
 import { CALENDLY_URL, CONTACT_EMAIL } from "@/lib/content/site";
-import { isCustomDomainBrowser } from "@/lib/tracking/host";
 
 const socials = [
   {
@@ -66,6 +64,7 @@ const footerColumns: { id: number; title: string; links: FooterLink[] }[] = [
       { linkTitle: "About", link: "/about" },
       { linkTitle: "Blog", link: "/blog" },
       { linkTitle: "Contact", link: "/contact" },
+      { linkTitle: "Track Order", link: "/tracking" },
     ],
   },
   {
@@ -79,9 +78,6 @@ const footerColumns: { id: number; title: string; links: FooterLink[] }[] = [
 ];
 
 export default function Footer() {
-  const pathname = usePathname();
-  if (pathname.startsWith("/tracking") || isCustomDomainBrowser()) return null;
-
   return (
     <footer
       id="footer"

@@ -8,6 +8,8 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import Header from "@/components/Header";
 import CustomCursor from "@/components/custom/CustomCursor";
 import dynamic from "next/dynamic";
+import { headers } from "next/headers";
+import { isCustomDomainRequest } from "@/lib/tracking/host";
 
 const dmSans = DM_Sans({ subsets: ["latin"], variable: "--font-dm-sans" });
 
@@ -37,11 +39,15 @@ const Footer = dynamic(() => import("@/components/Footer"), {
   loading: () => <div className="py-12" />,
 });
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // Decide chrome on the server from host headers so custom domains never get
+  // a first-paint flash of the Rideflow Header/Footer (client-only checks run too late).
+  const showSiteChrome = !isCustomDomainRequest(await headers());
+
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
@@ -106,11 +112,11 @@ export default function RootLayout({
         suppressHydrationWarning
         className={`${dmSans.variable} font-sans antialiased flex flex-col h-full`}
       >
-        <CustomCursor />
+        {showSiteChrome ? <CustomCursor /> : null}
         <Toaster />
-        <Header />
+        {showSiteChrome ? <Header /> : null}
         {children}
-        <Footer />
+        {showSiteChrome ? <Footer /> : null}
         {process.env.NEXT_PUBLIC_GA_ID ? (
           <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
         ) : null}
