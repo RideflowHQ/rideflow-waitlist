@@ -11,7 +11,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { isCustomDomainBrowser } from "@/lib/tracking/host";
 import { fetchTracking, fetchTrackingSite } from "@/lib/tracking/public-client";
-import { fontCssFamily, normalizeTrackingReference } from "@/lib/tracking/utils";
+import { fontCssFamily, formatTrackingStatus, normalizeTrackingReference } from "@/lib/tracking/utils";
 import type {
   PublicTrackingBranding,
   PublicTrackingData,
@@ -23,7 +23,7 @@ const DEFAULTS = {
   branding: {
     primaryColor: "#2563EB",
     font: "DM_SANS",
-    logoUrl: '/logo.svg',
+    logoUrl: "/logo.svg",
   } satisfies PublicTrackingBranding,
 };
 
@@ -43,6 +43,10 @@ function formatOccurredAt(value?: string) {
 function sortedHistory(history: PublicTrackingStatusEvent[] | undefined) {
   if (!history?.length) return [];
   return [...history].sort((a, b) => a.sequence - b.sequence);
+}
+
+function normalizeOptionalString(value: unknown): string {
+  return typeof value === "string" ? value.trim() : "";
 }
 
 export function TrackingPageClient() {
@@ -71,6 +75,8 @@ export function TrackingPageClient() {
   const primaryColor = site.branding.primaryColor || "#2563EB";
   const fontFamily = fontCssFamily(site.branding.font);
   const supportPhone = result?.company?.companyPhone || site.branding.companyPhone;
+  const logoUrl = normalizeOptionalString(site.branding.logoUrl);
+  const companyName = normalizeOptionalString(site.companyName);
 
   const history = useMemo(() => sortedHistory(result?.statusHistory), [result?.statusHistory]);
 
@@ -83,6 +89,9 @@ export function TrackingPageClient() {
   }, []);
 
   useEffect(() => {
+    // Rideflow-owned hosts use local defaults (including Rideflow logo).
+    // Custom domains must use only what /api/public/site returns — never fall
+    // back to the Rideflow logo when logoUrl is missing/empty.
     if (!isCustomDomainBrowser()) {
       setIsSiteLoading(false);
       return;
@@ -97,11 +106,15 @@ export function TrackingPageClient() {
         setSite((current) => ({ ...current, unavailable: true, error: response.error }));
         return;
       }
+
+      const apiCompanyName = normalizeOptionalString(response.data.company?.companyName);
+      const apiLogoUrl = normalizeOptionalString(response.data.branding?.logoUrl);
+
       setSite({
-        companyName: response.data.company.companyName,
+        companyName: apiCompanyName,
         branding: {
           ...response.data.branding,
-          logoUrl: response.data.branding.logoUrl || DEFAULTS.branding.logoUrl,
+          logoUrl: apiLogoUrl || undefined,
         },
         isCustomDomain: response.data.isCustomDomain,
         unavailable: false,
@@ -225,18 +238,18 @@ export function TrackingPageClient() {
     >
       <div className="mx-auto w-full max-w-2xl space-y-4">
         <div className="flex flex-col items-center gap-2 text-center">
-          {site.branding.logoUrl ? (
+          {logoUrl ? (
             <Image
-              src={site.branding.logoUrl}
-              alt={`${site.companyName} logo`}
+              src={logoUrl}
+              alt={`${companyName || "Company"} logo`}
               width={160}
               height={48}
               className="h-12 w-auto max-w-45 object-contain"
               unoptimized
             />
-          ) : (
-            <p className="text-lg font-semibold text-slate-900">{site.companyName}</p>
-          )}
+          ) : companyName ? (
+            <p className="text-lg font-semibold text-slate-900">{companyName}</p>
+          ) : null}
           <h1 className="text-2xl font-bold text-slate-900 sm:text-3xl">Track Your Order</h1>
           <p className="text-sm text-slate-600">
             Enter your order details to check the current status.
@@ -292,7 +305,7 @@ export function TrackingPageClient() {
                   className="rounded-full px-2.5 py-0.5 text-xs font-medium"
                   style={{ backgroundColor: `${primaryColor}22`, color: primaryColor }}
                 >
-                  {result.currentStatus}
+                  {formatTrackingStatus(result.currentStatus)}
                 </span>
               </div>
               {result.lastUpdatedAt ? (
@@ -326,7 +339,9 @@ export function TrackingPageClient() {
                         />
                         <div className="min-w-0 flex-1">
                           <div className="flex flex-wrap items-center gap-2">
-                            <p className="text-sm font-semibold text-slate-900">{step.status}</p>
+                            <p className="text-sm font-semibold text-slate-900">
+                              {formatTrackingStatus(step.status)}
+                            </p>
                             {isCurrent ? (
                               <span className="rounded bg-amber-100 px-1.5 py-0.5 text-[10px] font-medium text-amber-800">
                                 Current
@@ -388,7 +403,7 @@ export function TrackingPageClient() {
             <div className="rounded-xl border border-gray-200 bg-white p-6 text-center shadow-sm">
               <p className="text-sm font-semibold text-slate-900">Need Help with Your Order?</p>
               <p className="mt-1 text-xs text-slate-600">
-                Contact {site.companyName}
+                Contact {companyName || "support"}
                 {result.company?.companyEmail ? ` at ${result.company.companyEmail}` : ""}
                 {supportPhone ? ` or ${supportPhone}` : ""}.
               </p>
