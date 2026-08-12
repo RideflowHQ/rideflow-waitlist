@@ -17,3 +17,13 @@ export function fontCssFamily(font: TrackingBrandFont | string | undefined): str
 export function normalizeTrackingReference(input: string): string {
   return input.trim().replace(/^#/, "").toUpperCase();
 }
+
+export function formatTrackingStatus(status: string | undefined | null): string {
+  if (!status?.trim()) return "";
+  return status
+    .trim()
+    .split(/[_\s]+/)
+    .filter(Boolean)
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+    .join(" ");
+}
