@@ -210,7 +210,7 @@ function StepsTimeline({
 
       <div
         className={`relative flex flex-col text-white ${
-          compact ? "mt-8 gap-6 md:gap-8" : "mt-12 gap-10 lg:gap-12"
+          compact ? "mt-8 gap-6 md:gap-8" : "mt-0 gap-8 lg:gap-10 [@media(max-height:800px)]:gap-6"
         }`}
       >
         {homeSteps.map((step, index) => {
@@ -358,7 +358,7 @@ function DesktopHowItWorks({ reducedMotion }: { reducedMotion: boolean }) {
     >
       <div
         className={`overflow-hidden bg-[#04081A] ${
-          reducedMotion ? "relative min-h-[90vh]" : "sticky top-0 h-screen"
+          reducedMotion ? "relative min-h-[90vh]" : "sticky top-0 h-dvh"
         }`}
       >
         <div className="absolute bottom-0 left-0 right-[57%] top-0 z-0 h-full">
@@ -370,35 +370,39 @@ function DesktopHowItWorks({ reducedMotion }: { reducedMotion: boolean }) {
           />
         </div>
 
-        <div className="container relative z-10 mx-auto flex h-full items-center px-4">
-          <div className="flex w-full items-center">
+        <div className="container relative z-10 mx-auto flex h-full px-4">
+          <div className="flex h-full w-full items-stretch">
             <div className="w-[43%]" />
-            <div className="w-[57%] py-20 pl-16">
-              <div className="space-y-3 md:space-y-4">
+            {/* Pin CTA at the bottom so short viewports never clip Book a Demo;
+                steps scroll inside the middle if needed. */}
+            <div className="flex w-[57%] min-h-0 flex-col py-10 pl-16 xl:py-16">
+              <div className="shrink-0 space-y-3 md:space-y-4">
                 <Badge text="Getting Started" color="bg-white" />
                 <TextAnimate
                   animation="blurIn"
                   by="word"
                   startOnView
                   once
-                  className="text-2xl font-medium leading-tight text-white sm:text-3xl md:text-4xl lg:text-[2.6rem]"
+                  className="text-2xl font-medium leading-tight text-white sm:text-3xl md:text-4xl lg:text-[2.6rem] [@media(max-height:800px)]:text-[2rem]"
                 >
                   Up and Running in Three Steps.
                 </TextAnimate>
               </div>
 
-              <StepsTimeline
-                activeStep={staticActiveStep}
-                reachedSteps={staticReachedSteps}
-                anchorRefs={anchorRefs}
-                stepsColumnRef={stepsColumnRef}
-                lineGeometry={lineGeometry}
-                line1Draw={staticLine1}
-                line2Draw={staticLine2}
-              />
+              <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain py-4 [scrollbar-width:thin]">
+                <StepsTimeline
+                  activeStep={staticActiveStep}
+                  reachedSteps={staticReachedSteps}
+                  anchorRefs={anchorRefs}
+                  stepsColumnRef={stepsColumnRef}
+                  lineGeometry={lineGeometry}
+                  line1Draw={staticLine1}
+                  line2Draw={staticLine2}
+                />
+              </div>
 
               <Button
-                className="mt-10 w-max cursor-pointer bg-rideflow-blue px-4 py-2 font-semibold text-white hover:bg-blue-700 lg:mt-12"
+                className="mt-2 w-max shrink-0 cursor-pointer bg-rideflow-blue px-4 py-2 font-semibold text-white hover:bg-blue-700"
                 onClick={() => window.open(CALENDLY_URL, "_blank")}
               >
                 Book a Demo →

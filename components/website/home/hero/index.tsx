@@ -1,4 +1,3 @@
-import { TextAnimate } from "@/components/ui/text-animate";
 import WaitlistForm from "@/components/Form";
 import { useState } from "react";
 import Badge from "@/components/custom/badge";
@@ -23,15 +22,14 @@ export const Hero = () => {
         <div className="w-full lg:w-[47%] flex flex-col items-start gap-4 md:gap-6 h-full justify-center">
           <Badge text="Built for Nigerian Logistics" color="bg-white" />
           <div>
-            <TextAnimate
-              animation="blurIn"
-              by="word"
-              startOnView
-              once
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold text-foreground"
-            >
-              Streamline Your Logistics Operations.
-            </TextAnimate>
+            <h1 className="text-[clamp(3.25rem,7.2vw,6.5rem)] leading-[0.86] text-rideflow-ink-hard">
+              <span className="block font-black tracking-[-0.05em]">
+                Streamline
+              </span>
+              <span className="block font-light tracking-[-0.045em]">
+                Your Logistics Operations.
+              </span>
+            </h1>
             <p className="text-base sm:text-lg md:text-lg text-rideflow-text mt-3 md:mt-4">
               Rideflow is the all-in-one operations platform built for Nigerian
               logistics businesses. Manage your team, fleet, dispatch,

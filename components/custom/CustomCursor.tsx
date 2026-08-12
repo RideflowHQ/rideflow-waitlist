@@ -56,6 +56,14 @@ export default function CustomCursor() {
   const y = useSpring(mouseY, springConfig);
 
   useEffect(() => {
+    document.body.classList.add("cursor-none");
+
+    return () => {
+      document.body.classList.remove("cursor-none");
+    };
+  }, []);
+
+  useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       mouseX.set(e.clientX);
       mouseY.set(e.clientY);
