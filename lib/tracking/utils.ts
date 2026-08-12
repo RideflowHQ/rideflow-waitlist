@@ -18,6 +18,7 @@ export function normalizeTrackingReference(input: string): string {
   return input.trim().replace(/^#/, "").toUpperCase();
 }
 
+/** IN_TRANSIT → In Transit, PENDING_ASSIGNMENT → Pending Assignment */
 export function formatTrackingStatus(status: string | undefined | null): string {
   if (!status?.trim()) return "";
   return status
@@ -27,3 +28,11 @@ export function formatTrackingStatus(status: string | undefined | null): string 
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
     .join(" ");
 }
+
+export function formatTrackingNote(note: string | undefined | null): string {
+  if (!note?.trim()) return "";
+  return note.replace(/\b[A-Z][A-Z0-9]*(?:_[A-Z0-9]+)+\b/g, (token) =>
+    formatTrackingStatus(token),
+  );
+}
+

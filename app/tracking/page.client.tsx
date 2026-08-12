@@ -11,7 +11,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { isCustomDomainBrowser } from "@/lib/tracking/host";
 import { fetchTracking, fetchTrackingSite } from "@/lib/tracking/public-client";
-import { fontCssFamily, formatTrackingStatus, normalizeTrackingReference } from "@/lib/tracking/utils";
+import { fontCssFamily, formatTrackingNote, formatTrackingStatus, normalizeTrackingReference } from "@/lib/tracking/utils";
 import type {
   PublicTrackingBranding,
   PublicTrackingData,
@@ -348,7 +348,11 @@ export function TrackingPageClient() {
                               </span>
                             ) : null}
                           </div>
-                          {step.note ? <p className="text-xs text-slate-600">{step.note}</p> : null}
+                          {step.note ? (
+                            <p className="text-xs text-slate-600">
+                              {formatTrackingNote(step.note)}
+                            </p>
+                          ) : null}
                           {step.occurredAt ? (
                             <p className="mt-0.5 text-[11px] text-slate-500">
                               {formatOccurredAt(step.occurredAt)}
