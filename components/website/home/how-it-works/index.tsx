@@ -357,8 +357,8 @@ function DesktopHowItWorks({ reducedMotion }: { reducedMotion: boolean }) {
       style={{ height: reducedMotion ? undefined : `${SCROLL_SEGMENTS_VH}vh` }}
     >
       <div
-        className={`overflow-hidden bg-[#04081A] ${
-          reducedMotion ? "relative min-h-[90vh]" : "sticky top-0 h-dvh"
+        className={`bg-[#04081A] ${
+          reducedMotion ? "relative min-h-[90vh]" : "sticky top-0 min-h-dvh"
         }`}
       >
         <div className="absolute bottom-0 left-0 right-[57%] top-0 z-0 h-full">
@@ -370,13 +370,11 @@ function DesktopHowItWorks({ reducedMotion }: { reducedMotion: boolean }) {
           />
         </div>
 
-        <div className="container relative z-10 mx-auto flex h-full px-4">
-          <div className="flex h-full w-full items-stretch">
+        <div className="container relative z-10 mx-auto flex min-h-dvh px-4">
+          <div className="flex w-full items-stretch">
             <div className="w-[43%]" />
-            {/* Pin CTA at the bottom so short viewports never clip Book a Demo;
-                steps scroll inside the middle if needed. */}
-            <div className="flex w-[57%] min-h-0 flex-col py-10 pl-16 xl:py-16">
-              <div className="shrink-0 space-y-3 md:space-y-4">
+            <div className="flex w-[57%] flex-col justify-center py-10 pl-16 xl:py-16">
+              <div className="space-y-3 md:space-y-4">
                 <Badge text="Getting Started" color="bg-white" />
                 <TextAnimate
                   animation="blurIn"
@@ -389,7 +387,7 @@ function DesktopHowItWorks({ reducedMotion }: { reducedMotion: boolean }) {
                 </TextAnimate>
               </div>
 
-              <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain py-4 [scrollbar-width:thin]">
+              <div className="py-4">
                 <StepsTimeline
                   activeStep={staticActiveStep}
                   reachedSteps={staticReachedSteps}
@@ -402,7 +400,7 @@ function DesktopHowItWorks({ reducedMotion }: { reducedMotion: boolean }) {
               </div>
 
               <Button
-                className="mt-2 w-max shrink-0 cursor-pointer bg-rideflow-blue px-4 py-2 font-semibold text-white hover:bg-blue-700"
+                className="mt-2 w-max cursor-pointer bg-rideflow-blue px-4 py-2 font-semibold text-white hover:bg-blue-700"
                 onClick={() => window.open(CALENDLY_URL, "_blank")}
               >
                 Book a Demo →
