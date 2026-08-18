@@ -6,7 +6,6 @@ import { GoogleAnalytics } from "@next/third-parties/google";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import Header from "@/components/Header";
-import CustomCursor from "@/components/custom/CustomCursor";
 import dynamic from "next/dynamic";
 import { headers } from "next/headers";
 import { isCustomDomainRequest } from "@/lib/tracking/host";
@@ -112,7 +111,6 @@ export default async function RootLayout({
         suppressHydrationWarning
         className={`${dmSans.variable} font-sans antialiased flex flex-col h-full`}
       >
-        {showSiteChrome ? <CustomCursor /> : null}
         <Toaster />
         {showSiteChrome ? <Header /> : null}
         {children}
