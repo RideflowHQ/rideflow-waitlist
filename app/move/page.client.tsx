@@ -61,13 +61,13 @@ export function MovePage() {
 
           <div className="mt-[30px] flex flex-col lg:flex-row lg:items-start lg:justify-between gap-14">
             <div className="flex-1">
-              <h1 className="text-[clamp(3.25rem,7.2vw,6.5rem)] leading-[0.86] text-rideflow-ink-hard">
-                <span className="block font-light tracking-[-0.045em]">Stop</span>
+              <h1 className="text-[clamp(2.75rem,6vw,5.5rem)] leading-[0.95] text-rideflow-ink-hard">
+                <span className="block font-light tracking-[-0.045em]">Compare prices,</span>
                 <span className="block font-black tracking-[-0.05em]">
-                  overpaying
+                  book multiple orders
                 </span>
                 <span className="block font-light tracking-[-0.045em]">
-                  to move goods.
+                  instantly.
                 </span>
               </h1>
 
@@ -79,12 +79,12 @@ export function MovePage() {
               <div className="mt-8 flex flex-col items-start gap-3">
                 <Button
                   asChild
-                  className="rounded-xl bg-rideflow-blue px-8 py-[26px] text-[17px] font-semibold text-white hover:bg-blue-700"
+                  className="rounded-xl bg-rideflow-blue px-8 py-5 text-[17px] font-semibold text-white hover:bg-blue-700"
                 >
                   <Link href="#claim">Claim Your Slot</Link>
                 </Button>
-                <p className="text-base font-medium text-rideflow-text-extralight">
-                  Join the waitlist and get ₦1,000 off your first delivery.
+                <p className="text-sm font-medium text-rideflow-text-extralight">
+                  Join the waitlist and get <span className="font-bold">₦1,000</span> off your first delivery.
                 </p>
               </div>
             </div>
@@ -212,8 +212,8 @@ export function MovePage() {
               <h2 className="text-4xl md:text-[56px] font-bold leading-[1.02] tracking-[-0.035em] text-rideflow-text">
                 Claim your slot.
               </h2>
-              <p className="mt-6 text-[19px] leading-[1.6] text-rideflow-text-light">
-                Join the waitlist and get ₦1,000 off your first delivery.
+              <p className="mt-6 text-sm leading-[1.6] text-rideflow-text-light">
+                Join the waitlist and get <span className="font-bold">₦1,000</span> off your first delivery.
               </p>
             </div>
             <div className="w-full lg:w-[600px] shrink-0">
