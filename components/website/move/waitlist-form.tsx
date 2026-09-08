@@ -21,6 +21,10 @@ const moveWaitlistSchema = z.object({
   firstName: z.string().min(2, "First name is required"),
   lastName: z.string().min(2, "Last name is required"),
   email: z.string().email("Enter a valid email"),
+  phoneNumber: z
+    .string()
+    .min(10, "Phone number is required")
+    .regex(/^[0-9]+$/, "Phone number must contain only digits"),
   companyName: z.string().optional(),
 });
 
@@ -35,6 +39,7 @@ export function MoveWaitlistForm() {
       firstName: "",
       lastName: "",
       email: "",
+      phoneNumber: "",
       companyName: "",
     },
   });
@@ -47,9 +52,7 @@ export function MoveWaitlistForm() {
         body: JSON.stringify({
           fullName: `${values.firstName} ${values.lastName}`.trim(),
           email: values.email,
-          // The Hub endpoint requires a phone number; the Move waitlist does not
-          // collect one, so send an explicit placeholder rather than failing.
-          phoneNumber: "Not provided",
+          phoneNumber: `+234${values.phoneNumber}`,
           audienceType: "Vendor — Move Goods",
           companyName: values.companyName,
         }),
@@ -147,6 +150,35 @@ export function MoveWaitlistForm() {
                   className="bg-white"
                   {...field}
                 />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="phoneNumber"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Phone number</FormLabel>
+              <FormControl>
+                <div className="relative">
+                  <span className="absolute left-3 top-1/2 -translate-y-1/2 text-sm text-rideflow-text2">
+                    +234
+                  </span>
+                  <Input
+                    type="tel"
+                    placeholder="8012345678"
+                    className="bg-white pl-14"
+                    maxLength={10}
+                    {...field}
+                    onChange={(e) => {
+                      const value = e.target.value.replace(/\D/g, "");
+                      field.onChange(value);
+                    }}
+                  />
+                </div>
               </FormControl>
               <FormMessage />
             </FormItem>
