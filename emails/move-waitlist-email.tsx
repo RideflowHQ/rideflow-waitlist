@@ -67,7 +67,7 @@ const MoveWaitlistEmail = ({ firstName }: MoveWaitlistEmailProps) => {
                       className="inline-block mb-2"
                     />
                     <Text className="m-0 text-white text-[20px] md:text-[25px] font-semibold leading-tight text-center">
-                      WELCOME TO MOVE
+                      WELCOME TO THE RIDEFLOW HUBS
                     </Text>
                   </Column>
                   <Column className="w-[80px] align-middle">
