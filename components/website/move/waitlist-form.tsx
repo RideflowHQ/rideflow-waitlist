@@ -46,6 +46,7 @@ export function MoveWaitlistForm() {
 
   async function onSubmit(values: MoveWaitlistValues) {
     try {
+      // Submit to Notion
       const response = await fetch("/api/hub", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -60,6 +61,21 @@ export function MoveWaitlistForm() {
 
       if (!response.ok) {
         throw new Error("Failed to submit");
+      }
+
+      // Send confirmation email
+      try {
+        await fetch("/api/move-waitlist-email", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            email: values.email,
+            firstName: values.firstName,
+          }),
+        });
+      } catch (emailError) {
+        // Don't fail the whole submission if email fails
+        console.error("Failed to send email:", emailError);
       }
 
       setSubmittedEmail(values.email);
