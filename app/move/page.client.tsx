@@ -1,8 +1,16 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
 import { MoveWaitlistForm } from "@/components/website/move/waitlist-form";
-import Link from "next/link";
 
 const quotes = [
   { name: "SwiftEx", eta: "Today, 2–4 hrs", price: "₦2,400", best: true },
@@ -47,7 +55,44 @@ function SavingSticker() {
   );
 }
 
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 export function MovePage() {
+  const [heroEmail, setHeroEmail] = useState("");
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const openedForEmail = useRef("");
+  const holdDialogOpen = useRef(false);
+
+  useEffect(() => {
+    const email = heroEmail.trim();
+    if (!EMAIL_REGEX.test(email) || openedForEmail.current === email) return;
+
+    const timeout = window.setTimeout(() => {
+      openedForEmail.current = email;
+      setDialogOpen(true);
+    }, 2000);
+
+    return () => window.clearTimeout(timeout);
+  }, [heroEmail]);
+
+  function openWaitlist() {
+    const email = heroEmail.trim();
+    if (EMAIL_REGEX.test(email)) {
+      openedForEmail.current = email;
+    }
+    setDialogOpen(true);
+  }
+
+  function handleSubmitted() {
+    holdDialogOpen.current = true;
+    setHeroEmail("");
+    openedForEmail.current = "";
+    setDialogOpen(true);
+    window.setTimeout(() => {
+      holdDialogOpen.current = false;
+    }, 400);
+  }
+
   return (
     <main className="w-full flex flex-col relative bg-white">
       <section className="pt-32 pb-14 md:pt-38 md:pb-[88px]">
@@ -62,7 +107,9 @@ export function MovePage() {
           <div className="mt-[30px] flex flex-col lg:flex-row lg:items-start lg:justify-between gap-14">
             <div className="flex-1">
               <h1 className="text-[clamp(2.75rem,6vw,5.5rem)] leading-[0.95] text-rideflow-ink-hard">
-                <span className="block font-light tracking-[-0.045em]">Compare prices,</span>
+                <span className="block font-light tracking-[-0.045em]">
+                  Compare prices,
+                </span>
                 <span className="block font-black tracking-[-0.05em]">
                   book multiple orders
                 </span>
@@ -71,20 +118,34 @@ export function MovePage() {
                 </span>
               </h1>
 
-              <p className="mt-8 max-w-[560px] text-lg leading-[1.45] text-rideflow-text2">
-                Compare every logistics provider, decide your price, and book the
-                cheapest in minutes.
-              </p>
-
               <div className="mt-8 flex flex-col items-start gap-3">
-                <Button
-                  asChild
-                  className="rounded-xl bg-rideflow-blue px-8 py-5 text-[17px] font-semibold text-white hover:bg-blue-700"
-                >
-                  <Link href="#claim">Claim Your Slot</Link>
-                </Button>
+                <div className="flex w-full max-w-[560px] flex-col gap-3 sm:flex-row sm:items-center">
+                  <Input
+                    type="email"
+                    value={heroEmail}
+                    onChange={(event) => setHeroEmail(event.target.value)}
+                    onKeyDown={(event) => {
+                      if (event.key === "Enter") {
+                        event.preventDefault();
+                        openWaitlist();
+                      }
+                    }}
+                    placeholder="you@company.com"
+                    className="h-11 flex-1 rounded-xl border-2 border-rideflow-hairline bg-body-gray px-4 text-[15px] text-rideflow-ink-hard shadow-none placeholder:text-rideflow-text-extralight md:text-[15px] focus-visible:border-rideflow-blue focus-visible:ring-rideflow-blue/25"
+                    aria-label="Email"
+                  />
+                  <Button
+                    type="button"
+                    className="cursor-pointer h-11 shrink-0 rounded-xl bg-rideflow-blue px-6 text-[15px] font-semibold text-white hover:bg-blue-700"
+                    onClick={openWaitlist}
+                  >
+                    Claim Your Slot
+                  </Button>
+                </div>
                 <p className="text-sm font-medium text-rideflow-text-extralight">
-                  Join the waitlist and get <span className="font-bold">₦1,000</span> off your first delivery.
+                  Join the waitlist and get{" "}
+                  <span className="font-bold">₦1,000</span> off your first
+                  delivery.
                 </p>
               </div>
             </div>
@@ -97,51 +158,51 @@ export function MovePage() {
               </div>
 
               <div className="rounded-lg border-2 border-rideflow-hairline">
-              <div className="flex items-center justify-between rounded-t-[6px] bg-rideflow-ink-hard px-[18px] py-[14px]">
-                <p className="text-[13px] font-bold uppercase tracking-[0.16em] text-white">
-                  Ikeja → Lekki · 4kg
-                </p>
-                <p className="text-[13px] font-bold tracking-wide text-white">
-                  4 QUOTES
-                </p>
-              </div>
-
-              {quotes.map((quote, index) => (
-                <div
-                  key={quote.name}
-                  className={`relative flex items-baseline gap-4 p-[18px] ${
-                    index < quotes.length - 1
-                      ? "border-b border-rideflow-hairline"
-                      : ""
-                  }`}
-                >
-                  <p
-                    className={`shrink-0 text-[17px] tracking-[-0.01em] ${
-                      quote.best
-                        ? "font-bold text-rideflow-ink-hard"
-                        : "font-semibold text-[#8A8A8A]"
-                    }`}
-                  >
-                    {quote.name}
+                <div className="flex items-center justify-between rounded-t-[6px] bg-rideflow-ink-hard px-[18px] py-[14px]">
+                  <p className="text-[13px] font-bold uppercase tracking-[0.16em] text-white">
+                    Ikeja → Lekki · 4kg
                   </p>
-                  <p className="grow text-sm text-[#5A5A5A]">{quote.eta}</p>
-                  <p
-                    className={`w-[110px] shrink-0 text-right tracking-[-0.03em] ${
-                      quote.best
-                        ? "text-[26px] font-black text-rideflow-ink-hard"
-                        : "text-[22px] font-bold text-[#8A8A8A]"
-                    }`}
-                  >
-                    {quote.price}
+                  <p className="text-[13px] font-bold tracking-wide text-white">
+                    4 QUOTES
                   </p>
-
-                  {quote.best && (
-                    <div className="absolute -top-7 left-[252px] hidden lg:block">
-                      <SavingSticker />
-                    </div>
-                  )}
                 </div>
-              ))}
+
+                {quotes.map((quote, index) => (
+                  <div
+                    key={quote.name}
+                    className={`relative flex items-baseline gap-4 p-[18px] ${
+                      index < quotes.length - 1
+                        ? "border-b border-rideflow-hairline"
+                        : ""
+                    }`}
+                  >
+                    <p
+                      className={`shrink-0 text-[17px] tracking-[-0.01em] ${
+                        quote.best
+                          ? "font-bold text-rideflow-ink-hard"
+                          : "font-semibold text-[#8A8A8A]"
+                      }`}
+                    >
+                      {quote.name}
+                    </p>
+                    <p className="grow text-sm text-[#5A5A5A]">{quote.eta}</p>
+                    <p
+                      className={`w-[110px] shrink-0 text-right tracking-[-0.03em] ${
+                        quote.best
+                          ? "text-[26px] font-black text-rideflow-ink-hard"
+                          : "text-[22px] font-bold text-[#8A8A8A]"
+                      }`}
+                    >
+                      {quote.price}
+                    </p>
+
+                    {quote.best && (
+                      <div className="absolute -top-7 left-[252px] hidden lg:block">
+                        <SavingSticker />
+                      </div>
+                    )}
+                  </div>
+                ))}
               </div>
             </div>
           </div>
@@ -196,8 +257,8 @@ export function MovePage() {
                 vendors have already registered.
               </h2>
               <p className="mt-5 text-lg leading-[1.65] text-[#B8BBC4]">
-                They want to see every price before they book, so they always pay
-                the best rate — and they negotiate without switching apps or
+                They want to see every price before they book, so they always
+                pay the best rate — and they negotiate without switching apps or
                 making a single phone call.
               </p>
             </div>
@@ -205,7 +266,41 @@ export function MovePage() {
         </div>
       </section>
 
-      <section id="claim" className="scroll-mt-28 pt-16 pb-20 md:pt-24 md:pb-26">
+      <Dialog
+        open={dialogOpen}
+        onOpenChange={(open) => {
+          if (!open && holdDialogOpen.current) return;
+          setDialogOpen(open);
+        }}
+      >
+        <DialogContent
+          className="max-h-[90vh] overflow-y-auto sm:max-w-[600px]"
+          onPointerDownOutside={(event) => {
+            if (holdDialogOpen.current) event.preventDefault();
+          }}
+          onInteractOutside={(event) => {
+            if (holdDialogOpen.current) event.preventDefault();
+          }}
+        >
+          <DialogHeader>
+            <DialogTitle className="text-2xl font-bold tracking-[-0.03em] text-rideflow-text">
+              Claim your slot.
+            </DialogTitle>
+            <DialogDescription>
+              Join the waitlist and get ₦1,000 off your first delivery.
+            </DialogDescription>
+          </DialogHeader>
+          <MoveWaitlistForm
+            defaultEmail={heroEmail.trim()}
+            onSubmitted={handleSubmitted}
+          />
+        </DialogContent>
+      </Dialog>
+
+      <section
+        id="claim"
+        className="scroll-mt-28 pt-16 pb-20 md:pt-24 md:pb-26"
+      >
         <div className="container mx-auto px-6 max-w-7xl">
           <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-12 lg:gap-[88px]">
             <div className="w-full lg:w-[520px] shrink-0">
@@ -213,11 +308,13 @@ export function MovePage() {
                 Claim your slot.
               </h2>
               <p className="mt-6 text-sm leading-[1.6] text-rideflow-text-light">
-                Join the waitlist and get <span className="font-bold">₦1,000</span> off your first delivery.
+                Join the waitlist and get{" "}
+                <span className="font-bold">₦1,000</span> off your first
+                delivery.
               </p>
             </div>
             <div className="w-full lg:w-[600px] shrink-0">
-              <MoveWaitlistForm />
+              <MoveWaitlistForm onSubmitted={handleSubmitted} />
             </div>
           </div>
         </div>

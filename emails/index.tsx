@@ -140,8 +140,7 @@ const WaitlistEmail = ({ userFirstname }: { userFirstname: string }) => {
                   <Img
                     src="https://res.cloudinary.com/dy7brekso/image/upload/v1772020995/Ride_Horizontal_1_yqann0.svg"
                     alt="Rideflow icon"
-                    width={70}
-                    height={70}
+                    width={92}
                     className="block"
                   />
                 </Column>

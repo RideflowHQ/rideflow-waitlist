@@ -16,9 +16,9 @@ export async function POST(request: NextRequest) {
     }
 
     const { data, error } = await resend.emails.send({
-      from: "Rideflow Team <info@rideflow.org>",
+      from: "Michael from Rideflow <info@rideflow.org>",
       to: [email],
-      subject: "You're on the Move Waitlist! 🎉",
+      subject: "Welcome to Rideflow’s prime access list!",
       react: MoveWaitlistEmail({ firstName }),
     });
 
