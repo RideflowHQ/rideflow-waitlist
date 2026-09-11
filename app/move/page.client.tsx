@@ -119,7 +119,7 @@ export function MovePage() {
               </h1>
 
               <div className="mt-8 flex flex-col items-start gap-3">
-                <div className="flex w-full max-w-[560px] flex-col gap-3 sm:flex-row sm:items-center">
+                <div className="flex w-full max-w-[560px] flex-row items-center gap-2 sm:gap-3">
                   <Input
                     type="email"
                     value={heroEmail}
@@ -131,12 +131,12 @@ export function MovePage() {
                       }
                     }}
                     placeholder="you@company.com"
-                    className="h-11 flex-1 rounded-xl border-2 border-rideflow-hairline bg-body-gray px-4 text-[15px] text-rideflow-ink-hard shadow-none placeholder:text-rideflow-text-extralight md:text-[15px] focus-visible:border-rideflow-blue focus-visible:ring-rideflow-blue/25"
+                    className="h-11 min-w-0 flex-1 rounded-xl border-2 border-rideflow-hairline bg-body-gray px-3 text-[15px] text-rideflow-ink-hard shadow-none placeholder:text-rideflow-text-extralight sm:px-4 md:text-[15px] focus-visible:border-rideflow-blue focus-visible:ring-rideflow-blue/25"
                     aria-label="Email"
                   />
                   <Button
                     type="button"
-                    className="cursor-pointer h-11 shrink-0 rounded-xl bg-rideflow-blue px-6 text-[15px] font-semibold text-white hover:bg-blue-700"
+                    className="h-11 shrink-0 cursor-pointer rounded-xl bg-rideflow-blue px-3 text-[13px] font-semibold text-white hover:bg-blue-700 sm:px-6 sm:text-[15px]"
                     onClick={openWaitlist}
                   >
                     Claim Your Slot
@@ -274,7 +274,7 @@ export function MovePage() {
         }}
       >
         <DialogContent
-          className="max-h-[90vh] overflow-y-auto sm:max-w-[600px]"
+          className="max-h-[85dvh] overflow-y-auto p-4 sm:max-h-[90vh] sm:max-w-[600px]"
           onPointerDownOutside={(event) => {
             if (holdDialogOpen.current) event.preventDefault();
           }}

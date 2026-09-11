@@ -68,7 +68,7 @@ function DialogContent({
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           className={cn(
-            "bg-background pointer-events-auto relative grid w-full max-w-[calc(100%-2rem)] gap-4 rounded-lg border p-6 shadow-lg sm:max-w-lg",
+            "bg-background pointer-events-auto relative grid w-full max-w-[calc(100%-2rem)] gap-4 overflow-y-auto rounded-lg border p-6 shadow-lg max-h-[80dvh] sm:max-h-[90vh] sm:max-w-lg",
             className
           )}
         >
