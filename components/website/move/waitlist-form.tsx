@@ -30,7 +30,13 @@ const moveWaitlistSchema = z.object({
 
 type MoveWaitlistValues = z.infer<typeof moveWaitlistSchema>;
 
-export function MoveWaitlistForm() {
+export function MoveWaitlistForm({
+  defaultEmail = "",
+  onSubmitted,
+}: {
+  defaultEmail?: string;
+  onSubmitted?: () => void;
+}) {
   const [submittedEmail, setSubmittedEmail] = useState<string | null>(null);
 
   const form = useForm<MoveWaitlistValues>({
@@ -38,7 +44,7 @@ export function MoveWaitlistForm() {
     defaultValues: {
       firstName: "",
       lastName: "",
-      email: "",
+      email: defaultEmail,
       phoneNumber: "",
       companyName: "",
     },
@@ -80,6 +86,7 @@ export function MoveWaitlistForm() {
 
       setSubmittedEmail(values.email);
       form.reset();
+      onSubmitted?.();
     } catch {
       toast.error("Something went wrong. Please try again.");
     }
@@ -163,7 +170,11 @@ export function MoveWaitlistForm() {
                 <Input
                   type="email"
                   placeholder="you@company.com"
-                  className="bg-white"
+                  className={`bg-white ${
+                    defaultEmail
+                      ? "font-bold text-rideflow-text-extralight"
+                      : ""
+                  }`}
                   {...field}
                 />
               </FormControl>

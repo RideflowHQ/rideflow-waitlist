@@ -25,10 +25,8 @@ const MoveWaitlistEmail = ({ firstName }: MoveWaitlistEmailProps) => {
     <Html lang="en">
       <Tailwind>
         <Head>
-          <title>You're on the The Rideflow Hubs Waitlist!</title>
-          <Preview>
-            Thanks for joining the The Rideflow Hubs waitlist. Get ₦1,000 off your first delivery!
-          </Preview>
+          <title>Welcome to Rideflow&apos;s prime access list!</title>
+          <Preview>I have been waiting for you</Preview>
           <style>
             {`@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap");`}
           </style>
@@ -67,7 +65,7 @@ const MoveWaitlistEmail = ({ firstName }: MoveWaitlistEmailProps) => {
                       className="inline-block mb-2"
                     />
                     <Text className="m-0 text-white text-[20px] md:text-[25px] font-semibold leading-tight text-center">
-                      WELCOME TO THE RIDEFLOW HUBS
+                      WELCOME TO THE PRIME ACCESS LIST
                     </Text>
                   </Column>
                   <Column className="w-[80px] align-middle">
@@ -83,89 +81,37 @@ const MoveWaitlistEmail = ({ firstName }: MoveWaitlistEmailProps) => {
 
               {/* Body copy */}
               <Section>
-                <Text className="text-[20px] font-semibold leading-[28px] text-[#111827] mt-0 mb-4">
-                  You're on the list, {firstName}!
-                </Text>
-
                 <Text className="text-[16px] leading-[24px] text-[#344054] mt-0 mb-4">
-                  Hi {firstName},
+                  Hello {firstName},
                 </Text>
 
                 <Text className="text-[16px] leading-[24px] text-[#344054] m-0 mb-4">
-                  Thanks for joining the waitlist for <strong>The Rideflow Hubs</strong> the smartest way to compare every logistics provider, decide your price, and book the cheapest delivery in minutes.
+                  👋🏾 Michael here.
                 </Text>
 
                 <Text className="text-[16px] leading-[24px] text-[#344054] m-0 mb-4">
-                  We're launching soon in Lagos, and you're now on the priority list. Here's what you can expect:
+                  I&apos;m the CEO at Rideflow, and I&apos;ve been building this
+                  for you over the last two years.
                 </Text>
-
-                {/* Benefits list */}
-                <div style={{ marginBottom: "20px" }}>
-                  <div style={{ display: "flex", marginBottom: "12px" }}>
-                    <span style={{ marginRight: "8px", color: "#2C4BFD" }}>✓</span>
-                    <Text className="text-[15px] leading-[22px] text-[#344054] m-0">
-                      <strong>Compare prices</strong> from multiple logistics providers in real time
-                    </Text>
-                  </div>
-                  <div style={{ display: "flex", marginBottom: "12px" }}>
-                    <span style={{ marginRight: "8px", color: "#2C4BFD" }}>✓</span>
-                    <Text className="text-[15px] leading-[22px] text-[#344054] m-0">
-                      <strong>Book multiple orders</strong> at once no more one-by-one hassle
-                    </Text>
-                  </div>
-                  <div style={{ display: "flex", marginBottom: "12px" }}>
-                    <span style={{ marginRight: "8px", color: "#2C4BFD" }}>✓</span>
-                    <Text className="text-[15px] leading-[22px] text-[#344054] m-0">
-                      <strong>Save money instantly</strong> by always getting the best rate
-                    </Text>
-                  </div>
-                  <div style={{ display: "flex", marginBottom: "12px" }}>
-                    <span style={{ marginRight: "8px", color: "#2C4BFD" }}>✓</span>
-                    <Text className="text-[15px] leading-[22px] text-[#344054] m-0">
-                      <strong>Early access</strong> before the public launch
-                    </Text>
-                  </div>
-                </div>
-
-                {/* Discount highlight */}
-                <div
-                  style={{
-                    background: "#F8FAFC",
-                    border: "1px solid #E2E8F0",
-                    borderRadius: "8px",
-                    padding: "20px",
-                    marginBottom: "20px",
-                  }}
-                >
-                  <Text className="text-[12px] font-bold uppercase tracking-wider text-[#6B7280] mt-0 mb-2">
-                    Reserved for you
-                  </Text>
-                  <Text className="text-[30px] font-bold tracking-tight text-[#111827] mt-0 mb-2">
-                    ₦1,000 off
-                  </Text>
-                  <Text className="text-[14px] text-[#6B7280] m-0">
-                    Applied to your first delivery, automatically.
-                  </Text>
-                </div>
 
                 <Text className="text-[16px] leading-[24px] text-[#344054] m-0 mb-4">
-                  We'll reach out to you soon with your download link and early access instructions. In the meantime, if you have any questions, feel free to reach us at{" "}
-                  <Link
-                    href="mailto:info@rideflow.org"
-                    target="_blank"
-                    className="text-[#2C4BFD] underline"
-                  >
-                    info@rideflow.org
-                  </Link>
-                  .
+                  We&apos;ve done the hard work of bringing together trusted
+                  logistics providers in one place, so you can compare prices,
+                  negotiate the best rate, and book multiple deliveries at once.
                 </Text>
 
-                <Text className="text-[16px] leading-[24px] text-[#344054] m-0 mb-2">
-                  Warm regards,
+                <Text className="text-[16px] leading-[24px] text-[#344054] m-0 mb-4">
+                  This is just the beginning, and I&apos;m excited to have you
+                  on the journey.
                 </Text>
 
-                <Text className="text-[16px] font-semibold text-[#344054] m-0">
-                  The Rideflow Team
+                <Text className="text-[16px] leading-[24px] text-[#344054] m-0 mb-4">
+                  Aside from the ₦1,000 on your first delivery, what else would
+                  you love to see from Rideflow when we go live?
+                </Text>
+
+                <Text className="text-[16px] leading-[24px] text-[#344054] m-0 mb-4">
+                  Just hit reply. I&apos;ll be reading every response.
                 </Text>
               </Section>
 
@@ -181,8 +127,7 @@ const MoveWaitlistEmail = ({ firstName }: MoveWaitlistEmailProps) => {
                   <Img
                     src="https://res.cloudinary.com/dy7brekso/image/upload/v1772020995/Ride_Horizontal_1_yqann0.svg"
                     alt="Rideflow icon"
-                    width={70}
-                    height={70}
+                    width={92}
                     className="block"
                   />
                 </Column>
