@@ -76,6 +76,28 @@ export function MovePage() {
     return () => window.clearTimeout(timeout);
   }, [heroEmail]);
 
+  useEffect(() => {
+    const fromApp =
+      new URLSearchParams(window.location.search).get("from") === "app";
+    if (!fromApp && window.location.hash !== "#apps") return;
+
+    const node = document.getElementById("apps");
+    if (!node) return;
+
+    const reduce = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    const frame = window.requestAnimationFrame(() => {
+      node.scrollIntoView({
+        behavior: reduce ? "auto" : "smooth",
+        block: "start",
+      });
+      if (fromApp) window.history.replaceState(null, "", "/move#apps");
+    });
+
+    return () => window.cancelAnimationFrame(frame);
+  }, []);
+
   function openWaitlist() {
     const email = heroEmail.trim();
     if (EMAIL_REGEX.test(email)) {
