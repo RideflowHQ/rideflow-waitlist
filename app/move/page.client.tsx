@@ -10,6 +10,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
+import { AppDownloadSection } from "@/components/website/move/app-download-cta";
 import { MoveWaitlistForm } from "@/components/website/move/waitlist-form";
 
 const quotes = [
@@ -238,6 +239,8 @@ export function MovePage() {
           </div>
         </div>
       </section>
+
+      <AppDownloadSection />
 
       <section
         id="why-rideflow"
