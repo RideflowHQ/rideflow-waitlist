@@ -228,10 +228,10 @@ export function TrackingPageClient() {
 
   return (
     <main
-      className={`min-h-screen bg-[#F3F4F6] px-4 sm:px-6 ${
+      className={`flex-1 bg-[#F3F4F6] px-4 sm:px-6 ${
         site.isCustomDomain || isCustomDomainBrowser()
           ? "py-10 sm:py-14"
-          : "pb-10 pt-28 sm:pb-14 sm:pt-32"
+          : "pb-16 pt-28 sm:pb-20 sm:pt-32"
       }`}
       style={{ fontFamily: `"${fontFamily}", sans-serif` }}
       data-custom-domain={site.isCustomDomain ? "true" : "false"}

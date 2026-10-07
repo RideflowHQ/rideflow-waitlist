@@ -109,7 +109,7 @@ export default async function RootLayout({
           app controls those, so suppress the diff on this element only. */}
       <body
         suppressHydrationWarning
-        className={`${dmSans.variable} font-sans antialiased flex flex-col h-full`}
+        className={`${dmSans.variable} font-sans antialiased flex min-h-dvh flex-col`}
       >
         <Toaster />
         {showSiteChrome ? <Header /> : null}
