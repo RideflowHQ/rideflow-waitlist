@@ -66,7 +66,7 @@ export default function WorldMap({
       />
       <svg
         ref={svgRef}
-        viewBox={`0 0 ${map.width} ${map.height}`}
+        viewBox={`0 0 ${map.image.width} ${map.image.height}`}
         className="pointer-events-none absolute inset-0 h-full w-full select-none"
       >
         {dots.map((dot, i) => {
