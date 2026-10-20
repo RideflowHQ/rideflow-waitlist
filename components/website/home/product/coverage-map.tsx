@@ -41,8 +41,12 @@ export function CoverageMap({ id = "coverage" }: { id?: string }) {
           </p>
         </div>
 
-        <div className="mt-10 overflow-hidden rounded-2xl border border-rideflow-hairline bg-white">
-          <WorldMap dots={routes} lineColor="#2844e8" />
+        <div className="-mx-6 mt-10 overflow-hidden border-y border-rideflow-hairline bg-white sm:mx-0 sm:rounded-2xl sm:border">
+          <div className="relative h-[20rem] overflow-hidden sm:h-[24rem] md:h-[28rem] lg:h-auto">
+            <div className="absolute left-1/2 top-1/2 w-[280%] -translate-x-[51%] -translate-y-[56%] sm:w-[230%] md:w-[185%] lg:static lg:w-full lg:translate-x-0 lg:translate-y-0">
+              <WorldMap dots={routes} lineColor="#2844e8" />
+            </div>
+          </div>
         </div>
       </div>
     </section>
