@@ -12,7 +12,6 @@ import {
 import { Input } from "@/components/ui/input";
 import { AppDownloadSection } from "@/components/website/move/app-download-cta";
 import { MoveWaitlistForm } from "@/components/website/move/waitlist-form";
-import { AppDownloadSection } from "@/components/website/home/product/app-download";
 import { CoverageMap } from "@/components/website/home/product/coverage-map";
 import { JobCompare } from "@/components/website/home/product/job-compare";
 import { OrderFlow } from "@/components/website/home/product/order-flow";
@@ -227,8 +226,6 @@ export function MovePage() {
       <JobCompare />
       <MoveSectors />
       <CoverageMap />
-      <AppDownloadSection />
-
       <AppDownloadSection />
 
       <section
