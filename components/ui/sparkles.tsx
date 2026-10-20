@@ -1,7 +1,7 @@
 "use client";
 import React, { useId } from "react";
 import Particles, { ParticlesProvider } from "@tsparticles/react";
-import type { Container, Engine, SingleOrMultiple } from "@tsparticles/engine";
+import type { Container, Engine } from "@tsparticles/engine";
 import { loadSlim } from "@tsparticles/slim";
 import { cn } from "@/lib/utils";
 import { motion, useAnimation } from "motion/react";
@@ -150,23 +150,13 @@ export const SparklesCore = (props: ParticlesProps) => {
               },
               effect: {
                 close: true,
-                fill: true,
                 options: {},
-                type: {} as SingleOrMultiple<string> | undefined,
               },
               groups: {},
               move: {
                 angle: {
                   offset: 0,
                   value: 90,
-                },
-                attract: {
-                  distance: 200,
-                  enable: false,
-                  rotate: {
-                    x: 3000,
-                    y: 3000,
-                  },
                 },
                 center: {
                   x: 50,
@@ -207,11 +197,6 @@ export const SparklesCore = (props: ParticlesProps) => {
                   enable: false,
                 },
                 straight: false,
-                trail: {
-                  enable: false,
-                  length: 10,
-                  fill: {},
-                },
                 vibrate: false,
                 warp: false,
               },
@@ -258,7 +243,6 @@ export const SparklesCore = (props: ParticlesProps) => {
               },
               shape: {
                 close: true,
-                fill: true,
                 options: {},
                 type: "circle",
               },
