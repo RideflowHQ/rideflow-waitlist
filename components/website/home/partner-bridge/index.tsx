@@ -30,16 +30,12 @@ export const PartnerBridgeSection = () => {
           once
           className="mt-4 font-medium text-3xl sm:text-4xl md:text-[2.6rem] leading-tight"
         >
-          Get Discovered on the Rideflow Hub.
+          Get discovered on Hubs. Run the rest on Rideflow.
         </TextAnimate>
         <p className="mt-4 text-base md:text-lg text-rideflow-text-light leading-7">
-          Customers are searching for logistics services in your service area
-          right now. List your branches, showcase your services, and receive
-          delivery requests directly through the platform.
-        </p>
-        <p className="mt-4 text-base md:text-lg text-rideflow-text-light leading-7">
-          If you already run your operations on Rideflow, the Hub complements
-          your existing workflows rather than replacing them.
+          List your business where customers are already looking. Requests land
+          straight in your dispatch dashboard, alongside your fleet, team,
+          compliance and finances.
         </p>
 
         <div className="mt-10 grid gap-5 md:grid-cols-3">

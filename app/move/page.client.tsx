@@ -12,35 +12,21 @@ import {
 import { Input } from "@/components/ui/input";
 import { AppDownloadSection } from "@/components/website/move/app-download-cta";
 import { MoveWaitlistForm } from "@/components/website/move/waitlist-form";
+import { AppDownloadSection } from "@/components/website/home/product/app-download";
+import { CoverageMap } from "@/components/website/home/product/coverage-map";
+import { JobCompare } from "@/components/website/home/product/job-compare";
+import { OrderFlow } from "@/components/website/home/product/order-flow";
+import { RiderFlow } from "@/components/website/home/product/rider-flow";
+import {
+  MoveSectors,
+  RideflowVerified,
+} from "@/components/website/home/product/hubs-copy";
 
 const quotes = [
   { name: "SwiftEx", eta: "Today, 2–4 hrs", price: "₦2,400", best: true },
   { name: "Kargo", eta: "Today, 3–5 hrs", price: "₦3,100", best: false },
   { name: "MoveDash", eta: "Tomorrow, AM", price: "₦3,850", best: false },
   { name: "Naija Haul", eta: "Tomorrow, PM", price: "₦4,200", best: false },
-];
-
-const steps = [
-  {
-    number: "01",
-    title: "Download the App",
-    text: "Get started in seconds and set up your account.",
-  },
-  {
-    number: "02",
-    title: "Find Nearby Delivery Partners",
-    text: "Locate the closest logistics companies or independent riders in real time.",
-  },
-  {
-    number: "03",
-    title: "Compare & Choose Your Rate",
-    text: "Select the best price option that fits your budget.",
-  },
-  {
-    number: "04",
-    title: "Book Instantly",
-    text: "Confirm your order for immediate, hassle-free pickup.",
-  },
 ];
 
 function SavingSticker() {
@@ -123,26 +109,29 @@ export function MovePage() {
           <div className="inline-flex items-center gap-[9px] rounded-full border border-rideflow-hairline bg-white py-[7px] pl-[11px] pr-[14px]">
             <span className="size-[7px] shrink-0 rounded-full bg-rideflow-blue" />
             <span className="text-[13px] font-semibold text-rideflow-text2">
-              Launching soon in Lagos
+              Rideflow Hubs · Launching 11.11.2026
             </span>
           </div>
 
           <div className="mt-[30px] flex flex-col lg:flex-row lg:items-start lg:justify-between gap-14">
             <div className="flex-1">
               <h1 className="text-[clamp(2.75rem,6vw,5.5rem)] leading-[0.95] text-rideflow-ink-hard">
-                <span className="block font-light tracking-[-0.045em]">
-                  Compare prices,
-                </span>
                 <span className="block font-black tracking-[-0.05em]">
-                  book multiple orders
+                  Find. Compare. Book.
                 </span>
                 <span className="block font-light tracking-[-0.045em]">
-                  instantly.
+                  Verified logistics, in one place.
                 </span>
               </h1>
+              <p className="mt-5 max-w-xl text-base leading-7 text-rideflow-text-light sm:text-lg">
+                Rideflow Hubs is where Nigeria finds its logistics partners.
+                Compare verified companies and independent riders by fees,
+                ratings and coverage, book in a few taps, then track every
+                delivery live.
+              </p>
 
               <div className="mt-8 flex flex-col items-start gap-3">
-                <div className="flex w-full max-w-[560px] flex-col gap-3 sm:flex-row sm:items-center">
+                <div className="flex w-full max-w-[560px] flex-row items-center gap-2 sm:gap-3">
                   <Input
                     type="email"
                     value={heroEmail}
@@ -154,12 +143,12 @@ export function MovePage() {
                       }
                     }}
                     placeholder="you@company.com"
-                    className="h-11 flex-1 rounded-xl border-2 border-rideflow-hairline bg-body-gray px-4 text-[15px] text-rideflow-ink-hard shadow-none placeholder:text-rideflow-text-extralight md:text-[15px] focus-visible:border-rideflow-blue focus-visible:ring-rideflow-blue/25"
+                    className="h-11 min-w-0 flex-1 rounded-xl border-2 border-rideflow-hairline bg-body-gray px-3 text-[15px] text-rideflow-ink-hard shadow-none placeholder:text-rideflow-text-extralight sm:px-4 md:text-[15px] focus-visible:border-rideflow-blue focus-visible:ring-rideflow-blue/25"
                     aria-label="Email"
                   />
                   <Button
                     type="button"
-                    className="cursor-pointer h-11 shrink-0 rounded-xl bg-rideflow-blue px-6 text-[15px] font-semibold text-white hover:bg-blue-700"
+                    className="h-11 shrink-0 cursor-pointer rounded-xl bg-rideflow-blue px-3 text-[13px] font-semibold text-white hover:bg-blue-700 sm:px-6 sm:text-[15px]"
                     onClick={openWaitlist}
                   >
                     Claim Your Slot
@@ -232,35 +221,13 @@ export function MovePage() {
         </div>
       </section>
 
-      <section
-        id="how-it-works"
-        className="scroll-mt-28 border-t border-rideflow-hairline bg-white py-14 md:py-[88px]"
-      >
-        <div className="container mx-auto px-6 max-w-7xl">
-          <h2 className="max-w-[640px] text-3xl sm:text-4xl md:text-[48px] font-bold leading-[1.05] tracking-[-0.03em] text-rideflow-text">
-            How will this work for you?
-          </h2>
-
-          <div className="mt-14 grid gap-7 sm:grid-cols-2 lg:grid-cols-4">
-            {steps.map((step) => (
-              <div
-                key={step.number}
-                className="rounded-[18px] bg-body-gray px-[26px] pt-[26px] pb-[30px]"
-              >
-                <p className="text-[32px] font-bold leading-none tracking-[-0.03em] text-rideflow-blue">
-                  {step.number}
-                </p>
-                <h3 className="mt-[18px] text-[21px] font-semibold tracking-[-0.01em] text-rideflow-text">
-                  {step.title}
-                </h3>
-                <p className="mt-2 leading-[1.6] text-rideflow-text-light">
-                  {step.text}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <OrderFlow id="how-it-works" holdForCover />
+      <RiderFlow id="for-riders" coverPrevious />
+      <RideflowVerified />
+      <JobCompare />
+      <MoveSectors />
+      <CoverageMap />
+      <AppDownloadSection />
 
       <AppDownloadSection />
 
@@ -299,7 +266,7 @@ export function MovePage() {
         }}
       >
         <DialogContent
-          className="max-h-[90vh] overflow-y-auto sm:max-w-[600px]"
+          className="max-h-[85dvh] overflow-y-auto p-4 sm:max-h-[90vh] sm:max-w-[600px]"
           onPointerDownOutside={(event) => {
             if (holdDialogOpen.current) event.preventDefault();
           }}

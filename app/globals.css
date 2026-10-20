@@ -187,6 +187,31 @@
   }
 }
 
+@keyframes rideflow-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.rideflow-float {
+  animation: rideflow-float 6.5s ease-in-out infinite;
+}
+
+.rideflow-float-delayed {
+  animation: rideflow-float 7.4s ease-in-out 1.1s infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rideflow-float,
+  .rideflow-float-delayed {
+    animation: none;
+  }
+}
+
 .animate-scroll-up {
   animation: scrollUp 35s linear infinite;
 }

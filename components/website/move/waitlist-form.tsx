@@ -129,7 +129,7 @@ export function MoveWaitlistForm({
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="rounded-[20px] bg-body-gray p-6 md:p-8 flex flex-col gap-[26px]"
+        className="rounded-[20px] bg-body-gray p-4 md:p-8 flex flex-col gap-[26px]"
       >
         <div className="grid gap-4 sm:grid-cols-2">
           <FormField
@@ -152,7 +152,11 @@ export function MoveWaitlistForm({
               <FormItem>
                 <FormLabel>Last name</FormLabel>
                 <FormControl>
-                  <Input placeholder="Okonkwo" className="bg-white" {...field} />
+                  <Input
+                    placeholder="Okonkwo"
+                    className="bg-white"
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
