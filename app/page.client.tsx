@@ -2,6 +2,9 @@
 
 import {
   Hero,
+  ProductShowcase,
+  OrderFlow,
+  AppDownloadSection,
   Brands,
   PlatformStatsSection,
   WhyChooseUsSection,
@@ -24,14 +27,34 @@ const BookingSection = dynamic(
   },
 );
 
+const GlobeCoverage = dynamic(
+  () =>
+    import("@/components/website/home/product/globe-coverage").then(
+      (mod) => mod.GlobeCoverage,
+    ),
+  {
+    ssr: false,
+    loading: () => (
+      <section
+        className="h-[28rem] bg-rideflow-ink-hard lg:h-[40rem]"
+        aria-hidden
+      />
+    ),
+  },
+);
+
 export function LandingPage() {
   return (
     <main className=" w-full flex flex-col relative">
       <Hero />
+      <ProductShowcase />
+      <OrderFlow />
+      <AppDownloadSection />
       <Brands />
       <PlatformStatsSection />
       <HowItWorksSection />
       <WhyChooseUsSection />
+      <GlobeCoverage />
       <StakesSection />
       <TestimoniesSection />
       <PartnerBridgeSection />
