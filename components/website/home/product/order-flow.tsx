@@ -68,34 +68,39 @@ const steps = [
 
 type Step = (typeof steps)[number];
 
+const phoneSizes = "(max-width: 1024px) 72vw, 320px";
+
 function MarketplaceCluster() {
   return (
     <div className="relative mx-auto h-full w-full max-w-[560px]">
       <div
-        className="rideflow-float absolute left-[8%] top-[14%] z-0 h-[70%] -rotate-[6deg]"
+        className="rideflow-float absolute left-[2%] top-[4%] z-0 w-[46%] -rotate-[6deg] sm:left-[8%] sm:top-[14%] sm:h-[70%] sm:w-auto"
         style={{ aspectRatio: "390 / 844" }}
       >
         <PhoneFrame
           src="/home/product/company.svg"
           alt="FastTrack Logistics company profile with fees, ratings, and coverage"
+          sizes={phoneSizes}
         />
       </div>
       <div
-        className="rideflow-float-delayed absolute right-[8%] top-[18%] z-0 h-[70%] rotate-[6deg]"
+        className="rideflow-float-delayed absolute right-[2%] top-[8%] z-0 w-[46%] rotate-[6deg] sm:right-[8%] sm:top-[18%] sm:h-[70%] sm:w-auto"
         style={{ aspectRatio: "390 / 844" }}
       >
         <PhoneFrame
           src="/home/product/rider.svg"
           alt="Independent rider profile for Daniel Lukaku, available in Lagos"
+          sizes={phoneSizes}
         />
       </div>
       <div
-        className="absolute left-1/2 top-[2%] z-10 h-[92%] -translate-x-1/2"
+        className="absolute left-1/2 top-0 z-10 w-[64%] -translate-x-1/2 sm:top-[2%] sm:h-[92%] sm:w-auto"
         style={{ aspectRatio: "390 / 844" }}
       >
         <PhoneFrame
           src="/home/product/explore.svg"
           alt="Rideflow marketplace listing verified logistics companies"
+          sizes={phoneSizes}
         />
       </div>
     </div>
@@ -109,9 +114,9 @@ function Device({ step }: { step: Step }) {
 
   if (step.device === "phone") {
     return (
-      <div className="h-[min(100%,520px)] max-h-full">
-        <div className="h-full" style={{ aspectRatio: "390 / 844" }}>
-          <PhoneFrame src={step.src} alt={step.alt} />
+      <div className="mx-auto h-full w-[min(100%,19rem)] lg:flex lg:h-[min(100%,34rem)] lg:w-[min(100%,20rem)] lg:items-center lg:justify-center">
+        <div className="w-full" style={{ aspectRatio: "390 / 844" }}>
+          <PhoneFrame src={step.src} alt={step.alt} sizes={phoneSizes} />
         </div>
       </div>
     );
@@ -136,7 +141,7 @@ function Stage({ step }: { step: Step }) {
         {step.side}
       </p>
       <div
-        className={`flex min-h-0 flex-1 items-center justify-center overflow-hidden rounded-[28px] px-4 py-5 sm:px-6 ${
+        className={`flex min-h-0 flex-1 items-start justify-center overflow-hidden rounded-[22px] px-3 pt-5 sm:items-center sm:rounded-[28px] sm:px-6 sm:py-5 ${
           step.device === "desktop" ? "bg-[#f3f4f7]" : "bg-body-gray"
         }`}
       >
@@ -189,15 +194,25 @@ function StaticFlow({ id }: { id: string }) {
   );
 }
 
-function FlowHeader() {
+function FlowHeader({ compact = false }: { compact?: boolean }) {
   return (
     <>
       <Badge text="How a job moves" color="bg-body-gray" />
-      <div className="mt-4 max-w-3xl">
-        <h2 className="text-3xl font-medium leading-tight tracking-tight text-rideflow-ink-hard sm:text-4xl lg:text-[2.5rem]">
+      <div className={`max-w-3xl ${compact ? "mt-2 lg:mt-4" : "mt-4"}`}>
+        <h2
+          className={`font-medium leading-tight tracking-tight text-rideflow-ink-hard ${
+            compact
+              ? "text-[1.65rem] sm:text-3xl lg:text-[2.5rem]"
+              : "text-3xl sm:text-4xl lg:text-[2.5rem]"
+          }`}
+        >
           From a search to an accepted fare.
         </h2>
-        <p className="mt-3 max-w-xl text-base leading-7 text-rideflow-text-light">
+        <p
+          className={`mt-3 max-w-xl text-base leading-7 text-rideflow-text-light ${
+            compact ? "hidden lg:block" : ""
+          }`}
+        >
           Scroll the route. The customer books in the app, the company answers
           from the desk.
         </p>
@@ -345,11 +360,11 @@ function ScrollFlow({
           : `${steps.length * 85}vh`,
       }}
     >
-      <div className="sticky top-24 z-0 flex h-[calc(100svh-6.5rem)] flex-col overflow-hidden py-4 md:py-6">
+      <div className="sticky top-24 z-0 flex h-[calc(100svh-6.5rem)] flex-col overflow-hidden py-2 md:py-6">
         <div className="container mx-auto flex min-h-0 flex-1 flex-col px-6">
-          <FlowHeader />
+          <FlowHeader compact />
 
-          <div className="mt-5 h-1 overflow-hidden rounded-full bg-rideflow-hairline lg:hidden">
+          <div className="mt-3 h-1 overflow-hidden rounded-full bg-rideflow-hairline lg:hidden">
             <motion.div
               className="h-full origin-left bg-rideflow-blue"
               style={{ scaleX: scrollYProgress }}
@@ -379,10 +394,10 @@ function ScrollFlow({
                   {active.who}
                 </span>
               </p>
-              <h3 className="mt-1 text-xl font-semibold tracking-[-0.02em] text-rideflow-ink-hard">
+              <h3 className="mt-1 text-lg font-semibold tracking-[-0.02em] text-rideflow-ink-hard">
                 {active.title}
               </h3>
-              <p className="mt-1 text-sm leading-6 text-rideflow-text-light">
+              <p className="mt-1 line-clamp-2 text-sm leading-5 text-rideflow-text-light">
                 {active.text}
               </p>
             </div>

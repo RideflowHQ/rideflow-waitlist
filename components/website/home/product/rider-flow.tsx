@@ -103,23 +103,20 @@ function PhonePair({ phones }: { phones: Shot[] }) {
   }));
 
   return (
-    <div className="relative h-full w-full">
+    <div className="relative h-full w-full overflow-hidden">
       <div
-        className="absolute bottom-0 right-[2%] flex h-full flex-col"
+        className="absolute left-1/2 top-0 w-[min(88%,20rem)] -translate-x-1/2 lg:bottom-0 lg:left-auto lg:right-[2%] lg:top-auto lg:h-[calc(100%-2.5rem)] lg:w-auto lg:translate-x-0"
         style={{ aspectRatio: "430 / 820" }}
       >
-        <div className="h-10 shrink-0" aria-hidden />
-        <div className="min-h-0 flex-1">
-          <CardStack
-            key={phones.map((phone) => phone.src).join()}
-            items={items}
-            offset={36}
-            scaleFactor={0.06}
-            intervalMs={3000}
-            className="h-full w-full cursor-pointer"
-            cardClassName="h-full w-full border-0 bg-transparent p-0 shadow-none dark:bg-transparent"
-          />
-        </div>
+        <CardStack
+          key={phones.map((phone) => phone.src).join()}
+          items={items}
+          offset={36}
+          scaleFactor={0.06}
+          intervalMs={3000}
+          className="h-full w-full cursor-pointer"
+          cardClassName="h-full w-full border-0 bg-transparent p-0 shadow-none dark:bg-transparent"
+        />
       </div>
     </div>
   );
@@ -127,7 +124,7 @@ function PhonePair({ phones }: { phones: Shot[] }) {
 
 function Stage({ step }: { step: Step }) {
   return (
-    <div className="relative h-full min-h-0 pt-10">
+    <div className="relative h-full min-h-0 pt-2 lg:pt-10">
       <PhonePair phones={step.phones} />
     </div>
   );
@@ -147,18 +144,22 @@ function usePrefersReducedMotion() {
   return reduce;
 }
 
-function FlowHeader() {
+function FlowHeader({ compact = false }: { compact?: boolean }) {
   return (
     <>
       <Badge
         text="For riders"
         color="border border-[#3A3A3A] bg-transparent text-white"
       />
-      <div className="mt-3">
-        <h2 className="text-[1.7rem] font-medium leading-[1.12] tracking-tight text-white sm:text-[2rem]">
+      <div className={compact ? "mt-2 lg:mt-3" : "mt-3"}>
+        <h2 className="text-[1.55rem] font-medium leading-[1.12] tracking-tight text-white sm:text-[2rem]">
           Ride on your terms.
         </h2>
-        <p className="mt-2 max-w-sm text-sm leading-6 text-[#B8BBC4]">
+        <p
+          className={`mt-2 max-w-sm text-sm leading-6 text-[#B8BBC4] ${
+            compact ? "hidden lg:block" : ""
+          }`}
+        >
           Independent riders get discovered on Hubs too. Go online when you
           want, accept or counter the fare, and build your rating with every
           delivery.
@@ -347,8 +348,8 @@ function ScrollFlow({
         <div className="container mx-auto flex min-h-0 flex-1 px-6">
           <div className="grid min-h-0 flex-1 grid-rows-[auto_minmax(0,1fr)] items-stretch gap-3 lg:grid-cols-[minmax(0,18rem)_minmax(0,1fr)] lg:grid-rows-1 lg:gap-6 xl:grid-cols-[minmax(0,20rem)_minmax(0,1fr)]">
             <div className="flex min-h-0 flex-col">
-              <FlowHeader />
-              <div className="mt-4 h-1 overflow-hidden rounded-full bg-white/10 lg:hidden">
+              <FlowHeader compact />
+              <div className="mt-3 h-1 overflow-hidden rounded-full bg-white/10 lg:hidden">
                 <motion.div
                   className="h-full origin-left bg-rideflow-blue"
                   style={{ scaleX: scrollYProgress }}
@@ -361,10 +362,10 @@ function ScrollFlow({
                     {active.who}
                   </span>
                 </p>
-                <h3 className="mt-1 text-xl font-semibold tracking-[-0.02em] text-white">
+                <h3 className="mt-1 text-lg font-semibold tracking-[-0.02em] text-white">
                   {active.title}
                 </h3>
-                <p className="mt-1 text-sm leading-6 text-[#B8BBC4]">
+                <p className="mt-1 line-clamp-2 text-sm leading-5 text-[#B8BBC4]">
                   {active.text}
                 </p>
               </div>

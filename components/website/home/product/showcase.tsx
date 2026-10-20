@@ -11,21 +11,21 @@ const marketplacePhones = [
     src: "/home/product/company.svg",
     alt: "FastTrack Logistics company profile with fees, ratings, and coverage",
     className:
-      "absolute left-[8%] top-8 z-0 w-[124px] -rotate-[5deg] sm:left-[12%] sm:w-[148px]",
+      "absolute left-[6%] top-8 z-0 w-[158px] -rotate-[5deg] sm:left-[12%] sm:w-[176px]",
     float: "rideflow-float",
   },
   {
     src: "/home/product/rider.svg",
     alt: "Independent rider profile for Daniel Lukaku, available in Lagos",
     className:
-      "absolute right-[8%] top-12 z-0 w-[124px] rotate-[5deg] sm:right-[12%] sm:w-[148px]",
+      "absolute right-[6%] top-12 z-0 w-[158px] rotate-[5deg] sm:right-[12%] sm:w-[176px]",
     float: "rideflow-float-delayed",
   },
   {
     src: "/home/product/explore.svg",
     alt: "Rideflow marketplace explore screen comparing logistics companies",
     className:
-      "absolute left-1/2 top-0 z-10 w-[156px] -translate-x-1/2 sm:w-[184px]",
+      "absolute left-1/2 top-0 z-10 w-[196px] -translate-x-1/2 sm:w-[220px]",
     float: "",
   },
 ];
@@ -75,7 +75,7 @@ const views = [
 
 function MarketplaceStage() {
   return (
-    <div className="relative mx-auto h-[430px] w-full max-w-[560px] sm:h-[490px]">
+    <div className="relative mx-auto h-[500px] w-full max-w-[560px] sm:h-[540px]">
       {marketplacePhones.map((phone) => (
         <div key={phone.src} className={phone.className}>
           <div className={phone.float}>
