@@ -40,7 +40,7 @@ const globeConfig: GlobeConfig = {
   polygonColor: "rgba(255,255,255,0.82)",
   emissive: "#0e0e0e",
   emissiveIntensity: 0.55,
-  shininess: 0.2,
+  shininess: 0.6,
   ambientLight: "#ffffff",
   directionalLeftLight: "#ffffff",
   directionalTopLight: "#ffffff",
@@ -50,8 +50,7 @@ const globeConfig: GlobeConfig = {
   rings: 1,
   maxRings: 3,
   initialPosition: NIGERIA,
-  autoRotate: true,
-  autoRotateSpeed: 0.35,
+  autoRotate: false,
 };
 
 export function GlobeCoverage({ id = "coverage" }: { id?: string }) {
@@ -60,8 +59,8 @@ export function GlobeCoverage({ id = "coverage" }: { id?: string }) {
       id={id}
       className="relative scroll-mt-28 overflow-hidden bg-rideflow-ink-hard"
     >
-      <div className="container relative z-10 mx-auto px-6 pb-4 pt-14 md:py-24">
-        <div className="max-w-xl lg:min-h-[32rem]">
+      <div className="container pointer-events-none relative z-10 mx-auto px-6 pb-4 pt-14 md:py-24">
+        <div className="pointer-events-auto max-w-xl lg:min-h-[32rem]">
           <Badge
             text="Beyond borders"
             color="border border-[#3A3A3A] bg-transparent text-white"
@@ -77,8 +76,8 @@ export function GlobeCoverage({ id = "coverage" }: { id?: string }) {
         </div>
       </div>
 
-      <div className="pointer-events-none relative h-[20rem] overflow-hidden sm:h-[26rem] lg:absolute lg:inset-y-0 lg:right-0 lg:h-auto lg:w-[56%] lg:overflow-visible">
-        <div className="absolute inset-y-0 -right-[20%] left-0 lg:inset-auto lg:-bottom-[12%] lg:-right-[8%] lg:left-auto lg:top-auto lg:h-[118%] lg:w-[118%]">
+      <div className="relative z-0 h-[20rem] overflow-hidden sm:h-[26rem] lg:absolute lg:inset-y-0 lg:right-0 lg:h-auto lg:w-[56%] lg:overflow-visible">
+        <div className="absolute inset-y-0 -right-[20%] left-0 cursor-grab lg:inset-auto lg:-bottom-[12%] lg:-right-[8%] lg:left-auto lg:top-auto lg:h-[118%] lg:w-[118%] lg:cursor-grab">
           <World globeConfig={globeConfig} data={arcs} />
         </div>
       </div>

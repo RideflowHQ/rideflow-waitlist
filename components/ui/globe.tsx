@@ -88,9 +88,10 @@ export function Globe({ globeConfig, data }: WorldProps) {
     if (!globeRef.current && groupRef.current) {
       globeRef.current = new ThreeGlobe();
       groupRef.current.add(globeRef.current);
+      // three-globe: camera on +Z already looks at lat 0 / lng 0 (Gulf of Guinea).
+      // Extra +90° yaw was rotating Nigeria off-camera onto the Americas.
       const lng = globeConfig.initialPosition?.lng ?? 0;
-      // Default view faces the Americas. +90° brings West Africa / Nigeria forward.
-      groupRef.current.rotation.y = Math.PI / 2 - lng * (Math.PI / 180);
+      groupRef.current.rotation.y = -lng * (Math.PI / 180);
       setIsInitialized(true);
     }
   }, [globeConfig.initialPosition?.lat, globeConfig.initialPosition?.lng]);
@@ -277,9 +278,10 @@ export function World(props: WorldProps) {
   }, []);
 
   return (
-    <div ref={wrapRef} className="h-full w-full">
+    <div ref={wrapRef} className="h-full w-full cursor-grab touch-none active:cursor-grabbing">
       <Canvas
         className="h-full w-full"
+        style={{ touchAction: "none" }}
         frameloop={visible && !reduceMotion ? "always" : "demand"}
         dpr={isMobile ? 1 : [1, 1.5]}
         gl={{
@@ -315,11 +317,13 @@ export function World(props: WorldProps) {
         <OrbitControls
           enablePan={false}
           enableZoom={false}
-          enableRotate={!isMobile}
+          enableRotate
+          enableDamping
+          dampingFactor={0.08}
+          rotateSpeed={0.55}
           minDistance={cameraZ}
           maxDistance={cameraZ}
-          autoRotateSpeed={globeConfig.autoRotateSpeed ?? 0.4}
-          autoRotate={!reduceMotion && (globeConfig.autoRotate ?? true)}
+          autoRotate={false}
           minPolarAngle={Math.PI / 2}
           maxPolarAngle={Math.PI / 2}
         />
