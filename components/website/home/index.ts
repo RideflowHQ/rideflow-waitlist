@@ -1,4 +1,11 @@
 export { Hero } from "./hero";
+export { ProductShowcase } from "./product/showcase";
+export { OrderFlow } from "./product/order-flow";
+export { RiderFlow } from "./product/rider-flow";
+export { JobCompare } from "./product/job-compare";
+export { CoverageMap } from "./product/coverage-map";
+export { GlobeCoverage } from "./product/globe-coverage";
+export { AppDownloadSection } from "./product/app-download";
 export { Brands } from "./brands";
 export { PlatformStatsSection } from "./platform-stats";
 export { WhyChooseUsSection } from "./why-choose-us";

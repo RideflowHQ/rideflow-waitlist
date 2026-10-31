@@ -68,16 +68,12 @@ export function HubPage() {
             once
             className="mt-4 text-3xl sm:text-4xl md:text-[42px] font-medium tracking-tight leading-[1.15]"
           >
-            Get Discovered on the Rideflow Hub.
+            Get discovered on Hubs. Run the rest on Rideflow.
           </TextAnimate>
           <p className="mt-4 text-lg leading-[1.65] text-rideflow-text-light">
-            Customers are searching for logistics services in your service area
-            right now. List your branches, showcase your services, and receive
-            delivery requests directly through the platform.
-          </p>
-          <p className="mt-4 text-lg leading-[1.65] text-rideflow-text-light">
-            If you already run your operations on Rideflow, the Hub complements
-            your existing workflows rather than replacing them.
+            List your business where customers are already looking. Requests
+            land straight in your dispatch dashboard, alongside your fleet,
+            team, compliance and finances, all in one place.
           </p>
 
           <div className="mt-10 grid gap-5 md:grid-cols-3">

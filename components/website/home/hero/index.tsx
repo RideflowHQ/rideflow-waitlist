@@ -1,14 +1,9 @@
-import WaitlistForm from "@/components/Form";
-import { useState } from "react";
 import Badge from "@/components/custom/badge";
-import MediaCarousels from "./media-carousels";
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
-import { CALENDLY_URL } from "@/lib/content/site";
+import { ClaimSlotHero } from "../claim-slot";
+import { ProductStage } from "../product/stage";
 
 export const Hero = () => {
-  const [isSuccess, setIsSuccess] = useState(false);
-
   return (
     <section className="min-h-screen relative">
       <Image
@@ -18,7 +13,7 @@ export const Hero = () => {
         width={210}
         className="absolute top-0 left-0 -z-5 hidden md:block"
       />
-      <div className="container mx-auto px-6 flex flex-col lg:flex-row items-center gap-8 lg:gap-12 h-full pb-20 pt-30 lg:py-0">
+      <div className="container mx-auto px-6 flex flex-col lg:flex-row items-center gap-10 lg:gap-12 h-full pb-16 pt-30 lg:py-24">
         <div className="w-full lg:w-[47%] flex flex-col items-start gap-4 md:gap-6 h-full justify-center">
           <Badge text="Built for Nigerian Logistics" color="bg-white" />
           <div>
@@ -31,33 +26,16 @@ export const Hero = () => {
               </span>
             </h1>
             <p className="text-base sm:text-lg md:text-lg text-rideflow-text mt-3 md:mt-4">
-              Rideflow is the all-in-one operations platform built for Nigerian
-              logistics businesses. Manage your team, fleet, dispatch,
-              compliance, and finances from one dashboard, in real time.
+              Rideflow is the operations platform and marketplace for Nigerian
+              logistics. Run your team, fleet, dispatch, and compliance from
+              one dashboard, while customers compare companies and book from
+              the app.
             </p>
           </div>
-          <div className="flex flex-col sm:flex-row gap-3 w-full mt-2 md:mt-4">
-            <Button
-              className="bg-rideflow-blue px-6 py-2 text-white font-semibold hover:bg-blue-700 cursor-pointer"
-              onClick={() => window.open(CALENDLY_URL, "_blank")}
-            >
-              Book a Demo
-            </Button>
-            <Button
-              variant="outline"
-              className="px-6 py-2 font-semibold border-rideflow-blue text-rideflow-blue hover:bg-body-gray cursor-pointer"
-              onClick={() => {
-                document
-                  .getElementById("how-it-works")
-                  ?.scrollIntoView({ behavior: "smooth" });
-              }}
-            >
-              See How It Works ↓
-            </Button>
-          </div>
+          <ClaimSlotHero />
         </div>
-        <div className="w-full lg:w-[53%] h-100 sm:h-125 lg:h-auto">
-          <MediaCarousels />
+        <div className="w-full lg:w-[53%]">
+          <ProductStage />
         </div>
       </div>
     </section>

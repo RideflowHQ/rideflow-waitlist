@@ -42,7 +42,6 @@ const footerColumns: { id: number; title: string; links: FooterLink[] }[] = [
     links: [
       { linkTitle: "How It Works", link: "/move#how-it-works" },
       { linkTitle: "Why Rideflow", link: "/move#why-rideflow" },
-      { linkTitle: "Claim Your Slot", link: "/move#claim" },
     ],
   },
   {
@@ -54,6 +53,7 @@ const footerColumns: { id: number; title: string; links: FooterLink[] }[] = [
       { linkTitle: "Pricing", link: "/pricing" },
       { linkTitle: "Rideflow Hub", link: "/hub" },
       { linkTitle: "For Riders", link: "/riders" },
+      { linkTitle: "Claim Your Slot", link: "/#claim" },
       { linkTitle: "Book a Demo", link: CALENDLY_URL, external: true },
     ],
   },
