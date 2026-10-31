@@ -1,7 +1,6 @@
 import Badge from "@/components/custom/badge";
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
-import { CALENDLY_URL } from "@/lib/content/site";
+import { ClaimSlotHero } from "../claim-slot";
 import { ProductStage } from "../product/stage";
 
 export const Hero = () => {
@@ -33,25 +32,7 @@ export const Hero = () => {
               the app.
             </p>
           </div>
-          <div className="flex flex-col sm:flex-row gap-3 w-full mt-2 md:mt-4">
-            <Button
-              className="bg-rideflow-blue px-6 py-2 text-white font-semibold hover:bg-blue-700 cursor-pointer"
-              onClick={() => window.open(CALENDLY_URL, "_blank")}
-            >
-              Book a Demo
-            </Button>
-            <Button
-              variant="outline"
-              className="px-6 py-2 font-semibold border-rideflow-blue text-rideflow-blue hover:bg-body-gray cursor-pointer"
-              onClick={() => {
-                document
-                  .getElementById("product")
-                  ?.scrollIntoView({ behavior: "smooth" });
-              }}
-            >
-              See the product ↓
-            </Button>
-          </div>
+          <ClaimSlotHero />
         </div>
         <div className="w-full lg:w-[53%]">
           <ProductStage />

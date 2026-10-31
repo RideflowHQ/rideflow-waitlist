@@ -13,6 +13,7 @@ import {
   PartnerBridgeSection,
   TestimoniesSection,
 } from "@/components/website/home";
+import { ClaimSlotSection } from "@/components/website/home/claim-slot";
 import dynamic from "next/dynamic";
 // Imported statically on purpose: loading it through next/dynamic puts the Radix
 // Accordion inside a lazy/Suspense boundary, and React 19 folds Suspense into
@@ -59,6 +60,7 @@ export function LandingPage() {
       <TestimoniesSection />
       <PartnerBridgeSection />
       <BookingSection />
+      <ClaimSlotSection />
       <Faqs />
     </main>
   );

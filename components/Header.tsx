@@ -170,7 +170,7 @@ export default function Header() {
                   asChild
                   className="bg-rideflow-blue px-4 py-2 text-white font-semibold hover:bg-blue-700 cursor-pointer"
                 >
-                  <Link href="/move#claim">Claim your slot</Link>
+                  <Link href="/#claim">Claim your slot</Link>
                 </Button>
               ) : (
                 <>
@@ -246,7 +246,7 @@ export default function Header() {
                       asChild
                       className="bg-rideflow-blue px-4 py-2 text-white font-semibold hover:bg-blue-700 w-full cursor-pointer"
                     >
-                      <Link href="/move#claim" onClick={() => setOpen(false)}>
+                      <Link href="/#claim" onClick={() => setOpen(false)}>
                         Claim your slot
                       </Link>
                     </Button>

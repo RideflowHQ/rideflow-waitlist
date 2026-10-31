@@ -1,17 +1,7 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { Button } from "@/components/ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
+import { useEffect } from "react";
 import { AppDownloadSection } from "@/components/website/move/app-download-cta";
-import { MoveWaitlistForm } from "@/components/website/move/waitlist-form";
 import { CoverageMap } from "@/components/website/home/product/coverage-map";
 import { JobCompare } from "@/components/website/home/product/job-compare";
 import { OrderFlow } from "@/components/website/home/product/order-flow";
@@ -41,26 +31,7 @@ function SavingSticker() {
   );
 }
 
-const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
 export function MovePage() {
-  const [heroEmail, setHeroEmail] = useState("");
-  const [dialogOpen, setDialogOpen] = useState(false);
-  const openedForEmail = useRef("");
-  const holdDialogOpen = useRef(false);
-
-  useEffect(() => {
-    const email = heroEmail.trim();
-    if (!EMAIL_REGEX.test(email) || openedForEmail.current === email) return;
-
-    const timeout = window.setTimeout(() => {
-      openedForEmail.current = email;
-      setDialogOpen(true);
-    }, 2000);
-
-    return () => window.clearTimeout(timeout);
-  }, [heroEmail]);
-
   useEffect(() => {
     const fromApp =
       new URLSearchParams(window.location.search).get("from") === "app";
@@ -82,24 +53,6 @@ export function MovePage() {
 
     return () => window.cancelAnimationFrame(frame);
   }, []);
-
-  function openWaitlist() {
-    const email = heroEmail.trim();
-    if (EMAIL_REGEX.test(email)) {
-      openedForEmail.current = email;
-    }
-    setDialogOpen(true);
-  }
-
-  function handleSubmitted() {
-    holdDialogOpen.current = true;
-    setHeroEmail("");
-    openedForEmail.current = "";
-    setDialogOpen(true);
-    window.setTimeout(() => {
-      holdDialogOpen.current = false;
-    }, 400);
-  }
 
   return (
     <main className="w-full flex flex-col relative bg-white">
@@ -128,37 +81,6 @@ export function MovePage() {
                 ratings and coverage, book in a few taps, then track every
                 delivery live.
               </p>
-
-              <div className="mt-8 flex flex-col items-start gap-3">
-                <div className="flex w-full max-w-[560px] flex-row items-center gap-2 sm:gap-3">
-                  <Input
-                    type="email"
-                    value={heroEmail}
-                    onChange={(event) => setHeroEmail(event.target.value)}
-                    onKeyDown={(event) => {
-                      if (event.key === "Enter") {
-                        event.preventDefault();
-                        openWaitlist();
-                      }
-                    }}
-                    placeholder="you@company.com"
-                    className="h-11 min-w-0 flex-1 rounded-xl border-2 border-rideflow-hairline bg-body-gray px-3 text-[15px] text-rideflow-ink-hard shadow-none placeholder:text-rideflow-text-extralight sm:px-4 md:text-[15px] focus-visible:border-rideflow-blue focus-visible:ring-rideflow-blue/25"
-                    aria-label="Email"
-                  />
-                  <Button
-                    type="button"
-                    className="h-11 shrink-0 cursor-pointer rounded-xl bg-rideflow-blue px-3 text-[13px] font-semibold text-white hover:bg-blue-700 sm:px-6 sm:text-[15px]"
-                    onClick={openWaitlist}
-                  >
-                    Claim Your Slot
-                  </Button>
-                </div>
-                <p className="text-sm font-medium text-rideflow-text-extralight">
-                  Join the waitlist and get{" "}
-                  <span className="font-bold">₦1,000</span> off your first
-                  delivery.
-                </p>
-              </div>
             </div>
 
             <div className="w-full lg:w-[520px] shrink-0">
@@ -250,60 +172,6 @@ export function MovePage() {
                 pay the best rate — and they negotiate without switching apps or
                 making a single phone call.
               </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <Dialog
-        open={dialogOpen}
-        onOpenChange={(open) => {
-          if (!open && holdDialogOpen.current) return;
-          setDialogOpen(open);
-        }}
-      >
-        <DialogContent
-          className="max-h-[85dvh] overflow-y-auto p-4 sm:max-h-[90vh] sm:max-w-[600px]"
-          onPointerDownOutside={(event) => {
-            if (holdDialogOpen.current) event.preventDefault();
-          }}
-          onInteractOutside={(event) => {
-            if (holdDialogOpen.current) event.preventDefault();
-          }}
-        >
-          <DialogHeader>
-            <DialogTitle className="text-2xl font-bold tracking-[-0.03em] text-rideflow-text">
-              Claim your slot.
-            </DialogTitle>
-            <DialogDescription>
-              Join the waitlist and get ₦1,000 off your first delivery.
-            </DialogDescription>
-          </DialogHeader>
-          <MoveWaitlistForm
-            defaultEmail={heroEmail.trim()}
-            onSubmitted={handleSubmitted}
-          />
-        </DialogContent>
-      </Dialog>
-
-      <section
-        id="claim"
-        className="scroll-mt-28 pt-16 pb-20 md:pt-24 md:pb-26"
-      >
-        <div className="container mx-auto px-6 max-w-7xl">
-          <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-12 lg:gap-[88px]">
-            <div className="w-full lg:w-[520px] shrink-0">
-              <h2 className="text-4xl md:text-[56px] font-bold leading-[1.02] tracking-[-0.035em] text-rideflow-text">
-                Claim your slot.
-              </h2>
-              <p className="mt-6 text-sm leading-[1.6] text-rideflow-text-light">
-                Join the waitlist and get{" "}
-                <span className="font-bold">₦1,000</span> off your first
-                delivery.
-              </p>
-            </div>
-            <div className="w-full lg:w-[600px] shrink-0">
-              <MoveWaitlistForm onSubmitted={handleSubmitted} />
             </div>
           </div>
         </div>
