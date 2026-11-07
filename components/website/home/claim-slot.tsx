@@ -1,5 +1,11 @@
 "use client";
 
+/**
+ * Waitlist / claim-slot UI is paused now that the apps and dashboard are live.
+ * Kept commented-in place so it can be restored without rewriting the flow.
+ * Call sites in `hero`, `app/page.client.tsx`, Header, and Footer are also commented.
+ */
+
 import { useEffect, useRef, useState, type MutableRefObject } from "react";
 import { Button } from "@/components/ui/button";
 import {
