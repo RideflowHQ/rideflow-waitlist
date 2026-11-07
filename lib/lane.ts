@@ -3,8 +3,8 @@ export type Lane = "move" | "run";
 export const LANE_COOKIE = "rf_lane";
 
 /**
- * Run logistics is the default for first-time visitors: it is the live product,
- * it holds the existing SEO equity, and the Move goods side is still a waitlist.
+ * Run logistics is the default for first-time visitors: it is the live product
+ * and holds the existing SEO equity. Move goods (Hubs) is now live in the stores.
  */
 export const DEFAULT_LANE: Lane = "run";
 

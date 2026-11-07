@@ -74,7 +74,7 @@ function MarketplaceCluster() {
   return (
     <div className="relative mx-auto h-full w-full max-w-[560px]">
       <div
-        className="rideflow-float absolute left-[2%] top-[4%] z-0 w-[46%] -rotate-[6deg] sm:left-[8%] sm:top-[14%] sm:h-[70%] sm:w-auto"
+        className="rideflow-float absolute left-[4%] top-[10%] z-0 w-[39%] min-w-[8.5rem] -rotate-[6deg] sm:left-[8%] sm:top-[12%] sm:w-[36%] lg:w-[34%]"
         style={{ aspectRatio: "390 / 844" }}
       >
         <PhoneFrame
@@ -84,7 +84,7 @@ function MarketplaceCluster() {
         />
       </div>
       <div
-        className="rideflow-float-delayed absolute right-[2%] top-[8%] z-0 w-[46%] rotate-[6deg] sm:right-[8%] sm:top-[18%] sm:h-[70%] sm:w-auto"
+        className="rideflow-float-delayed absolute right-[4%] top-[14%] z-0 w-[39%] min-w-[8.5rem] rotate-[6deg] sm:right-[8%] sm:top-[16%] sm:w-[36%] lg:w-[34%]"
         style={{ aspectRatio: "390 / 844" }}
       >
         <PhoneFrame
@@ -94,7 +94,7 @@ function MarketplaceCluster() {
         />
       </div>
       <div
-        className="absolute left-1/2 top-0 z-10 w-[64%] -translate-x-1/2 sm:top-[2%] sm:h-[92%] sm:w-auto"
+        className="absolute left-1/2 top-[2%] z-10 w-[56%] min-w-[11rem] -translate-x-1/2 sm:top-[3%] sm:w-[52%] lg:w-[50%]"
         style={{ aspectRatio: "390 / 844" }}
       >
         <PhoneFrame
@@ -371,9 +371,9 @@ function ScrollFlow({
             />
           </div>
 
-          <div className="mt-4 grid min-h-0 flex-1 grid-rows-[auto_minmax(0,1fr)] items-stretch gap-4 lg:grid-cols-[minmax(0,0.86fr)_minmax(0,1.14fr)] lg:grid-rows-1 lg:gap-12">
-            <div className="hidden min-h-0 lg:block">
-              <ol className="relative flex h-full flex-col justify-center">
+          <div className="mt-4 grid min-h-0 flex-1 grid-rows-[auto_minmax(0,1fr)] items-stretch gap-4 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] lg:grid-rows-1 lg:gap-8 xl:gap-12">
+            <div className="hidden min-h-0 overflow-hidden lg:block">
+              <ol className="relative flex h-full flex-col justify-start overflow-y-auto py-2">
                 <Route progress={scrollYProgress} />
                 {steps.map((step, index) => (
                   <StepButton

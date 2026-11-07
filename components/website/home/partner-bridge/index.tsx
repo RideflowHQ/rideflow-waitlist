@@ -55,7 +55,7 @@ export const PartnerBridgeSection = () => {
           asChild
           className="mt-10 bg-rideflow-blue px-6 py-2 text-white font-semibold hover:bg-blue-700"
         >
-          <Link href="/hub#join">Join the Hub Waitlist →</Link>
+          <Link href="/hub#join">List your business on Hubs →</Link>
         </Button>
       </div>
     </section>

@@ -1,5 +1,16 @@
 export const CALENDLY_URL = "https://calendly.com/rideflow";
 export const REGISTER_URL = "https://dashboard.rideflow.org/auth/register";
+/** Configure these with NEXT_PUBLIC env vars once store listings are live. */
+const appStoreFromEnv = process.env.NEXT_PUBLIC_APP_STORE_URL?.trim();
+const playStoreFromEnv = process.env.NEXT_PUBLIC_PLAY_STORE_URL?.trim();
+export const APP_STORE_URL =
+  appStoreFromEnv && appStoreFromEnv.length > 0
+    ? appStoreFromEnv
+    : "/move#apps";
+export const PLAY_STORE_URL =
+  playStoreFromEnv && playStoreFromEnv.length > 0
+    ? playStoreFromEnv
+    : "/move#apps";
 export const CONTACT_EMAIL = "info@rideflow.org";
 export const CONTACT_PHONE = "+234 810 234 5678";
 export const CONTACT_ADDRESS =

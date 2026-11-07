@@ -10,6 +10,7 @@ import {
   MoveSectors,
   RideflowVerified,
 } from "@/components/website/home/product/hubs-copy";
+import { StoreBadges } from "@/components/website/shared/store-badges";
 
 const quotes = [
   { name: "SwiftEx", eta: "Today, 2–4 hrs", price: "₦2,400", best: true },
@@ -61,7 +62,7 @@ export function MovePage() {
           <div className="inline-flex items-center gap-[9px] rounded-full border border-rideflow-hairline bg-white py-[7px] pl-[11px] pr-[14px]">
             <span className="size-[7px] shrink-0 rounded-full bg-rideflow-blue" />
             <span className="text-[13px] font-semibold text-rideflow-text2">
-              Rideflow Hubs · Launching 11.11.2026
+              Rideflow Hubs · Available now
             </span>
           </div>
 
@@ -76,11 +77,17 @@ export function MovePage() {
                 </span>
               </h1>
               <p className="mt-5 max-w-xl text-base leading-7 text-rideflow-text-light sm:text-lg">
-                Rideflow Hubs is where Nigeria finds its logistics partners.
-                Compare verified companies and independent riders by fees,
-                ratings and coverage, book in a few taps, then track every
-                delivery live.
+                Hubs is where customers find logistics partners. Compare
+                verified companies and independent riders by fees, ratings and
+                coverage, book in a few taps, then track every delivery live.
               </p>
+
+              <div className="mt-8 flex flex-col items-start gap-3">
+                <StoreBadges />
+                <p className="text-sm font-medium text-rideflow-text-extralight">
+                  Download Hubs on iOS and Android.
+                </p>
+              </div>
             </div>
 
             <div className="w-full lg:w-[520px] shrink-0">
@@ -142,13 +149,14 @@ export function MovePage() {
         </div>
       </section>
 
+      <AppDownloadSection />
+
       <OrderFlow id="how-it-works" holdForCover />
       <RiderFlow id="for-riders" coverPrevious />
       <RideflowVerified />
       <JobCompare />
       <MoveSectors />
       <CoverageMap />
-      <AppDownloadSection />
 
       <section
         id="why-rideflow"
