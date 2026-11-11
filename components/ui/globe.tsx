@@ -1,5 +1,11 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import {
+  Component,
+  type ReactNode,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { Color, Group, MeshBasicMaterial, Vector3 } from "three";
 import ThreeGlobe from "three-globe";
 import { useThree, Canvas, extend } from "@react-three/fiber";
@@ -59,6 +65,51 @@ export type GlobeConfig = {
 interface WorldProps {
   globeConfig: GlobeConfig;
   data: Position[];
+}
+
+class GlobeErrorBoundary extends Component<
+  { children: ReactNode; fallback: ReactNode },
+  { hasError: boolean }
+> {
+  constructor(props: { children: ReactNode; fallback: ReactNode }) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+
+  componentDidCatch(error: unknown) {
+    console.error("Globe render failed:", error);
+  }
+
+  render() {
+    if (this.state.hasError) return this.props.fallback;
+    return this.props.children;
+  }
+}
+
+function GlobeFallback() {
+  return (
+    <div className="flex h-full w-full items-center justify-center rounded-2xl bg-[#0e0e0e] px-4 text-center text-sm text-white/60">
+      Globe unavailable on this device.
+    </div>
+  );
+}
+
+function canUseWebGL() {
+  if (typeof window === "undefined") return false;
+  try {
+    const canvas = document.createElement("canvas");
+    return Boolean(
+      canvas.getContext("webgl2") ||
+        canvas.getContext("webgl") ||
+        canvas.getContext("experimental-webgl"),
+    );
+  } catch {
+    return false;
+  }
 }
 
 export function Globe({ globeConfig, data }: WorldProps) {
@@ -257,6 +308,7 @@ export function World(props: WorldProps) {
   const { globeConfig } = props;
   const wrapRef = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(true);
+  const [webglSupported] = useState(canUseWebGL);
   const [isMobile] = useState(
     () => typeof window !== "undefined" && window.innerWidth < 768,
   );
@@ -279,55 +331,61 @@ export function World(props: WorldProps) {
 
   return (
     <div ref={wrapRef} className="h-full w-full cursor-grab touch-none active:cursor-grabbing">
-      <Canvas
-        className="h-full w-full"
-        style={{ touchAction: "none" }}
-        frameloop={visible && !reduceMotion ? "always" : "demand"}
-        dpr={isMobile ? 1 : [1, 1.5]}
-        gl={{
-          antialias: !isMobile,
-          alpha: true,
-          powerPreference: "high-performance",
-        }}
-        camera={{
-          fov: 50,
-          near: 10,
-          far: 2000,
-          position: [0, 0, cameraZ],
-        }}
-      >
-        <WebGLRendererConfig />
-        <ambientLight color={globeConfig.ambientLight} intensity={2.1} />
-        <directionalLight
-          color={globeConfig.directionalLeftLight}
-          position={new Vector3(-400, 100, 400)}
-          intensity={0.2}
-        />
-        <directionalLight
-          color={globeConfig.directionalTopLight}
-          position={new Vector3(-200, 500, 200)}
-          intensity={0.2}
-        />
-        <pointLight
-          color={globeConfig.pointLight}
-          position={new Vector3(-200, 500, 200)}
-          intensity={0.25}
-        />
-        <Globe {...props} />
-        <OrbitControls
-          enablePan={false}
-          enableZoom={false}
-          enableRotate
-          enableDamping
-          dampingFactor={0.08}
-          rotateSpeed={0.55}
-          minDistance={cameraZ}
-          maxDistance={cameraZ}
-          autoRotate={false}
-          minPolarAngle={Math.PI / 2}
-          maxPolarAngle={Math.PI / 2}
-        />
-      </Canvas>
+      {!webglSupported ? (
+        <GlobeFallback />
+      ) : (
+        <GlobeErrorBoundary fallback={<GlobeFallback />}>
+          <Canvas
+            className="h-full w-full"
+            style={{ touchAction: "none" }}
+            frameloop={visible && !reduceMotion ? "always" : "demand"}
+            dpr={isMobile ? 1 : [1, 1.5]}
+            gl={{
+              antialias: !isMobile,
+              alpha: true,
+              powerPreference: "high-performance",
+            }}
+            camera={{
+              fov: 50,
+              near: 10,
+              far: 2000,
+              position: [0, 0, cameraZ],
+            }}
+          >
+            <WebGLRendererConfig />
+            <ambientLight color={globeConfig.ambientLight} intensity={2.1} />
+            <directionalLight
+              color={globeConfig.directionalLeftLight}
+              position={new Vector3(-400, 100, 400)}
+              intensity={0.2}
+            />
+            <directionalLight
+              color={globeConfig.directionalTopLight}
+              position={new Vector3(-200, 500, 200)}
+              intensity={0.2}
+            />
+            <pointLight
+              color={globeConfig.pointLight}
+              position={new Vector3(-200, 500, 200)}
+              intensity={0.25}
+            />
+            <Globe {...props} />
+            <OrbitControls
+              enablePan={false}
+              enableZoom={false}
+              enableRotate
+              enableDamping
+              dampingFactor={0.08}
+              rotateSpeed={0.55}
+              minDistance={cameraZ}
+              maxDistance={cameraZ}
+              autoRotate={false}
+              minPolarAngle={Math.PI / 2}
+              maxPolarAngle={Math.PI / 2}
+            />
+          </Canvas>
+        </GlobeErrorBoundary>
+      )}
     </div>
   );
 }
