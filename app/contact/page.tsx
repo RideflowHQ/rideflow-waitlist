@@ -1,10 +1,11 @@
 import { ContactPage } from "./page.client";
 import { Metadata } from "next";
+import { SITE_URL } from "@/lib/content/site";
 
 export const metadata: Metadata = {
   title: "Contact Us - Rideflow",
   description:
-    "Get in touch with Rideflow. Contact us for inquiries about our logistics operations platform and services.",
+    "Contact Rideflow in Ikeja, Lagos for demos, partnerships, or support across our logistics operations platform and Rideflow Hubs.",
 };
 
 export default async function Contact() {
@@ -13,7 +14,7 @@ export default async function Contact() {
     "@type": "ContactPage",
     name: "Contact Rideflow",
     description: "Contact Rideflow Limited for logistics operations solutions",
-    url: "https://rideflow.org/contact",
+    url: `${SITE_URL}/contact`,
   };
 
   return (

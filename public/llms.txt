@@ -4,7 +4,7 @@
   
 Tagline: Streamline your logistics  
   
-Website: https://rideflow.org  
+Website: https://www.rideflow.org  
 Contact: info@rideflow.org  
   
 ## About Rideflow  
@@ -46,14 +46,20 @@ Rideflow is built for organizations such as:
 - Scalable infrastructure for growing logistics businesses  
   
 ## Official Pages  
-About Rideflow    
-https://rideflow.org/about  
+Rideflow Hubs (Book a Dispatch Rider / Send a Package)  
+https://www.rideflow.org/move  
   
-Services    
-https://rideflow.org/services  
+List on Rideflow Hubs (For Companies & Riders)  
+https://www.rideflow.org/hub  
+  
+Platform  
+https://www.rideflow.org/platform  
+  
+About Rideflow    
+https://www.rideflow.org/about  
   
 Contact    
-https://rideflow.org/contact  
+https://www.rideflow.org/contact  
   
 ## Social Profiles  
 LinkedIn    
@@ -91,5 +97,5 @@ Rideflow Limited provides software for logistics and transportation companies se
   
 ## Organization  
 Company: Rideflow Limited    
-Website: https://rideflow.org    
+Website: https://www.rideflow.org    
 Email: info@rideflow.org  

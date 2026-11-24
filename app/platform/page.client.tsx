@@ -38,6 +38,7 @@ export function PlatformPage() {
         <div className="container mx-auto px-6 max-w-4xl">
           <Badge text="Platform" color="border border-white bg-white shadow-sm" />
           <TextAnimate
+            as="h1"
             animation="blurIn"
             by="word"
             startOnView

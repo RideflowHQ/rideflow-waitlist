@@ -57,7 +57,7 @@ export function AppDownloadSection() {
           <div className="relative min-h-[280px] bg-rideflow-ink-hard lg:min-h-full">
             <Image
               src="/home/man-carry.webp"
-              alt=""
+              alt="Dispatch rider carrying a package for delivery on Rideflow Hubs"
               fill
               className="object-cover"
               sizes="(max-width: 1024px) 100vw, 50vw"
@@ -73,8 +73,8 @@ export function AppDownloadSection() {
             <div className="mt-8 flex flex-col gap-4">
               <AppCard
                 featured
-                title="Hubs"
-                text="Compare quotes and book multiple deliveries from one place."
+                title="Rideflow Hubs"
+                text="Send a package, compare dispatch rider quotes in Lagos, and track live."
               />
               <AppCard
                 title="Riders"

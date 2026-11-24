@@ -8,27 +8,32 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import Header from "@/components/Header";
 import dynamic from "next/dynamic";
 import { headers } from "next/headers";
+import { SITE_URL } from "@/lib/content/site";
 import { isCustomDomainRequest } from "@/lib/tracking/host";
 
 const dmSans = DM_Sans({ subsets: ["latin"], variable: "--font-dm-sans" });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: "Rideflow - Streamline your Logistics",
   description:
-    "Rideflow is a logistics operations platform that helps businesses manage riders, drivers, fleets, and delivery workflows from a centralized system.",
+    "Manage riders, fleets, and dispatch operations on Rideflow, or book verified courier partners on Rideflow Hubs across Lagos and Nigeria.",
+  alternates: {
+    canonical: "./",
+  },
+  openGraph: {
+    siteName: "Rideflow",
+    type: "website",
+    locale: "en_NG",
+    url: "./",
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@RideflowHQ",
+  },
   icons: {
     icon: "/favicon.ico",
   },
-  keywords: [
-    "logistics operations platform",
-    "fleet management",
-    "driver management",
-    "rider management",
-    "delivery workflow",
-    "logistics software",
-    "dispatch management",
-    "transportation management",
-  ],
   other: {
     "dns-prefetch": "https://calendly.com",
   },
@@ -52,8 +57,8 @@ export default async function RootLayout({
     "@type": "Organization",
     name: "Rideflow Limited",
     alternateName: "Rideflow",
-    url: "https://rideflow.org",
-    logo: "https://rideflow.org/logo.png",
+    url: SITE_URL,
+    logo: `${SITE_URL}/logo.svg`,
     description:
       "Rideflow Limited is a logistics operations and fleet management platform that helps logistics and delivery businesses manage riders, drivers, vehicles, staff, and operational workflows from one centralized system.",
     email: "info@rideflow.org",
@@ -66,6 +71,7 @@ export default async function RootLayout({
     contactPoint: {
       "@type": "ContactPoint",
       email: "info@rideflow.org",
+      telephone: "+2348111087862",
       contactType: "customer service",
       availableLanguage: ["en"],
     },

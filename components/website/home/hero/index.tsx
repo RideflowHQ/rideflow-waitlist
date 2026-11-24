@@ -30,13 +30,14 @@ export const Hero = () => {
               </span>
             </h1>
             <p className="mt-3 max-w-xl text-base leading-7 text-rideflow-text-light sm:text-lg md:mt-4">
-              Logistics companies run team, fleet, dispatch, and compliance on
-              the Rideflow dashboard. Customers find verified partners and book
-              deliveries on Hubs — one platform, two sides of the job.
+              Logistics and courier companies run team, fleet, dispatch riders,
+              and compliance on the Rideflow dashboard. Customers send a package
+              and book verified partners across Lagos and Nigeria on Rideflow
+              Hubs.
             </p>
           </div>
           {/* <ClaimSlotHero /> */}
-          <div className="mt-1 w-full md:mt-2">
+          <div className="mt-1 w-full sm:w-fit md:mt-2">
             <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-rideflow-text-extralight">
               For logistics businesses
             </p>
@@ -56,14 +57,12 @@ export const Hero = () => {
               </Button>
             </div>
             <p className="mb-2 mt-5 text-[11px] font-semibold uppercase tracking-[0.14em] text-rideflow-text-extralight">
-              For customers on hubs
+              For customers on Rideflow Hubs
             </p>
-            <div>
-              <StoreBadges
-                tone="light"
-                className="w-full max-w-[35rem] flex-nowrap [&>a]:min-w-0 [&>a]:flex-1"
-              />
-            </div>
+            <StoreBadges
+              tone="light"
+              className="w-full flex-nowrap gap-3 [&>a]:min-w-0 [&>a]:flex-1"
+            />
           </div>
         </div>
         <div className="w-full lg:w-[53%]">

@@ -23,8 +23,8 @@ const hubFormSchema = z.object({
   phoneNumber: z.string()
     .min(7, "Phone number is required")
     .max(11, "Phone number must be at most 11 digits"),
-  // Customers now have their own waitlist at /move, so the Hub form only
-  // serves the two audiences that can actually be onboarded.
+  // Customers book directly in the Rideflow Hubs app (/move), so this form
+  // onboards the two partner types that fulfill deliveries.
   audienceType: z.enum(["Logistics Business", "Independent Rider"]),
   companyName: z.string().optional(),
   branchCount: z.string().optional(),
@@ -308,7 +308,8 @@ export function HubInterestForm() {
           {form.formState.isSubmitting ? (
             <Loader2 className="animate-spin" />
           ) : (
-            "Join the Waitlist →"
+            /* "Join the Waitlist →" */
+            "Get Listed on Rideflow Hubs →"
           )}
         </Button>
         <p className="text-sm text-rideflow-text-light">

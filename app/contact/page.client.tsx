@@ -24,11 +24,11 @@ export function ContactPage() {
             Interested in Partnering With Rideflow?
           </TextAnimate>
           <p className="mt-4 text-rideflow-text-light leading-7">
-            If you&apos;re a logistics company or independent rider looking to join
-            the Rideflow Hub, we&apos;d love to hear from you.
+            If you&apos;re a courier company or independent dispatch rider looking
+            to get listed on Rideflow Hubs, we&apos;d love to hear from you.
           </p>
           <Button asChild className="mt-8 bg-rideflow-blue text-white hover:bg-blue-700">
-            <Link href="/hub">Learn About the Rideflow Hub →</Link>
+            <Link href="/hub">Learn About Rideflow Hubs →</Link>
           </Button>
         </div>
       </section>

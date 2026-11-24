@@ -58,6 +58,7 @@ export function BlogsPage() {
           <div className="max-w-3xl">
             <Badge text="Blog" color="bg-white" />
             <TextAnimate
+              as="h1"
               animation="blurIn"
               by="word"
               startOnView
