@@ -1,25 +1,11 @@
 import { LandingPage } from "./page.client";
 import { Metadata } from "next";
+import { SITE_URL } from "@/lib/content/site";
 
 export const metadata: Metadata = {
   title: "Rideflow - Streamline your Logistics Operations",
   description:
-    "Rideflow is a logistics operations platform that helps businesses manage riders, drivers, fleets, and delivery workflows from a centralized system. Improve operational efficiency and accountability.",
-  openGraph: {
-    title: "Rideflow - Streamline your Logistics Operations",
-    description:
-      "Logistics operations platform for managing riders, drivers, fleets, and delivery workflows",
-    url: "https://rideflow.org",
-    siteName: "Rideflow",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Rideflow - Streamline your Logistics Operations",
-    description:
-      "Logistics operations platform for managing riders, drivers, fleets, and delivery workflows",
-    site: "@RideflowHQ",
-  },
+    "Run fleets, dispatch riders, and courier operations on Rideflow, or send a package in Lagos on Rideflow Hubs — one logistics platform for Nigeria.",
 };
 
 export default async function Home() {
@@ -27,14 +13,9 @@ export default async function Home() {
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: "Rideflow",
-    url: "https://rideflow.org",
+    url: SITE_URL,
     description:
-      "Logistics operations platform for managing riders, drivers, fleets, and delivery workflows",
-    potentialAction: {
-      "@type": "SearchAction",
-      target: "https://rideflow.org/search?q={search_term_string}",
-      "query-input": "required name=search_term_string",
-    },
+      "Logistics operations platform and Rideflow Hubs courier marketplace in Nigeria.",
   };
 
   return (

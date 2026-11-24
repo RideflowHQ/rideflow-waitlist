@@ -146,6 +146,7 @@ export function PricingPage() {
                 color="border border-white bg-white shadow-sm"
               />
               <TextAnimate
+                as="h1"
                 animation="blurIn"
                 by="word"
                 startOnView

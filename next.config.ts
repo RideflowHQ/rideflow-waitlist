@@ -43,9 +43,12 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
-      // /services is absorbed into /platform. Each service maps to the platform
-      // category that now carries it, so inbound links land on relevant content
-      // instead of the top of the page.
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "rideflow.org" }],
+        destination: "https://www.rideflow.org/:path*",
+        statusCode: 301,
+      },
       { source: "/services", destination: "/platform", permanent: true },
       {
         source: "/services/asset-investment-hire-purchase",

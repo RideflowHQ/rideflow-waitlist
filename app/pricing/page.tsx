@@ -1,10 +1,11 @@
 import { Metadata } from "next";
 import { PricingPage } from "./page.client";
+import { SITE_URL } from "@/lib/content/site";
 
 export const metadata: Metadata = {
   title: "Pricing - Rideflow",
   description:
-    "Explore Rideflow pricing plans for logistics teams of every size, from starter operations to enterprise-scale fleet and branch management.",
+    "Explore Rideflow pricing plans for courier and logistics teams of every size, from starter dispatch operations to multi-branch fleets.",
 };
 
 export default function Pricing() {
@@ -14,7 +15,7 @@ export default function Pricing() {
     name: "Rideflow Pricing",
     description:
       "Pricing plans for Rideflow's logistics operations platform.",
-    url: "https://rideflow.org/pricing",
+    url: `${SITE_URL}/pricing`,
     mainEntity: {
       "@type": "OfferCatalog",
       name: "Rideflow Pricing Plans",

@@ -53,18 +53,18 @@ export const aboutTeam = [
   },
   {
     id: 4,
-    name: "Abegunde Precious Olanrewaju",
-    role: "Backend Engineer",
-    bio: "Builds and maintains the backend systems that power everything Rideflow does, from order processing to data management.",
-    image: "/about/bac-eng.jpg",
-    socials: null,
-  },
-  {
-    id: 5,
     name: "Olaniyan Tooni",
     role: "Co-founder & Frontend Developer",
     bio: "Co-founder of Rideflow. Architects and develops the user-centric frontend experience, ensuring intuitive design, robust performance, and a smooth interface for all users.",
     image: "/about/fro-eng.jpg",
+    socials: null,
+  },
+  {
+    id: 5,
+    name: "Abegunde Precious Olanrewaju",
+    role: "Backend Engineer",
+    bio: "Builds and maintains the backend systems that power everything Rideflow does, from order processing to data management.",
+    image: "/about/bac-eng.jpg",
     socials: null,
   },
   {
@@ -76,15 +76,7 @@ export const aboutTeam = [
     socials: null,
   },
   {
-    id: 9,
-    name: "Enukigbo Nmesoma Glory",
-    role: "Sales Executive",
-    bio: "Drives business growth by identifying partnership opportunities, engaging clients, and promoting Rideflow's logistics solutions.",
-    image: "/about/sales-exec.jpg",
-    socials: null,
-  },
-  {
-    id: 10,
+    id: 7,
     name: "Akinsola Ajibola",
     role: "Chief Operating Officer",
     bio: "Leads day-to-day operations and keeps Rideflow running smoothly across the team.",

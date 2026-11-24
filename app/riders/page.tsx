@@ -4,9 +4,9 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "For Riders - Run Your Own Delivery Business",
+  title: "For Dispatch Riders - Run Your Delivery Business on Rideflow Hubs",
   description:
-    "Find steady delivery work on the Rideflow Hub. Access verified delivery requests from customers near you and manage everything from your phone.",
+    "Get steady delivery jobs on Rideflow Hubs. Connect directly with customers looking for a dispatch rider near you and track earnings in one app.",
 };
 
 const benefits = [
@@ -37,9 +37,9 @@ export default function Page() {
             Run Your Own Delivery Business.
           </h1>
           <p className="mt-4 text-base md:text-lg text-rideflow-text-light leading-7">
-            Register on the Rideflow Hub and access delivery opportunities
-            directly from customers in your area. No middlemen, no informal
-            networks, just a steady stream of verified delivery requests you can
+            Register on Rideflow Hubs and access delivery opportunities directly
+            from customers looking to send a package in your area. No middlemen,
+            no informal networks — just verified dispatch requests you can
             manage from your phone.
           </p>
           <div className="mt-8">
@@ -83,8 +83,8 @@ export default function Page() {
             Ready to get started?
           </h2>
           <p className="mt-4 text-rideflow-text-light leading-7">
-            Riders who register now are prioritised for early access and
-            onboarding support as the Hub opens up city by city.
+            Register today to get verified on Rideflow Hubs and start receiving
+            delivery requests from customers in Lagos and across Nigeria.
           </p>
           <Button
             asChild

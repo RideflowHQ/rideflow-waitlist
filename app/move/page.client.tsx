@@ -70,22 +70,23 @@ export function MovePage() {
             <div className="flex-1">
               <h1 className="text-[clamp(2.75rem,6vw,5.5rem)] leading-[0.95] text-rideflow-ink-hard">
                 <span className="block font-black tracking-[-0.05em]">
-                  Find. Compare. Book.
+                  Send a Package.
                 </span>
                 <span className="block font-light tracking-[-0.045em]">
-                  Verified logistics, in one place.
+                  Book a dispatch rider in Lagos.
                 </span>
               </h1>
               <p className="mt-5 max-w-xl text-base leading-7 text-rideflow-text-light sm:text-lg">
-                Hubs is where customers find logistics partners. Compare
-                verified companies and independent riders by fees, ratings and
-                coverage, book in a few taps, then track every delivery live.
+                Rideflow Hubs makes it simple to send a package across Lagos and
+                interstate Nigeria. Compare verified courier companies and
+                independent dispatch riders by price, ETA, and ratings, book in
+                a few taps, and track every delivery live.
               </p>
 
               <div className="mt-8 flex flex-col items-start gap-3">
                 <StoreBadges />
                 <p className="text-sm font-medium text-rideflow-text-extralight">
-                  Download Hubs on iOS and Android.
+                  Download Rideflow Hubs on iOS and Android.
                 </p>
               </div>
             </div>

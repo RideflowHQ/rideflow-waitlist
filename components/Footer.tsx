@@ -51,7 +51,7 @@ const footerColumns: { id: number; title: string; links: FooterLink[] }[] = [
       { linkTitle: "Platform", link: "/platform" },
       { linkTitle: "Rider Sourcing", link: "/rider-sourcing" },
       { linkTitle: "Pricing", link: "/pricing" },
-      { linkTitle: "Rideflow Hub", link: "/hub" },
+      { linkTitle: "Rideflow Hubs", link: "/hub" },
       { linkTitle: "For Riders", link: "/riders" },
       // { linkTitle: "Claim Your Slot", link: "/#claim" },
       { linkTitle: "Get Hubs", link: "/move#apps" },

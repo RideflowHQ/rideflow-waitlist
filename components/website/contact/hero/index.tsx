@@ -22,6 +22,7 @@ export const ContactHero = () => {
           <div className="w-full lg:w-1/2 py-20 md:pt-30 md:pb-15 lg:pr-8">
             <Badge text="Contact" color="bg-white" />
             <TextAnimate
+              as="h1"
               animation="blurIn"
               by="word"
               startOnView

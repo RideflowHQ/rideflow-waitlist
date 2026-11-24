@@ -17,6 +17,7 @@ export const AboutHero = () => {
       <div className="container mx-auto px-6 pt-28 md:pt-40 flex flex-col items-start gap-6 max-w-5xl">
         <Badge text="About Rideflow" color="bg-white" />
         <TextAnimate
+          as="h1"
           animation="blurIn"
           by="word"
           startOnView

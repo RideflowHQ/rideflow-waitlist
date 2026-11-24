@@ -130,7 +130,7 @@ export const ContactForm = () => {
                       <FormControl>
                         <Input
                           type="tel"
-                          placeholder="+234 810 234 5678"
+                          placeholder="08111087862"
                           {...field}
                           className="bg-white h-12"
                         />

@@ -1,20 +1,30 @@
 import Image from "next/image";
 import React from "react";
+import { CONTACT_EMAIL, CONTACT_PHONES } from "@/lib/content/site";
 
-const contactData = [
+type ContactCardItem = {
+  id: number;
+  icon: string;
+  alt: string;
+  title: string;
+  content?: string;
+  phones?: readonly string[];
+};
+
+const contactData: ContactCardItem[] = [
   {
     id: 1,
     icon: "/contact/PhoneCall.svg",
     alt: "Phone Call",
     title: "Phone",
-    content: "+234 810 234 5678",
+    phones: CONTACT_PHONES,
   },
   {
     id: 2,
     icon: "/contact/EnvelopeSimple.svg",
     alt: "Envelope",
     title: "Email",
-    content: "info@rideflow.org",
+    content: CONTACT_EMAIL,
   },
   {
     id: 3,
@@ -46,9 +56,22 @@ const Cards = () => {
           </div>
           <div>
             <p className="font-medium text-lg md:text-[1.4rem]">{item.title}</p>
-            <p className="text-sm sm:text-base md:text-lg text-rideflow-text whitespace-pre-line">
-              {item.content}
-            </p>
+            {item.phones ? (
+              <p className="text-sm sm:text-base md:text-lg text-rideflow-text">
+                {item.phones.map((phone, idx) => (
+                  <React.Fragment key={phone}>
+                    {idx > 0 && ", "}
+                    <a href={`tel:${phone}`} className="hover:underline">
+                      {phone}
+                    </a>
+                  </React.Fragment>
+                ))}
+              </p>
+            ) : (
+              <p className="text-sm sm:text-base md:text-lg text-rideflow-text whitespace-pre-line">
+                {item.content}
+              </p>
+            )}
           </div>
         </div>
       ))}

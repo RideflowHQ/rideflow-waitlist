@@ -22,7 +22,7 @@ export const PartnerBridgeSection = () => {
   return (
     <section className="py-12 md:py-16 lg:py-20 bg-white border-t border-dashed border-[#808080]">
       <div className="container mx-auto px-6 max-w-4xl">
-        <Badge text="Rideflow Hub" color="bg-body-gray" />
+        <Badge text="Rideflow Hubs" color="bg-body-gray" />
         <TextAnimate
           animation="blurIn"
           by="word"
@@ -30,12 +30,13 @@ export const PartnerBridgeSection = () => {
           once
           className="mt-4 font-medium text-3xl sm:text-4xl md:text-[2.6rem] leading-tight"
         >
-          Get discovered on Hubs. Run the rest on Rideflow.
+          Get discovered on Rideflow Hubs. Run the rest on Rideflow.
         </TextAnimate>
         <p className="mt-4 text-base md:text-lg text-rideflow-text-light leading-7">
-          List your business where customers are already looking. Requests land
-          straight in your dispatch dashboard, alongside your fleet, team,
-          compliance and finances.
+          Put your courier business or independent dispatch riders where
+          customers in Lagos and across Nigeria already go to send a package.
+          Requests land straight in your dispatch dashboard, alongside your
+          fleet, team, compliance, and finances.
         </p>
 
         <div className="mt-10 grid gap-5 md:grid-cols-3">

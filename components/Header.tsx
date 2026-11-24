@@ -33,7 +33,7 @@ const runNav: NavItem[] = [
     label: "Solutions",
     href: "/hub",
     children: [
-      { label: "Rideflow Hub", href: "/hub" },
+      { label: "Rideflow Hubs", href: "/hub" },
       { label: "Rider Sourcing", href: "/rider-sourcing" },
       { label: "For Riders", href: "/riders" },
     ],

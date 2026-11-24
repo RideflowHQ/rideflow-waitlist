@@ -3,20 +3,22 @@
 User-agent: *
 Allow: /
 
-# AI Systems and LLM Crawlers
-Allow: /llms.txt
-
-# Sitemaps
-Sitemap: https://rideflow.org/sitemap.xml
-
-# OpenAI GPTBot
 User-agent: GPTBot
 Allow: /
 
-# Anthropic Claude Bot
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
 User-agent: Claude-Web
 Allow: /
 
-# Google Gemini Bot
 User-agent: Google-Extended
 Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+Sitemap: https://www.rideflow.org/sitemap.xml
