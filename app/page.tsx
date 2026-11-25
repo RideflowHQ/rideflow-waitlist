@@ -1,6 +1,7 @@
 import { LandingPage } from "./page.client";
 import { Metadata } from "next";
 import { SITE_URL } from "@/lib/content/site";
+import { safeJsonLd } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "Rideflow - Streamline your Logistics Operations",
@@ -22,7 +23,7 @@ export default async function Home() {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }}
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(webPageSchema) }}
       />
       <LandingPage />
     </>

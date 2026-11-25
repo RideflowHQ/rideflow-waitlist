@@ -21,6 +21,7 @@ const ServicesCards = () => {
                 src={item.imageUrl}
                 alt={item.title}
                 fill
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 className="object-cover"
               />
             </div>
@@ -41,6 +42,7 @@ const ServicesCards = () => {
             window.open(
               "https://dashboard.rideflow.org/auth/register",
               "_blank",
+              "noopener,noreferrer",
             );
           }}
         >

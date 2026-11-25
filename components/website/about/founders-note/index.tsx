@@ -12,6 +12,7 @@ export const FoundersNoteSection = () => {
             src="/about/new-founder.jpeg"
             alt="Founder"
             fill
+            sizes="(max-width: 1024px) 100vw, 50vw"
             className="object-cover rounded-[20px]"
           />
         </div>

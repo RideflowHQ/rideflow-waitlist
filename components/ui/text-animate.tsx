@@ -301,6 +301,16 @@ const defaultItemAnimationVariants: Record<
   },
 };
 
+const motionComponentCache = new Map<ElementType, ElementType>();
+function getMotionComponent(tag: ElementType) {
+  let cached = motionComponentCache.get(tag);
+  if (!cached) {
+    cached = motion.create(tag);
+    motionComponentCache.set(tag, cached);
+  }
+  return cached;
+}
+
 const TextAnimateBase = ({
   children,
   delay = 0,
@@ -316,7 +326,7 @@ const TextAnimateBase = ({
   accessible = true,
   ...props
 }: TextAnimateProps) => {
-  const MotionComponent = motion.create(Component);
+  const MotionComponent = getMotionComponent(Component);
 
   // Convert children to string if it's not already
   const textContent =
@@ -398,21 +408,30 @@ const TextAnimateBase = ({
         {...props}
       >
         {accessible && <span className="sr-only">{textContent}</span>}
-        {segments.map((segment, i) => (
-          <motion.span
-            key={`${by}-${segment}-${i}`}
-            variants={finalVariants.item}
-            custom={i * staggerTimings[by]}
-            className={cn(
-              by === "line" ? "block" : "inline-block whitespace-pre",
-              by === "character" && "",
-              segmentClassName,
-            )}
-            aria-hidden={accessible ? true : undefined}
-          >
-            {segment}
-          </motion.span>
-        ))}
+        {(() => {
+          let charOffset = 0;
+          let step = 0;
+          return segments.map((segment) => {
+            const key = `${by}-${charOffset}-${segment}`;
+            const custom = step * staggerTimings[by];
+            charOffset += segment.length;
+            step += 1;
+            return (
+              <motion.span
+                key={key}
+                variants={finalVariants.item}
+                custom={custom}
+                className={cn(
+                  by === "line" ? "block" : "inline-block whitespace-pre",
+                  segmentClassName,
+                )}
+                aria-hidden={accessible ? true : undefined}
+              >
+                {segment}
+              </motion.span>
+            );
+          });
+        })()}
       </MotionComponent>
     </AnimatePresence>
   );

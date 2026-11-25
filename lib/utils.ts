@@ -11,6 +11,12 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
+export function safeJsonLd(value: unknown): string {
+  return JSON.stringify(value).replace(/[<>&]/g, (ch) =>
+    ch === "<" ? "\\u003c" : ch === ">" ? "\\u003e" : "\\u0026",
+  );
+}
+
 export async function getNotionDatabaseRowCount(
   dataSourceId: string
 ): Promise<number> {

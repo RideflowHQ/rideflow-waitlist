@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import { PricingPage } from "./page.client";
 import { SITE_URL } from "@/lib/content/site";
+import { safeJsonLd } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "Pricing - Rideflow",
@@ -46,7 +47,7 @@ export default function Pricing() {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(pricingPageSchema) }}
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(pricingPageSchema) }}
       />
       <PricingPage />
     </>

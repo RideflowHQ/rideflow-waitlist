@@ -44,14 +44,18 @@ export const Hero = () => {
             <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <Button
                 className="cursor-pointer bg-rideflow-blue px-6 py-2 font-semibold text-white hover:bg-blue-700"
-                onClick={() => window.open(REGISTER_URL, "_blank")}
+                onClick={() =>
+                  window.open(REGISTER_URL, "_blank", "noopener,noreferrer")
+                }
               >
                 Start for free
               </Button>
               <Button
                 variant="outline"
                 className="cursor-pointer border-rideflow-blue px-6 py-2 font-semibold text-rideflow-blue hover:bg-body-gray"
-                onClick={() => window.open(CALENDLY_URL, "_blank")}
+                onClick={() =>
+                  window.open(CALENDLY_URL, "_blank", "noopener,noreferrer")
+                }
               >
                 Book a Demo
               </Button>

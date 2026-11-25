@@ -54,7 +54,7 @@ export function PlatformPage() {
           </p>
           <Button
             className="mt-8 bg-rideflow-blue px-6 py-2 text-white font-semibold hover:bg-blue-700"
-            onClick={() => window.open(CALENDLY_URL, "_blank")}
+            onClick={() => window.open(CALENDLY_URL, "_blank", "noopener,noreferrer")}
           >
             Book a Demo →
           </Button>
@@ -251,7 +251,9 @@ export function PlatformPage() {
             <Button
               variant="outline"
               className="border-rideflow-blue text-rideflow-blue"
-              onClick={() => window.open(CALENDLY_URL, "_blank")}
+              onClick={() =>
+                window.open(CALENDLY_URL, "_blank", "noopener,noreferrer")
+              }
             >
               Book a Demo →
             </Button>

@@ -1,6 +1,8 @@
 import { ServicesPage } from "./page.client";
 import { Metadata } from "next";
 import { getAllServices } from "@/lib/services-data";
+import { SITE_URL } from "@/lib/content/site";
+import { safeJsonLd } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "Our Services - Rideflow",
@@ -21,7 +23,7 @@ export default async function ServicePage() {
         "@type": "Service",
         name: service.title,
         description: service.summary,
-        url: `https://rideflow.org/services/${service.slug}`,
+        url: `${SITE_URL}/services/${service.slug}`,
         provider: {
           "@type": "Organization",
           name: "Rideflow Limited",
@@ -34,7 +36,7 @@ export default async function ServicePage() {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceListSchema) }}
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(serviceListSchema) }}
       />
       <ServicesPage />
     </>

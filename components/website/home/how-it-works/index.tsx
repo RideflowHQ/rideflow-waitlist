@@ -275,6 +275,7 @@ function MobileHowItWorks() {
           src="/home/woman-overall.webp"
           alt="Overall Woman"
           fill
+          sizes="100vw"
           className="object-cover"
         />
       </div>
@@ -304,7 +305,7 @@ function MobileHowItWorks() {
 
         <Button
           className="mt-8 w-full cursor-pointer bg-rideflow-blue px-4 py-2 font-semibold text-white hover:bg-blue-700 md:mt-10 md:w-max"
-          onClick={() => window.open(CALENDLY_URL, "_blank")}
+          onClick={() => window.open(CALENDLY_URL, "_blank", "noopener,noreferrer")}
         >
           Book a Demo →
         </Button>
@@ -366,6 +367,7 @@ function DesktopHowItWorks({ reducedMotion }: { reducedMotion: boolean }) {
             src="/home/woman-overall.webp"
             alt="Overall Woman"
             fill
+            sizes="43vw"
             className="object-cover"
           />
         </div>
@@ -401,7 +403,9 @@ function DesktopHowItWorks({ reducedMotion }: { reducedMotion: boolean }) {
 
               <Button
                 className="mt-2 w-max cursor-pointer bg-rideflow-blue px-4 py-2 font-semibold text-white hover:bg-blue-700"
-                onClick={() => window.open(CALENDLY_URL, "_blank")}
+                onClick={() =>
+                  window.open(CALENDLY_URL, "_blank", "noopener,noreferrer")
+                }
               >
                 Book a Demo →
               </Button>

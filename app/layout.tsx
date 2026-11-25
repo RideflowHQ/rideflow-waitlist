@@ -9,6 +9,7 @@ import Header from "@/components/Header";
 import dynamic from "next/dynamic";
 import { headers } from "next/headers";
 import { SITE_URL } from "@/lib/content/site";
+import { safeJsonLd } from "@/lib/utils";
 import { isCustomDomainRequest } from "@/lib/tracking/host";
 
 const dmSans = DM_Sans({ subsets: ["latin"], variable: "--font-dm-sans" });
@@ -100,13 +101,13 @@ export default async function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(organizationSchema),
+            __html: safeJsonLd(organizationSchema),
           }}
         />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(softwareApplicationSchema),
+            __html: safeJsonLd(softwareApplicationSchema),
           }}
         />
       </head>

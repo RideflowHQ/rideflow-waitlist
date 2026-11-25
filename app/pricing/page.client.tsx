@@ -314,7 +314,9 @@ export function PricingPage() {
           <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
             <Button
               className="bg-rideflow-blue text-white hover:bg-blue-700"
-              onClick={() => window.open(CALENDLY_URL, "_blank")}
+              onClick={() =>
+                window.open(CALENDLY_URL, "_blank", "noopener,noreferrer")
+              }
             >
               Book a Demo →
             </Button>
