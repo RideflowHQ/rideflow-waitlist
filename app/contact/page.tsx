@@ -1,6 +1,7 @@
 import { ContactPage } from "./page.client";
 import { Metadata } from "next";
 import { SITE_URL } from "@/lib/content/site";
+import { safeJsonLd } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "Contact Us - Rideflow",
@@ -21,7 +22,7 @@ export default async function Contact() {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(contactPageSchema) }}
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(contactPageSchema) }}
       />
       <ContactPage />
     </>

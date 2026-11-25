@@ -13,6 +13,7 @@ export const ContactHero = () => {
           src="/contact/contact-man.webp"
           alt="Contact Man"
           fill
+          sizes="50vw"
           className="object-cover"
         />
       </div>

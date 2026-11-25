@@ -28,15 +28,12 @@ const SpringArrow = ({
   return (
     <motion.div
       className="absolute z-10 pointer-events-none"
-      style={{
-        ...position,
-        willChange: "transform, opacity",
-      }}
+      style={position}
       initial={{ scale: 0, opacity: 0 }}
       animate={{
         scale: [0, 1.2, 0.95, 1.05, 1],
         opacity: [0, 1, 1, 1, 0],
-        rotate: [0, 10, -5, 0],
+        rotate: [0, 10, -5, 3, 0],
         y: [0, -15, -8, -12, 0],
       }}
       transition={{
@@ -85,7 +82,7 @@ const DashboardLive = () => {
         <AnimatePresence>
           {images.map((image, index) => (
             <SpringArrow
-              key={`${image.src}-${index}`}
+              key={image.src}
               src={image.src}
               position={image.position}
               delay={index * 0.8}
@@ -174,7 +171,6 @@ const DashboardLive = () => {
                     initial={{ scale: 0, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
                     transition={{
-                      duration: 0.3,
                       delay: 1 + index * 0.05,
                       type: "spring",
                       stiffness: 200,

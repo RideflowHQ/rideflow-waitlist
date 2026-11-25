@@ -83,6 +83,7 @@ export const TestimoniesSection = () => {
                           src={testimonial.avatar}
                           alt={testimonial.author}
                           fill
+                          sizes="44px"
                           className="object-cover"
                         />
                       </div>

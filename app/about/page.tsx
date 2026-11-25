@@ -1,6 +1,7 @@
 import { AboutPage } from "./page.client";
 import { Metadata } from "next";
 import { SITE_URL } from "@/lib/content/site";
+import { safeJsonLd } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "About Us - Rideflow",
@@ -27,7 +28,7 @@ export default async function About() {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutPageSchema) }}
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(aboutPageSchema) }}
       />
       <AboutPage />
     </>

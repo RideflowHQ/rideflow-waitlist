@@ -56,7 +56,7 @@ function FeatureListCheck() {
 export function PricingCard({ plan }: PricingCardProps) {
   const handleClick = () => {
     if (plan.ctaNewTab) {
-      window.open(plan.ctaHref, "_blank");
+      window.open(plan.ctaHref, "_blank", "noopener,noreferrer");
       return;
     }
 

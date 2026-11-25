@@ -54,12 +54,21 @@ export const CardStack = ({
 
   return (
     <div
+      role="button"
+      tabIndex={0}
+      aria-label="Cycle cards"
       className={cn(
         !className && "h-60 w-60 md:h-60 md:w-96",
         "relative",
         className,
       )}
       onClick={cycle}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          cycle();
+        }
+      }}
     >
       {cards.map((card, index) => {
         const showMeta = Boolean(card.name || card.designation);
@@ -77,7 +86,7 @@ export const CardStack = ({
               transformOrigin: "top center",
             }}
             animate={{
-              top: index * -CARD_OFFSET,
+              y: index * -CARD_OFFSET,
               scale: 1 - index * SCALE_FACTOR,
               zIndex: cards.length - index,
             }}

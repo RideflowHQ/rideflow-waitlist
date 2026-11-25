@@ -78,6 +78,7 @@ export const BenefitsSection = () => {
               window.open(
                 "https://dashboard.rideflow.org/auth/register",
                 "_blank",
+                "noopener,noreferrer",
               );
             }}
           >
@@ -113,6 +114,7 @@ export const BenefitsSection = () => {
                       src={benefit.image}
                       alt={benefit.title}
                       fill
+                      sizes="(max-width: 768px) 320px, 600px"
                       className="object-cover"
                     />
                   </div>

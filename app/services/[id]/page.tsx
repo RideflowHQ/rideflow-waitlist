@@ -1,5 +1,7 @@
 import { ServicesDetailPage } from "./page.client";
 import { getServiceBySlug, getAllServices } from "@/lib/services-data";
+import { SITE_URL } from "@/lib/content/site";
+import { safeJsonLd } from "@/lib/utils";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
@@ -47,11 +49,11 @@ export default async function ServiceDetailPage({
     "@type": "Service",
     name: service.title,
     description: service.summary,
-    url: `https://rideflow.org/services/${service.slug}`,
+    url: `${SITE_URL}/services/${service.slug}`,
     provider: {
       "@type": "Organization",
       name: "Rideflow Limited",
-      url: "https://rideflow.org",
+      url: SITE_URL,
     },
     areaServed: {
       "@type": "Country",
@@ -63,7 +65,7 @@ export default async function ServiceDetailPage({
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(serviceSchema) }}
       />
       <ServicesDetailPage />
     </>

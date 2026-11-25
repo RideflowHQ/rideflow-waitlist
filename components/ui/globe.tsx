@@ -5,8 +5,9 @@ import {
   useEffect,
   useRef,
   useState,
+  useSyncExternalStore,
 } from "react";
-import { Color, Group, MeshBasicMaterial, Vector3 } from "three";
+import { Color, Group, MeshBasicMaterial } from "three";
 import ThreeGlobe from "three-globe";
 import { useThree, Canvas, extend } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
@@ -98,24 +99,36 @@ function GlobeFallback() {
   );
 }
 
-function canUseWebGL() {
-  if (typeof window === "undefined") return false;
+let cachedWebGL: boolean | null = null;
+function getWebGLSnapshot(): boolean {
+  if (cachedWebGL !== null) return cachedWebGL;
   try {
     const canvas = document.createElement("canvas");
-    return Boolean(
+    cachedWebGL = Boolean(
       canvas.getContext("webgl2") ||
         canvas.getContext("webgl") ||
         canvas.getContext("experimental-webgl"),
     );
   } catch {
-    return false;
+    cachedWebGL = false;
   }
+  return cachedWebGL;
+}
+
+const noopSubscribe = () => () => {};
+function subscribeResize(cb: () => void) {
+  window.addEventListener("resize", cb);
+  return () => window.removeEventListener("resize", cb);
+}
+function subscribeReduceMotion(cb: () => void) {
+  const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+  mq.addEventListener("change", cb);
+  return () => mq.removeEventListener("change", cb);
 }
 
 export function Globe({ globeConfig, data }: WorldProps) {
   const globeRef = useRef<ThreeGlobe | null>(null);
   const groupRef = useRef<Group>(null);
-  const [isInitialized, setIsInitialized] = useState(false);
 
   const defaultProps = {
     pointSize: 1,
@@ -134,37 +147,36 @@ export function Globe({ globeConfig, data }: WorldProps) {
     ...globeConfig,
   };
 
-  // Initialize globe only once
   useEffect(() => {
     if (!globeRef.current && groupRef.current) {
       globeRef.current = new ThreeGlobe();
       groupRef.current.add(globeRef.current);
+    }
+    if (groupRef.current) {
       // three-globe: camera on +Z already looks at lat 0 / lng 0 (Gulf of Guinea).
       // Extra +90° yaw was rotating Nigeria off-camera onto the Americas.
       const lng = globeConfig.initialPosition?.lng ?? 0;
       groupRef.current.rotation.y = -lng * (Math.PI / 180);
-      setIsInitialized(true);
     }
-  }, [globeConfig.initialPosition?.lat, globeConfig.initialPosition?.lng]);
+  }, [globeConfig.initialPosition?.lng]);
 
   useEffect(() => {
-    if (!globeRef.current || !isInitialized) return;
+    if (!globeRef.current) return;
     globeRef.current.globeMaterial(
       new MeshBasicMaterial({
-        color: new Color(globeConfig.globeColor ?? defaultProps.globeColor),
+        color: new Color(defaultProps.globeColor),
       }),
     );
-  }, [isInitialized, globeConfig.globeColor]);
+  }, [defaultProps.globeColor]);
 
   // Build data when globe is initialized or when data changes
   useEffect(() => {
-    if (!globeRef.current || !isInitialized || !data) return;
+    if (!globeRef.current || !data) return;
 
     const arcs = data;
-    let points = [];
+    const points = [];
     for (let i = 0; i < arcs.length; i++) {
       const arc = arcs[i];
-      const rgb = hexToRgb(arc.color) as { r: number; g: number; b: number };
       points.push({
         size: defaultProps.pointSize,
         order: arc.order,
@@ -240,8 +252,8 @@ export function Globe({ globeConfig, data }: WorldProps) {
         (defaultProps.arcTime * defaultProps.arcLength) / defaultProps.rings,
       );
   }, [
-    isInitialized,
     data,
+    defaultProps.globeColor,
     defaultProps.pointSize,
     defaultProps.showAtmosphere,
     defaultProps.atmosphereColor,
@@ -254,21 +266,21 @@ export function Globe({ globeConfig, data }: WorldProps) {
   ]);
 
   useEffect(() => {
-    if (!globeRef.current || !isInitialized || !data) return;
+    if (!globeRef.current || !data) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     if (window.innerWidth < 768) return;
 
     const interval = setInterval(() => {
       if (!globeRef.current) return;
 
-      const newNumbersOfRings = genRandomNumbers(
+      const chosen = genRandomNumbers(
         0,
         data.length,
         Math.floor((data.length * 4) / 5),
       );
 
       const ringsData = data
-        .filter((d, i) => newNumbersOfRings.includes(i))
+        .filter((_d, i) => chosen.has(i))
         .map((d) => ({
           lat: d.startLat,
           lng: d.startLng,
@@ -281,7 +293,7 @@ export function Globe({ globeConfig, data }: WorldProps) {
     return () => {
       clearInterval(interval);
     };
-  }, [isInitialized, data]);
+  }, [data]);
 
   return <group ref={groupRef} />;
 }
@@ -308,14 +320,20 @@ export function World(props: WorldProps) {
   const { globeConfig } = props;
   const wrapRef = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(true);
-  const [webglSupported] = useState(canUseWebGL);
-  const [isMobile] = useState(
-    () => typeof window !== "undefined" && window.innerWidth < 768,
+  const webglSupported = useSyncExternalStore(
+    noopSubscribe,
+    getWebGLSnapshot,
+    () => true,
   );
-  const [reduceMotion] = useState(
-    () =>
-      typeof window !== "undefined" &&
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches,
+  const isMobile = useSyncExternalStore(
+    subscribeResize,
+    () => window.innerWidth < 768,
+    () => false,
+  );
+  const reduceMotion = useSyncExternalStore(
+    subscribeReduceMotion,
+    () => window.matchMedia("(prefers-reduced-motion: reduce)").matches,
+    () => false,
   );
 
   useEffect(() => {
@@ -356,17 +374,17 @@ export function World(props: WorldProps) {
             <ambientLight color={globeConfig.ambientLight} intensity={2.1} />
             <directionalLight
               color={globeConfig.directionalLeftLight}
-              position={new Vector3(-400, 100, 400)}
+              position={[-400, 100, 400]}
               intensity={0.2}
             />
             <directionalLight
               color={globeConfig.directionalTopLight}
-              position={new Vector3(-200, 500, 200)}
+              position={[-200, 500, 200]}
               intensity={0.2}
             />
             <pointLight
               color={globeConfig.pointLight}
-              position={new Vector3(-200, 500, 200)}
+              position={[-200, 500, 200]}
               intensity={0.25}
             />
             <Globe {...props} />
@@ -390,28 +408,11 @@ export function World(props: WorldProps) {
   );
 }
 
-export function hexToRgb(hex: string) {
-  var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
-  hex = hex.replace(shorthandRegex, function (m, r, g, b) {
-    return r + r + g + g + b + b;
-  });
-
-  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-  return result
-    ? {
-        r: parseInt(result[1], 16),
-        g: parseInt(result[2], 16),
-        b: parseInt(result[3], 16),
-      }
-    : null;
-}
-
-export function genRandomNumbers(min: number, max: number, count: number) {
-  const arr = [];
-  while (arr.length < count) {
-    const r = Math.floor(Math.random() * (max - min)) + min;
-    if (arr.indexOf(r) === -1) arr.push(r);
+function genRandomNumbers(min: number, max: number, count: number) {
+  const chosen = new Set<number>();
+  const target = Math.min(count, Math.max(0, max - min));
+  while (chosen.size < target) {
+    chosen.add(Math.floor(Math.random() * (max - min)) + min);
   }
-
-  return arr;
+  return chosen;
 }

@@ -45,6 +45,7 @@ const MediaCarousels = () => {
                 src={card.src}
                 alt={card.alt || ""}
                 fill
+                sizes="300px"
                 className="object-cover"
               />
             ) : (
